@@ -1,0 +1,730 @@
+<form class="container-fluid ps-form-page-wrapper" ps-validation-option="validationOptions">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <h6 class="card-header d-flex justify-content-between align-items-center">
+          {{ langService.langData.filter }}
+          <div class="d-flex card-header__action">
+            <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent"
+              (click)="onClickSearch()"><i class="fa fa-search"></i>
+              {{ langService.langData.filter }}</button>
+            <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent"
+              (click)="onClickResetSearchField()"><i class="fa fa-repeat"></i>
+              {{ langService.langData.reset }}</button>
+          </div>
+        </h6>
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.date }}</label>
+            <div class="col-md-8">
+              <div class="ps-two-date-picker">
+                <input type="text" class="form-control" [(ngModel)]="formParam.START_DATE" name="formParam.START_DATE"
+                  [maxDate]="formParam.END_DATE" [bsConfig]="psDateFormat" psDatepicker autocomplete="off" (ngModelChange)="onClickSearch()">
+                <span class="ps-two-date-picker__to">{{ langService.langData.to }}</span>
+                <input type="text" class="form-control" [(ngModel)]="formParam.END_DATE" name="formParam.END_DATE"
+                  [minDate]="formParam.START_DATE" [bsConfig]="psDateFormat" psDatepicker autocomplete="off" (ngModelChange)="onClickSearch()">
+              </div>
+            </div>
+          </div>
+          <!--/.form-group-->
+
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.buyer }}</label>
+            <div class="col-md-8">
+              <!-- <select class="form-control">
+                        <option value="">{{ langService.langData.select }}</option>
+                      </select> -->
+              <div class="ps-modal-open-wrapper">
+                <span class="ps-modal-open-wrapper__text"
+                  (dblclick)="onClickOpenCustomerListModal()">{{ model.filterData.CUSTOMER_NAME }}</span>
+                <div class="ps-modal-open-wrapper__button">
+                  <button type="button" class="btn btn--squire" (click)="onClickOpenCustomerListModal()"><i
+                      class="fa fa-folder-open-o"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--/.form-group-->
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.salesDocument }}</label>
+            <div class="col-md-8">
+              <!-- <select class="form-control">
+                        <option value="">{{ langService.langData.select }}</option>
+                      </select> -->
+              <div class="ps-modal-open-wrapper">
+                <span class="ps-modal-open-wrapper__text">{{ model.filterData.DOC_AMENDMENT }}</span>
+                <div class="ps-modal-open-wrapper__button">
+                  <button type="button" class="btn btn--squire" (click)="onClickOpenSalesContactListModal()"><i
+                      class="fa fa-folder-open-o"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--/.form-group-->
+          <!-- <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.negotiation }}</label>
+            <div class="col-md-8">
+              <ng-select [virtualScroll]="true" class="ng-select--open-right" [clearable]="false"
+                [(ngModel)]="model.selectedNegosiation" name="selectedNegosiation">
+                <ng-option [value]="null" readonly>{{ langService.langData.select }}</ng-option>
+                <ng-option *ngFor="let item of model.bankRefList;  trackBy:trackByFn;" [value]="item.NEGOTIATION_NO">
+                  {{ item.BANKREF_LIST }}</ng-option>
+              </ng-select>
+            </div>
+          </div> -->
+          <!--/.form-group-->
+        </div>
+      </div>
+      <!-- .card -->
+
+    
+      <!-- .card -->
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          {{ langService.langData.negotiation }}    
+          <div class="d-flex card-header__action">  
+            &nbsp;          
+          </div>
+        </div>
+        
+        <div class="card-body p0 mt-base mb-base">      
+          <div class="ag-table-wrapper ag-table-wrapper--filter" style="width: 100%;">
+            <app-ag-grid-filter [gridId]="gridIdFilter" [grid]="gridFilter"></app-ag-grid-filter>
+            <ag-grid-angular style="width: 100%; height: 415px;" class="ag-theme-balham" [columnDefs]="columnDefsFilter"
+            (gridReady)="onGridReadyFilter($event)" [pagination]="true" psValidateGrid
+            [frameworkComponents]="gridService.frameworkComponents" [rowSelection]="rowSelectionFilter"
+            [suppressRowClickSelection]="true" [animateRows]="true" (cellClicked)='itemClickFilter($event)'>
+          </ag-grid-angular>
+          </div>            
+        </div>        
+      </div>
+      <!-- .card -->
+
+    </div>
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <span class="card-header__title">&nbsp;</span>
+          <div class="d-flex card-header__action">
+            <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent"
+              (click)="onClickAddNewDocument()" *ngIf="model.userPrivilege.canShowNew()"><i class="fa fa-plus"></i>
+              {{ langService.langData.new }}</button>
+            <button type="button" class="btn btn-success btn-sm btn--width-auto bg-transparent" (click)="onClickSave()"
+              *ngIf="model.userPrivilege.canShowSave()" id="psMasterSave"><i class="fa fa-floppy-o"></i>
+              {{ langService.langData.save }}</button>
+            <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent"
+              (click)="onClickResetDocument()" *ngIf="model.userPrivilege.canShowSave()"><i class="fa fa-repeat"></i>
+              {{ langService.langData.reset }}</button>
+                        
+            <button type="button" *ngIf="model.userPrivilege.canShowDelete()"
+              [disabled]="model.negotiationData.GL_CHECK || !model.negotiationData.NEGOTIATION_NO"
+              class="btn btn-danger btn-sm btn--width-auto bg-transparent" (click)="onClickDeleteDocument()"><i
+                class="fa fa-times"></i>
+              {{ langService.langData.delete }}</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card">
+            <h6 class="card-header">{{ langService.langData.negotiation }}</h6>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-7 col-sm-6">
+                  <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                      <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ langService.langData.bankInfo }}</label>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" readonly
+                            [(ngModel)]="model.negotiationData.OWN_BANKDTL" name="OWN_BANKDTL">
+                        </div>
+                      </div>
+                      <!--/.form-group-->
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                      <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ langService.langData.buyer }}</label>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" readonly
+                            [(ngModel)]="model.negotiationData.CUSTOMER_NAME" name="CUSTOMER_NAME">
+                        </div>
+                      </div>
+                      <!--/.form-group-->
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                      <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ langService.langData.bankRefDot }}</label>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" readonly
+                            [(ngModel)]="model.negotiationData.BANK_REF_NO" name="BANK_REF_NO">
+                        </div>
+                      </div>
+                      <!--/.form-group-->
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                      <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ langService.langData.negoDate }}</label>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" [readonly]="model.negotiationData.GL_CHECK || !model.userPrivilege.canShowEdit()"
+                            [bsConfig]="psDateFormat" psDatepicker autocomplete="off"
+                            [(ngModel)]="model.negotiationData.NEGOTIATION_DATE" name="NEGOTIATION_DATE"
+                            (ngModelChange)="onChangeNegoDate()"
+                            >
+                        </div>
+                      </div>
+                      <!--/.form-group-->
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                      <div class="form-group row">
+                        <label class="col-md-4 col-form-label ps-sub">{{ langService.langData.document }}</label>
+                        <div class="col-md-8">
+                          <div class="ps-modal-open-wrapper">
+                            <span class="ps-modal-open-wrapper__text"
+                              [ngClass]="{'pointer-events-none cursor-disabled':model.negotiationData.GL_CHECK}">{{ model.negotiationData.DOC_AMENDMENT }}</span>
+                            <div class="ps-modal-open-wrapper__button">
+                              <button type="button" class="btn btn--squire" [disabled]="model.negotiationData.GL_CHECK || !model.userPrivilege.canShowEdit()"
+                                (click)="onClickOpenDocumentListModal()"><i class="fa fa-folder-open-o"></i></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--/.form-group-->
+                    </div>
+                    
+                    
+                                  
+                    <div class="col-lg-6 col-sm-6">
+                      <!--/.form-group-->
+                      <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ langService.langData.postDate }}</label>
+                        <div class="col-md-8">
+                          <div class="input-group input-group--custom-control">
+                            <input type="text" class="form-control" [disabled]="model.negotiationData.GL_CHECK || !model.userPrivilege.canShowEdit()"
+                              [(ngModel)]="model.negotiationData.GL_POST_NEGODATE" name="GL_POST_NEGODATE"
+                              [bsConfig]="psDateFormat" psDatepicker placeholder="" autocomplete="off">
+                            <div class="input-group-append ml-base">
+                              <div class="input-group-text">
+                                <label class="custom-control custom-checkbox custom-control--without-label">
+                                  <!-- [disabled]="model.negotiationData.V_ID  || !model.userPrivilege.canShowEdit()" -->
+                                  <input class="custom-control-input" type="checkbox" name="GL_CHECK"
+                                    [checked]="model.negotiationData.GL_CHECK == 1"
+                                    (change)="model.negotiationData.GL_CHECK = $event.target.checked?1:0; onChangePostFlagCheckbox()"
+                                    [disabled]="!model.postFlugStatus || !model.userPrivilege.canShowEdit()">
+                                  <span class="custom-control-label"></span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <!--/.input-group-->
+                        </div>
+                      </div>
+                      <!--/.form-group-->
+                    </div>
+
+                    <div class="col-lg-6 col-sm-6">
+                      <div class="form-group row">                                                                                           
+                        <label class="col-md-4 col-form-label">{{ langService.langData.voucher }}</label>
+                        <div class="col-md-8">                      
+                          <div class="ps-modal-open-wrapper">                              
+                            <input type="text" class="form-control" name="model.negotiationData.V_ID"
+                            [(ngModel)]="model.negotiationData.V_ID" readonly>
+                            
+                            <div class="ps-modal-open-wrapper__button">
+                              <button type="button" class="btn btn--squire"
+                              (click)="onClickPreviewReport(model.negotiationData)"
+                              ><i class="fa fa-eye"></i></button>
+                            </div>
+                          </div>
+                        </div>                                                
+                      </div>
+                    </div>
+                    <!--negoAttachment ? negoAttachment :
+                      this.langService.langData.chooseAFile-->
+                    <div class="col-lg-6 col-sm-6">
+                      <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ langService.langData.attachment }}</label>
+                        <div class="col-md-8">
+                          <div class="input-group">
+                            <input type="file" id="upload-file-nego" name="upload-file-nego" class="ps-file-upload-btn" 
+                            (change)="handleFileInput($event, 'doc')"/>
+                            <label for="upload-file" class="form-control"> 
+                              <i class="fa fa-upload"></i></label>
+                            <div class="input-group-append input-group-append--remove-icon">
+                              <button class="btn btn-default btn--width-auto ml-base"
+                                type="button">{{ langService.langData.upload }}</button>
+                              <button class="btn btn-default text-danger btn--squire close-button" type="button"><i
+                                  class="ion-close-round"></i></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12 col-sm-6">
+                      <div class="form-group row">
+                        <label class="col-md-2 col-form-label">{{ langService.langData.description }}</label>
+                        <div class="col-md-10">
+                          <textarea class="form-control textarea--input-style textarea--resize-vertical" name="DESCR"
+                            ps-select-all [(ngModel)]="model.negotiationData.NEGOTIATION_DESCR"
+                            [readonly]="model.negotiationData.GL_CHECK || !model.userPrivilege.canShowEdit()" name="NEGOTIATION_DESCR"
+                            ps-validate="description"                                                                                  
+                            ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <!-- row -->
+                </div>
+
+                <div class="col-md-5 col-sm-6">
+                  <div class="row">
+                    <div class="col-lg-12 col-sm-12">
+                      <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ langService.langData.currency }}</label>
+                        <div class="col-md-8">
+                          <ng-select [virtualScroll]="true" [clearable]="false" (change)="onChangeNegotiationCurrency()"
+                            [disabled]="model.negotiationData.GL_CHECK || !model.userPrivilege.canShowEdit()"
+                            [(ngModel)]="model.negotiationData.NEG_CURRENCY_NO" name="NEG_CURRENCY_NO">
+                            <ng-option [value]="null">{{ langService.langData.select }}</ng-option>
+                            <ng-option *ngFor="let item of model.currencyList;  trackBy:trackByFn;"
+                              [value]="item.CUR_NO">
+                              {{ item.C_NAME }}</ng-option>
+                          </ng-select>
+                        </div>
+                      </div>
+                      <!--/.form-group-->
+                    </div>
+                    <div class="col-lg-12 col-sm-12">
+                      <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ langService.langData.exchangeRate }}</label>
+                        <div class="col-md-8">
+                          <input type="text" (change)="onChangeNegotiationExchangeRate()" class="form-control"
+                          ps-decimal="16,2"[disabled]="model.negotiationData.GL_CHECK || !model.userPrivilege.canShowEdit()"
+                            [(ngModel)]="model.negotiationData.NEG_EXCHANGE_RATE" name="NEG_EXCHANGE_RATE">
+                        </div>
+                      </div>
+                      <!--/.form-group-->
+                    </div>
+
+                    <div class="col-lg-12 col-sm-6">
+                      <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ langService.langData.negoAmtDot }}</label>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" (change)="onChangeNegoAmt()"
+                            [readonly]="model.negotiationData.GL_CHECK || !model.userPrivilege.canShowEdit()" [(ngModel)]="model.negotiationData.NEG_AMT"
+                            name="NEG_AMT" ps-decimal="16,2">
+                        </div>
+                      </div>
+                      <!--/.form-group-->
+                    </div>
+
+                    <div class="col-lg-12 col-sm-12">
+                      <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ langService.langData.inTakaBrcTk }}</label>
+                        <div class="col-md-8 ">
+                          <!-- <input type="text text-right" class="form-control" ps-decimal readonly
+                            [(ngModel)]="model.negotiationData.NEG_BASE_AMT" name="NEG_BASE_AMT"> -->
+                          <div class="ps-modal-open-wrapper">
+                            <span
+                              class="ps-border w-100 ps-modal-open-wrapper__text text-right">{{ model.negotiationData.NEG_BASE_AMT | number: numberPrecision }}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <!--/.form-group-->
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--/.card-->
+          <div class="card">
+            <h6 class="card-header">{{ langService.langData.realization }}</h6>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-md-4 col-form-label">{{ langService.langData.currency }}</label>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" readonly [(ngModel)]="model.negotiationData.REAL_CURRENCY"
+                        name="CURRENCY">
+                      <!-- <ng-select [virtualScroll]="true"  [clearable]="false" [(ngModel)]="model.negotiationData.REAL_CURRENCY" name="REAL_CURRENCY">
+                              <ng-option [value]="0">{{ langService.langData.select }}</ng-option>
+                              <ng-option *ngFor="let item of model.baseCurrencyList;  trackBy:trackByFn;" [value]="item.CUR_NO">
+                                {{ item.C_NAME }} - {{ item.EXCHANGE_RATE }}</ng-option>
+                            </ng-select> -->
+                    </div>
+                  </div>
+                  <!--/.form-group-->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-md-4 col-form-label">{{ langService.langData.realDate}}</label>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control pointer-events-none" [(ngModel)]="model.negotiationData.REALIZATION_DATE"
+                        name="REALIZATION_DATE" readonly [bsConfig]="psDateFormat" psDatepicker>
+                    </div>
+                  </div>
+                  <!--/.form-group-->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-md-4 col-form-label">{{ langService.langData.exchangeRate }}</label>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" ps-decimal readonly
+                        [(ngModel)]="model.negotiationData.EXCHANGE_RATE" name="EXCHANGE_RATE-REAL">
+                    </div>
+                  </div>
+                  <!--/.form-group-->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-md-4 col-form-label">{{ langService.langData.voucher }}</label>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" readonly
+                        [(ngModel)]="model.negotiationData.REAL_V_ID_MODULE" name="REAL_V_ID_MODULE">
+                    </div>
+                  </div>
+                  <!--/.form-group-->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-md-4 col-form-label">{{langService.langData.postDate}}</label>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control pointer-events-none" [(ngModel)]="model.negotiationData.GL_POST_REALDATE"
+                        name="GL_POST_REALDATE" readonly [bsConfig]="psDateFormat" psDatepicker>
+                    </div>
+                  </div>
+                  <!--/.form-group-->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-md-4 col-form-label">{{langService.langData.realDotAmt}}</label>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" ps-decimal [(ngModel)]="model.negotiationData.RISD_AMT"
+                        name="RISD_AMT" readonly>
+                    </div>
+                  </div>
+                  <!--/.form-group-->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-md-4 col-form-label">{{langService.langData.inTakaBrcTk}}</label>
+                    <div class="col-md-8 text-right">
+                      <input type="text" class="form-control" ps-decimal readonly
+                        [(ngModel)]="model.negotiationData.NEG_RISD_AMT" name="NEG_RISD_AMT">
+                    </div>
+                  </div>
+                  <!--/.form-group-->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-md-4 col-form-label">{{ langService.langData.attachment }}</label>
+                    <div class="col-md-8">
+                      <div class="input-group">
+                        <input type="text" class="form-control" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/.form-group-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--/.card-->
+          <div class="card card--table border-bottom-0">
+            <h6 class="card-header">{{ langService.langData.bankDocument }}</h6>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table--fixed-layout">
+                  <thead>
+                    <tr>
+                      <th class="w20">{{ langService.langData.documentID }}</th>
+                      <th class="w15">{{ langService.langData.documentReferenceID }}</th>
+                      <th class="w15">{{ langService.langData.maturityDate }}</th>
+                      <th class="w10">{{ langService.langData.delayedDay }}</th>
+                      <th class="w15">{{ langService.langData.value }}</th>
+                      <th class="w20">{{ langService.langData.valueInTakabrcTk }}</th>
+                      <th class="w5"></th>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngFor="let item of model.negotiationData.negoDtl; let i = index; trackBy:trackByFn;">
+                      <tr *ngIf="item.SQL_STATE !== 3">
+                        <td>{{ item.DOC_ID }}</td>
+                        <td>{{ item.DOC_REF_ID }}</td>
+                        <td>{{ item.MATURITY_DATE | date:dateFormat }}</td>
+                        <td>{{ item.DELAYED_DAY }}</td>
+                        <td class="text-right">{{ item.TOTAL_VALUE | number: numberPrecision }}</td>
+                        <td class="text-right">{{ item.TOTAL_BASE_VALUE | number: numberPrecision }}</td>
+                        <td class="text-center"><button [disabled]="!model.userPrivilege.canShowEdit()" type= "button" class="btn btn--squire bg-transparent"
+                            (click)="onClickOpenInvoiceDistributionModal(item)"><i
+                              class="fa fa-folder-open-o"></i></button>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+                </table>
+
+              </div>
+              <div class="table-responsive">
+                <table class="table table--fixed-layout mt-minus1">
+                  <tbody>
+                    <tr>
+                      <td colspan="4" class="text-right w60">
+                        <strong class="black-text pr-base">{{ langService.langData.total }}</strong>
+                      </td>
+                      <td class="w15 text-right">{{ model.bankDocumentTotalAmount | number: numberPrecision }}</td>
+                      <td class="w20 text-right">{{ model.bankDocumentTotalBaseAmount | number: numberPrecision }}</td>
+                      <td class="w5"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!--/.card -->
+
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <span class="card-header__title">{{ langService.langData.fundDistribution }}</span>
+              <div class="d-flex card-header__action">
+                <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent btn--add-new-grid"
+                  [disabled]="model.negotiationData.GL_CHECK || !model.negotiationData.DOC_AMENDMENT"
+                  (click)="onClickAddNewFundDistribution()" *ngIf="model.userPrivilege.canShowNew()"><i
+                    class="fa fa-plus"></i>
+                  {{ langService.langData.new }}</button>
+                  <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent"
+                  (click)="onClickResetFundDistrubution()" *ngIf="model.userPrivilege.canShowSave()"><i class="fa fa-repeat"></i>
+                  {{ langService.langData.reset }}</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="ag-table-wrapper footer-pointer-event-none ag-grid-header-three-column" style="width: 100%;">
+                <app-ag-grid-filter [gridId]="gridId" [grid]="grid"></app-ag-grid-filter>
+                <ag-grid-angular style="width: 100%; height: 200px;"
+                  (psGridColumnTotalChanged)="onPsGridColumnTotalChanged($event)"
+                  [psGridColumnTotals]="pinnedBottomRowCols" [pinnedBottomRowData]="pinnedBottomRowData"
+                  class="ag-theme-balham" [columnDefs]="columnDefs" (gridReady)="onGridReady($event)"
+                  [pagination]="true" [psValidateGrid]="gridRequiredOptions"
+                  [frameworkComponents]="gridService.frameworkComponents" [animateRows]="true" [editType]="'fullRow'"
+                  (cellClicked)='itemClick($event)'>
+                </ag-grid-angular>
+
+                <div class="d-flex flex-wrap pt-base grid-bottom-margin-minus-top position-relative pb-base">                                                         
+                    <div class="col-md-3 col-sm-6">
+                      <button class="btn btn-sm btn-default" (click)="onClickRecall()" type="button" name="Recall">
+                        {{ langService.langData.recall }}
+                      </button>
+                    </div>
+                    <div class="col-md-9 col-sm-6">
+                      <div class="row form-group">
+                        <label class="col-form-label col-md-6">{{
+                          langService.langData.differenceOfDrDotSlashCrDot
+                        }}</label>
+                        <div class="col-md-6">                     
+                          <!-- <input type="text" class="form-control" name="DIFFERENCE_AMMOUNT_TK" [(ngModel)]="model.fundDistributionDefferenceDRandCR" disabled /> -->                          
+                          {{ model.fundDistributionDefferenceDRandCR }} 
+                        </div>
+                      </div>
+                    </div>
+                  
+                </div>
+
+              </div>              
+            </div>
+            <!-- <div class="card-footer">
+              <button [disabled]="model.negotiationData.GL_CHECK || !model.negotiationData.DOC_AMENDMENT"
+                *ngIf="model.userPrivilege.canShowNew()" class="btn text-primary bg-transparent btn-sm"
+                (ps-click)="onClickAddNewFundDistribution($event)"><i class="fa fa-plus"></i>
+                {{ langService.langData.addNew }}</button>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!--/.card (Main card)-->
+    </div>
+  </div>
+
+
+
+
+  <!-- <div class="card card--table">
+    <h6 class="card-header">{{ langService.langData.fundDistribution }}</h6>
+    <div class="card-body">
+      <div class="table-responsive blank-table-wrapper">
+        <table class="table table--fixed-layout">
+          <thead>
+            <tr>
+              <th class="w6"></th>
+              <th class="w15">{{ langService.langData.account }}</th>
+              <th class="w12">{{ langService.langData.costCenter }}</th>
+              <th class="w12">{{ langService.langData.businessArea }}</th>
+              <th class="w12">{{ langService.langData.currency }}</th>
+              <th class="w10">{{ langService.langData.exDotRate }}</th>
+              <th class="w5">{{ langService.langData.drDot }}</th>
+              <th class="w5">{{ langService.langData.crDot }}</th>
+              <th class="w9">{{ langService.langData.drDotInTakaBrcTk }}</th>
+              <th class="w9">{{ langService.langData.crDotInTakaBrcTk }}</th>
+              <th class="w5"></th>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of model.negotiationData.negoFundList; let i = index; trackBy:trackByFn;">
+              <tr *ngIf="item.SQL_STATE !== 3">
+                <td class="p0">
+                  <div class="ps-select">
+                    <select class="form-control" ps-validate="drCr" [disabled]="model.negotiationData.GL_CHECK"
+                      [(ngModel)]="item.PROMPT" name="DRCR-{{i}}" (change)="onChangePrompt(item)">
+                      <option value="">{{ langService.langData.select }}</option>
+                      <option *ngFor="let drcr of model.drCrList; let j = index; trackBy:trackByFn;"
+                        [value]="drcr.VALUE">
+                        {{drcr.TEXT}}</option>
+                    </select>
+                  </div>
+                </td>
+                <td class="p0">
+                  <div class="ps-modal-open-wrapper">
+                    <span class="ps-modal-open-wrapper__text"
+                      [ngClass]="{'pointer-events-none cursor-disabled':model.negotiationData.GL_CHECK}"
+                      (dblclick)="onClickOpenAccountListModal(item)" ps-tooltip>{{ item.ACC_NAME }}</span>
+                    <div class="ps-modal-open-wrapper__button">
+                      <button class="btn btn--squire" type="button" [disabled]="model.negotiationData.GL_CHECK"
+                        (click)="onClickOpenAccountListModal(item)"><i class="fa fa-folder-open-o"></i></button>
+                    </div>
+                  </div>
+                </td>
+                <td class="p0">
+                  <div class="ps-modal-open-wrapper">
+                    <span class="ps-modal-open-wrapper__text"
+                      [ngClass]="{'pointer-events-none cursor-disabled':model.negotiationData.GL_CHECK}"
+                      (dblclick)="onClickOpenCostCenterListModal(item)" ps-tooltip>{{ item.COST_NAME }}</span>
+                    <div class="ps-modal-open-wrapper__button">
+                      <button class="btn btn--squire" type="button" [disabled]="model.negotiationData.GL_CHECK"
+                        (click)="onClickOpenCostCenterListModal(item)"><i class="fa fa-folder-open-o"></i></button>
+                    </div>
+                  </div>
+                </td>
+                <td class="p0">
+                  <div class="ps-modal-open-wrapper">
+                    <span class="ps-modal-open-wrapper__text"
+                      [ngClass]="{'pointer-events-none cursor-disabled':model.negotiationData.GL_CHECK}"
+                      (dblclick)="onClickOpenBusinessAreaListModal(item)" ps-tooltip>{{ item.BA_NAME }}</span>
+                    <div class="ps-modal-open-wrapper__button">
+                      <button class="btn btn--squire" type="button" [disabled]="model.negotiationData.GL_CHECK"
+                        (click)="onClickOpenBusinessAreaListModal(item)"><i class="fa fa-folder-open-o"></i></button>
+                    </div>
+                  </div>
+                </td>
+                <td class="overflow-visable p0">
+                  <select class="form-control" (change)="onChangeCurrency(item)"
+                    [disabled]="model.negotiationData.GL_CHECK" [(ngModel)]="item.CURRENCY_NO" name="CURRENCY_NO-{{i}}">
+                    <option [value]="0">{{ langService.langData.select }}</option>
+                    <option *ngFor="let item of model.currencyList;  trackBy:trackByFn;" [value]="item.CUR_NO">
+                      {{ item.C_NAME }}</option>
+                  </select>
+                </td>
+                <td class="p0">
+                  <input type="text" class="text-right form-control" name="EXCHANGE_RATE-{{i}}"
+                    (change)="onChangeExchangeRate(item)" [(ngModel)]="item.EXCHANGE_RATE">
+                </td>
+                <td class="p0">
+                  <input type="text" (change)="onChangeDR(item)" class="form-control text-right" name="DR_E-{{i}}"
+                    [readonly]="item.PROMPT == 'CR' || item.PROMPT == 0" [(ngModel)]="item.DR_E">
+                </td>
+                <td class="p0">
+                  <input type="text" (change)="onChangeCR(item)" class="form-control text-right" name="CR_E-{{i}}"
+                    [readonly]="item.PROMPT == 'DR' || item.PROMPT == 0" [(ngModel)]="item.CR_E">
+                </td>
+                <td ps-tooltip class="text-right">{{ item.DR }}</td>
+                <td class="text-right">{{ item.CR }}</td>
+                <td class="text-center p0">
+                  <button class="btn btn--squire bg-transparent border-0" (click)="onClickFundDistributionIcon(item)"><i
+                      class="fa fa-folder-open-o"></i></button>
+                  <button class="btn btn--squire bg-transparent text-danger border-0"
+                    *ngIf="model.userPrivilege.canShowDelete()" (click)="onClickRemoveFundDistributionItem(item, i)"><i
+                      class="ion-close-round"></i></button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="table-responsive">
+        <table class="table table--fixed-layout mt-minus1">
+          <tbody>
+            <tr>
+              <td class="w6">
+              </td>
+              <td class="w15">
+               
+              </td>
+              <td class="w24 text-right" colspan="2">
+              </td>
+              <td class="w22 p0"></td>
+              <td colspan="2" class="text-right w10">
+                <strong class="black-text">{{ langService.langData.total }}</strong>
+              </td>
+              <td class="w9 text-right">{{ model.fundDistributionTotalDRAmount }}</td>
+              <td class="w9 text-right">{{ model.fundDistributionTotalCRAmount }}</td>
+              <td class="w5"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-right pr-base">
+        <strong class="black-text pr-base">{{ langService.langData.differenceOfDrDotSlashCrDot }} : </strong>
+        {{ model.fundDistributionDefferenceDRandCR }}
+      </div>
+    
+    </div>
+     <div class="card-footer">
+      <button [disabled]="model.negotiationData.GL_CHECK || !model.negotiationData.DOC_AMENDMENT"
+        *ngIf="model.userPrivilege.canShowNew()" class="btn text-primary bg-transparent btn-sm"
+        (ps-click)="onClickAddNewFundDistribution($event)"><i class="fa fa-plus"></i>
+        {{ langService.langData.addNew }}</button>
+    </div> 
+  </div> -->
+  <!--/.card -->
+  <!-- <div class="text-right">
+   <button class="btn btn-primary" type="button" *ngIf="model.userPrivilege.canShowNew()"
+      (click)="onClickAddNewDocument()"><i class="fa fa-plus"></i>
+      {{ langService.langData.addNew }}</button>
+    <button class="btn btn-success ml-base" *ngIf="model.userPrivilege.canShowSave()" type="button"
+      (click)="onClickSave()"><i class="fa fa-floppy-o"></i>
+      {{ langService.langData.save }}</button>
+    <button class="btn btn-danger ml-base" type="button" *ngIf="model.userPrivilege.canShowDelete()"
+      (click)="onClickDeleteDocument()"><i class="fa fa-times"></i>
+      {{ langService.langData.delete }}</button>
+    <button class="btn btn-warning ml-base" type="button" (click)="onClickResetDocument()"><i class="fa fa-repeat"></i>
+      {{ langService.langData.reset }}</button> 
+  </div> -->
+</form>
+<div class="modal modal--small" [ngClass]="{show: model.postModalStatus }"
+  [ngStyle]="{display:model.postModalStatus?'block':'none'}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ langService.langData.createNewVoucher }}</h5>
+        <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close"
+          (click)="model.postModalStatus=false; onClickCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <br />
+        <div>
+          <button type="button" class="btn btn-primary mr-base-double"
+            (click)="model.postModalStatus=false; onClickNewVoucher(1)">{{ langService.langData.newVoucher }}</button>
+          <button type="button" class="btn btn-primary mr-base-double"
+            (click)="model.postModalStatus=false; onClickAttachAVoucher(2)">{{ langService.langData.attachAVoucher }}</button>
+        </div>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show" *ngIf="model.postModalStatus"></div>
+<template #modalContainer>
+</template>
+<ps-dialog></ps-dialog>

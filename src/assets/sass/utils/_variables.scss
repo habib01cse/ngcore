@@ -1,0 +1,39 @@
+//
+// Variables
+// --------------------------------------------------
+//## Default font size 14px
+$font-size-base:          14px !default;
+$font-size-small:         ceil(($font-size-base * 0.7)) !default; // ~10px
+$font-size-medium:        ceil(($font-size-base * 0.72)) !default; // ~11px
+
+//== Weights
+$font-weight-regular:	  400 !default;
+$font-weight-bold:		  700 !default;
+$font-weight-base:		  $font-weight-regular;
+
+$font-family-base:		  'Roboto' !default;
+$line-height-base:        1.5 !default; // 18/12
+
+/*fixed setting padding and margin<<<-----*/
+/*----------------------------------------*/
+$offset-base:				5px !default;
+
+// layout variable
+$base-element-height: 24px; //input/table/input-group height
+$header-height:3.5rem;
+$footer-height: 2.857rem;
+$breadcrumb-height: $footer-height;
+$sidebar-search-height: $footer-height;
+$sidebar-collapse-height: $footer-height;
+$sidebar-collapse-button-width: 2.5rem;
+$main-content-height: $header-height + $footer-height;
+
+
+
+
+
+
+
+
+
+//

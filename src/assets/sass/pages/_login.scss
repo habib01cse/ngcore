@@ -1,0 +1,180 @@
+/* -----------------------------------
+** Login page css
+-------------------------------------*/
+.login-page-wrapper{
+  /* Positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* Display & Box Model */
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.login-wrapper{
+  /* Display & Box Model */
+  display: table;
+  width:100%;
+  max-width:  pxtorem(761px, $font-size-base);
+  margin-left: auto;
+  margin-right: auto;
+  .pridebook-info{
+    /* Display & Box Model */
+    display: table-cell;
+    vertical-align: middle;
+    width:40%;
+  }
+  .login-form-wrapper{
+    /* Display & Box Model */
+    display: table-cell;
+    vertical-align: middle;
+    width: 60%;
+  }
+}
+.pridebook-info{
+  padding: pxtorem(53px, $font-size-base)  pxtorem(7px, $font-size-base);
+  .login-logo{
+    /* Display & Box Model */
+    max-width: pxtorem(84px, $font-size-base);
+    padding-bottom: pxtorem(14px, $font-size-base);
+  }
+  &__feature-list{
+    /* Display & Box Model */
+    padding-left: 0;
+    margin-bottom: pxtorem(35px, $font-size-base);
+    li{
+      /* Positioning */
+      position: relative;
+
+      /* Display & Box Model */
+      padding-left:  pxtorem(17px, $font-size-base);
+      margin-bottom: pxtorem(7px, $font-size-base);
+      list-style: none;
+
+      /* Text */
+      font-size:  pxtorem(13px, $font-size-base);
+      &:before{
+        /* Positioning */
+        position: absolute;
+        left:0;
+        top:.37rem;
+
+        /* Display & Box Model */
+        width:.6rem;
+        height: .6rem;
+        border-radius: 100%;
+
+        /* Other */
+        content: '';
+      }
+    }
+  }
+  &__footer{
+    /* Positioning */
+    position: relative;
+
+    /* Display & Box Model */
+    padding-top:  pxtorem(14px, $font-size-base);
+    &:before{
+      /* Positioning */
+      position: absolute;
+      left:0;
+      right: 0;
+      top:0;
+
+      /* Display & Box Model */
+      width: pxtorem(130px, $font-size-base);;
+      margin-left: auto;
+      margin-right: auto;
+      height: 2px;
+
+      /* Other */
+      content: '';
+    }
+  }
+}
+.login-form-wrapper{
+  padding: 3.814rem .5rem;
+}
+
+.login-form{
+  /* Display & Box Model */
+  max-width:  pxtorem(358px, $font-size-base);
+  margin-left: auto;
+  margin-right: auto;
+  .password-remember-wrapper{
+    padding: pxtorem(8px, $font-size-base) 0;
+  }
+  .input-group{
+    /* Positioning */
+    position: relative;
+    .input-group-prepend{
+      margin-right: 0;
+    }
+    .form-control{
+      /* Display & Box Model */
+      height: pxtorem(42px, $font-size-base) !important;
+      border:0;
+      padding-left: pxtorem(14px, $font-size-base);
+
+      /* Text */
+      font-size: pxtorem(13px, $font-size-base);
+      &:focus{
+        /* Other */
+        box-shadow:none;
+
+      }
+    }
+    &--user-name,&--password{
+      border-bottom: 0 !important;
+      .form-control{
+        &:not(:focus){
+          border-bottom-color: transparent;
+        }
+      }
+    }
+    .input-group-prepend{
+      .input-group-text{
+        /* Positioning */
+        position: relative;
+
+        /* Display & Box Model */
+        border-width: 0 0 0 0;
+        width: pxtorem(42px, $font-size-base);
+        height: pxtorem(42px, $font-size-base);
+
+        /* Color */
+        background: transparent;
+
+        /* Text */
+        font-size: 1.4rem;
+        text-align: center;
+        line-height: pxtorem(42px, $font-size-base);
+        &:before{
+          /* Positioning */
+          position: absolute;
+          top:.5rem;
+          right:0;
+
+          /* Display & Box Model */
+          height:pxtorem(28px, $font-size-base);
+          width: 1px;
+
+           /* Other */
+           content: '';
+        }
+      }
+    }
+  }
+  .ps-select:after{
+    /* Positioning */
+    top:pxtorem(13px, $font-size-base);
+    right: pxtorem(14px, $font-size-base);
+  }
+}
+/* -----------------------------------
+**  End Login page css
+-------------------------------------*/

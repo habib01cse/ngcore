@@ -1,0 +1,38 @@
+<div class="version-log-wrapper">
+  <div class="version-log">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section text-center">
+            <h1>Pridebook-Pro Changelog</h1>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="section timeline">
+            <div *ngFor="let item of activities" class="timeline-item">
+              <div class="timeline-left">
+                <div class="timeline-icon" [ngClass]="(item.isLoading)?'loading':null">
+                    <i (click)="onClickLoad(item)" [ngClass]="(item.isMax>0)?'fa-minus-square-o':'fa-plus-square-o'" class="fa" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="changes timeline-content">
+                <h4>{{item.version}}</h4>
+                <small></small>
+                <div style="overflow: hidden;">
+                  <ul (animationend)="onAnimationEnd($event, item)" class="animated" [ngClass]="(item.isMax)?'slideInDown':'slideOutUp'">
+                    <ng-container *ngIf="item.display">
+                      <li *ngFor="let timeline of item.timelines">
+                        <span *ngIf="timeline.tag" class="label label-rounded text-light text-capitalize tag-added"
+                          [ngClass]="(timeline.tag)?'tag-'+timeline.tag:null">{{timeline.tag}}</span>
+                        {{timeline.title}}</li>
+                    </ng-container>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

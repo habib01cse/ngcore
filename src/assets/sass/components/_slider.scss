@@ -1,0 +1,17 @@
+/* -----------------------------------
+** Slider
+-------------------------------------*/
+.ps-collapse-arrow{
+	/* Other */
+	cursor: pointer;
+	float: right;
+	user-select: none;
+	&__icon{
+		padding-left: 2px;
+		padding-right: 2px;
+	}
+}
+
+/* -----------------------------------
+** End Slider
+-------------------------------------*/

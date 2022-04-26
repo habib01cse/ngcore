@@ -1,0 +1,141 @@
+
+/* -----------------------------------
+** Custom Control Radio/Checkbox
+-------------------------------------*/
+.custom-control{
+  // margin: 0;
+  margin-bottom: 0;
+  min-height: pxtorem(19px, $font-size-base);
+  padding-left: pxtorem(19px, $font-size-base);
+}
+.custom-control-label {  
+  /* Positioning */
+  position: static;
+  &:before{
+    /* Positioning */
+    top: pxtorem(4px, $font-size-base);
+    left: 0;
+
+    /* Display & Box Model */
+    padding: 0 !important;
+
+    /* Color */
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+    /* Other */
+    transition: all .2s;
+    pointer-events: auto;
+  }
+}
+
+//custom control Checkbox
+.custom-checkbox .custom-control-label{
+  &:before{
+    /* Display & Box Model */
+    width: pxtorem(15px, $font-size-base);
+    height: pxtorem(15px, $font-size-base);
+    border-radius: 0;
+    background-size: 65% 65%;
+
+    // Update
+    border: 1px solid #56aaf5;
+
+  }
+}
+
+
+.custom-control.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.5 7.5'%3E%3Cpolyline points='0.75 4.35 4.18 6.75 8.75 0.75' style='fill:none;stroke:%23fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px'/%3E%3C/svg%3E");
+}
+.custom-control-label::after {
+  display: none;
+}
+
+.custom-control-label{
+  /* Text */
+  font-weight: 500;
+  font-size: pxtorem(12px, $font-size-base);
+}
+
+// custom control radio
+.custom-radio {
+  .custom-control-label{
+    &:before {
+        background-size: 40% 40%;
+        // Update
+        border: 1px solid #56aaf5;
+    }
+    &:after{
+      background-image: none;
+    }
+  }
+  .custom-control-input:checked~.custom-control-label{
+    &:before{
+      background-image: none;
+    }
+    &:after{
+      display: none;
+    }
+  }
+}
+.custom-control--without-label{
+  padding-left:pxtorem(14px, $font-size-base);;
+}
+
+
+.custom-control{
+  &--border{
+    /* Display & Box Model */
+    display: inline-block;
+    margin-top: 0 !important;
+    padding-left: pxtorem(10px, $font-size-base);
+    padding-right: pxtorem(22px, $font-size-base);
+    margin-bottom: 0 !important;
+
+    /* Text */
+    line-height: pxtorem(21px, $font-size-base);
+    .custom-control-label{
+      /* Display & Box Model */
+      display: block;
+      padding-right: pxtorem(10px, $font-size-base);
+
+      /* Text */
+      line-height: pxtorem(22px, $font-size-base);
+
+      &:before{
+        /* Positioning */
+        top:pxtorem(3px, $font-size-base) !important;
+        right:pxtorem(3px, $font-size-base);
+        left:initial;
+      }
+    }
+  }
+}
+.custom-control--right-checkbox{
+  padding-left: 0;
+  .custom-control-label{
+    padding-left: 0;
+    &:before{
+      left:initial;
+      right: 0;
+    }
+  }
+}
+.custom-radio .custom-control-label{
+  &:before{
+    /* Display & Box Model */
+    width: pxtorem(15px, $font-size-base);
+    height: pxtorem(15px, $font-size-base);
+  }
+}
+
+
+
+
+
+
+
+/* -----------------------------------
+** End Cutom Control Radio/Checkbox
+-------------------------------------*/

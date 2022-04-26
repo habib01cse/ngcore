@@ -1,0 +1,18 @@
+<div class="outer-content" [@simpleFadeAnimation]="'in'">
+  <app-header></app-header>
+<div class="main-content">
+  <div class="breadcrumb-area d-flex align-items-center">
+    <!-- <button type="button" class="refresh-button"><i class="fa fa-refresh"></i></button> -->
+    <nav>
+      <ol class="breadcrumb bg-transparent mb0 pl0">
+        <li class="breadcrumb-item">{{titleService.pagePath}}</li>
+      </ol>
+    </nav>
+    <div class="breadcrumb-right-icons" app-master-action></div>
+  </div>
+  <div class="routeContainer" [@routeAnimation]="getDepth(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
+</div>
+<app-footer></app-footer>  
+</div>

@@ -1,0 +1,262 @@
+/* -----------------------------------
+** Utils
+-------------------------------------*/
+/*fixed setting padding and margin<<<-----*/
+/*----------------------------------------*/
+/* -----------------------------------
+** Page Size
+-------------------------------------*/
+body .header {
+  height: 2.5rem;
+  padding: 4px 5px;
+}
+
+body .header-button {
+  height: 28px;
+  width: 28px;
+}
+
+body .header-button.header-button--icon-icon {
+  font-size: 21px;
+  line-height: 21px;
+}
+
+body .header__right {
+  align-items: center;
+}
+
+body .breadcrumb {
+  padding: 0 1rem;
+}
+
+body .breadcrumb-area {
+  height: 2.28571rem;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+body .breadcrumb-right-icons .breadcrumb-action-button {
+  font-size: 15px;
+  padding: 0rem 2px;
+}
+
+body .main-content {
+  /* Display & Box Model */
+  min-height: calc(100vh - 70px);
+  margin-top: 2.5rem;
+}
+
+body .sidebar {
+  padding: 2.5rem 0 2.14286rem 0;
+}
+
+body .btn {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+body .form-group label {
+  font-size: 11px;
+  line-height: 1;
+}
+
+body .form-group {
+  margin-bottom: 2px;
+}
+
+body .ps-form-page-wrapper, body .ps-report-page-wrapper {
+  padding: 10px;
+}
+
+body .card-header {
+  line-height: 21px;
+}
+
+body .card {
+  margin-bottom: 2px;
+}
+
+body .btn-sm {
+  line-height: 21px;
+  height: 21px;
+}
+
+body .ps-modal-open-wrapper__text {
+  height: 21px;
+  line-height: 21px;
+}
+
+body .btn--squire {
+  height: 21px;
+  line-height: 21px;
+}
+
+body .form-control, body select.form-control:not([size]):not([multiple]), body .input-group-sm > .input-group-append > select.btn:not([size]):not([multiple]), body .input-group-sm > .input-group-append > select.input-group-text:not([size]):not([multiple]), body .input-group-sm > .input-group-prepend > select.btn:not([size]):not([multiple]), body .input-group-sm > .input-group-prepend > select.input-group-text:not([size]):not([multiple]), body .input-group-sm > select.form-control:not([size]):not([multiple]), body select.form-control-sm:not([size]):not([multiple]) {
+  height: 21px;
+}
+
+body .card-body {
+  padding: 2px;
+}
+
+body .pt-base {
+  padding-top: 2px;
+}
+
+body .pb-base {
+  padding-bottom: 2px;
+}
+
+body .input-group .btn--squire {
+  height: 21px;
+  line-height: 21px;
+}
+
+body .ag-theme-balham .ag-cell {
+  line-height: 21px;
+}
+
+body .ps-grid-text-cell {
+  line-height: 20px;
+}
+
+body .input-group .btn {
+  height: 21px;
+}
+
+body .ps-modal-open-wrapper__button {
+  margin-top: -1px;
+}
+
+body .col-form-label {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+body .mr-base {
+  margin-right: 2px;
+}
+
+body .ml-base {
+  margin-left: 2px;
+}
+
+body .mb-base {
+  margin-bottom: 2px;
+}
+
+body .mt-base {
+  margin-top: 2px;
+}
+
+body .custom-control {
+  min-height: 21px;
+}
+
+body .form-group.row .custom-checkbox .custom-control-label:before {
+  top: 2px;
+}
+
+body .ng-select {
+  min-height: 21px;
+}
+
+body .btn--squire {
+  height: 21px;
+  line-height: 21px;
+}
+
+body .footer {
+  padding: 3px 0.71428571rem;
+  height: 2.14286rem;
+}
+
+body .app-style-module {
+  top: 2.5rem;
+}
+
+body .grid-custom-control-wrapper .custom-control-label:before {
+  top: 1px;
+}
+
+body .ag-theme-balham .ag-paging-panel {
+  padding-top: 0;
+}
+
+body .ag-paging-page-summary-panel .ag-paging-button {
+  height: 21px !important;
+  width: 21px !important;
+  line-height: 21px;
+  margin: 0 2px;
+  border: 0;
+}
+
+body .ag-theme-balham .ag-cell.ag-cell-inline-editing {
+  height: 22px;
+  line-height: 20px;
+}
+
+body .ag-theme-balham .ag-cell {
+  line-height: 22px;
+}
+
+body .custom-control-label:before {
+  top: 1px;
+}
+
+body .ng-select.ng-select-opened .ng-select-container {
+  min-height: 21px;
+  max-height: 21px;
+}
+
+body .ng-select .ng-value-label {
+  top: 0;
+}
+
+body .ag-paging-page-summary-panel .ag-paging-button:before {
+  border: 0;
+}
+
+body .ag-theme-balham .ag-paging-panel {
+  height: 23px;
+}
+
+body .nav-link {
+  display: block;
+  padding: 4px 15px;
+}
+
+body .input-group-text {
+  height: 21px;
+}
+
+body .grid-bottom-margin-minus-top {
+  margin-top: -21px;
+}
+
+body textarea.textarea--input-style {
+  height: 21px;
+}
+
+body .custom-control .custom-control-label {
+  line-height: 13px;
+  padding-top: 4px;
+}
+
+body .ng-select.ng-select-single .ng-select-container {
+  height: 21px;
+}
+
+body .ng-select .ng-select-container {
+  min-height: 21px;
+}
+
+body .ng-select .ng-clear-wrapper {
+  padding-top: 2px;
+  margin-top: 0;
+  height: 17px;
+}
+
+body .ng-select .ng-arrow-wrapper:before {
+  top: 5px;
+}

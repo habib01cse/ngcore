@@ -1,0 +1,15 @@
+
+@function pxtorem($target, $context:$font-size-base) {
+	$remSize: $target / $context;
+	@return #{$remSize}rem;
+}
+//convert pixel to percentage
+@function pxtopercent($target, $context: $font-size-base) {
+	@return percentage($target / $context);
+}
+// Convert px to em
+@function pxtoem($target, $context:$font-size-base){
+	@if $target == 0 { @return 0 }
+	//@return $font-size-base;
+	@return ($target/$context)+0em;
+}

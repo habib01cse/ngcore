@@ -1,0 +1,28 @@
+/*----------------------------------------*/
+.b-none {
+  border: none;
+}
+
+/*----------------------------------------*/
+.w-full {
+  width: 100%;
+}
+
+/*----------------------------------------*/
+.pos-rlt {
+  position: relative;
+}
+
+.pos-stc {
+  position: static !important;
+}
+
+.pos-abt {
+  position: absolute;
+}
+
+.pos-fix {
+  position: fixed;
+}
+
+/*----------------------------------------*/

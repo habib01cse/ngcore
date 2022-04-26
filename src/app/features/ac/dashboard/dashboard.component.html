@@ -1,0 +1,636 @@
+<body style="background-color:#E5E5E5;border-radius: 10px;">
+
+  <div class="borderPadding">
+
+
+    <div class="row">
+      <div class="col-8">
+        <div class="row">
+          <div class="col-12 pr-0">
+            <!-- <div class="element">Top-left</div> -->
+            <div class="card borderclass mr-0">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="media align-items-center m-2 borderclass heightAdjust" style="background-color:#5ADDFF;">
+
+                    <div class="media-body">
+                      <div class="row">
+                        <span class="text-mute textDesign">
+                          <strong>Total Vouchers</strong>
+                        </span><br />
+                      </div>
+
+                      <div class="row">
+                        <div class="col-4">
+                          <img src="assets/images/maindashboard/journal.jpg">
+                          <!-- <i class="fal fa-receipt"></i> -->
+                        </div>
+                        <div class="col-8 text-right">
+                          <span class="h4 black-text textDesign">
+                            <h2>25</h2>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="media align-items-center m-2 borderclass heightAdjust" style="background-color:#14AD11;">
+                    <div class="media-body">
+                      <div class="row">
+                        <span class="text-mute textDesign">
+                          <strong>Total Debit</strong>
+                        </span><br />
+                      </div>
+
+                      <div class="row">
+                        <div class="col-4">
+                          <img src="assets/images/maindashboard/debit.jpg">
+                        </div>
+                        <div class="col-8 text-right">
+                          <span class="h4 black-text textDesign">
+                            <h2>$25</h2>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="media align-items-center m-2 borderclass heightAdjust" style="background-color: #9574ea;">
+
+                    <div class="media-body">
+
+                      <div class="row">
+                        <span class="text-mute textDesign">
+                          <strong>Total Credit</strong>
+                        </span><br />
+                      </div>
+
+                      <div class="row">
+                        <div class="col-4">
+                          <img src="assets/images/maindashboard/balance.jpg">
+                        </div>
+                        <div class="col-8 text-right">
+                          <span class="h4 black-text textDesign">
+                            <h2>$25000</h2>
+                          </span>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="card borderclass" style="height: 255px;">
+              <div class="media align-items-center ">
+                <div class="media-body mb-4 pb-2">
+
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-6" style="color:#00C04B">
+                        Attendance Status
+                      </div>
+                      <div class="col-md-6 text-right" style="color:#00C04B">
+                        18/05/2021
+                      </div>
+                    </div>
+                    <hr>
+                    <table class="table borderless">
+                      <thead>
+                        <tr>
+                          <td>Approved Voucher's</td>
+                          <td>$2509</td>
+
+                        </tr>
+                        <tr>
+
+                          <td>Approval Pending</td>
+                          <td>30</td>
+
+                        </tr>
+                        <tr>
+                          <td>Posted Voucher's</td>
+                          <td>25</td>
+
+                        </tr>
+                        <tr>
+
+                          <td>Un-posted Voucher's</td>
+                          <td>25</td>
+                        </tr>
+                        <tr>
+
+                          <td>All types of permitted approval as per layer</td>
+                          <td>25</td>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="row">
+
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="card borderclass">
+                    <div class="media align-items-center ">
+                      <div class="media-body">
+
+                        <!-- <div class="col-md-12"> -->
+                        <div class="row">
+                          <div class="col-md-5">
+                            <div class="row">
+                              <label class="col-md-4 col-form-label">{{
+                                langService.langData.date
+                                }}</label>
+                              <div class="col-md-8">
+                                <div class="ps-modal-open-wrapper">
+                                  <input type="text" class="form-control " [bsConfig]="psDateFormat" psDatepicker autocomplete="off">
+                                  <div class="ps-modal-open-wrapper__button">
+                                    <button type="button" class="btn btn--squire" (click)="onClickFilterDateModal()">
+                                      <i class="fa fa-folder-open-o"></i>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-7">
+                            <div class="col-lg-4 col-sm-6">
+                              <div class="form-group row">
+                                <!-- <label class="col-form-label col-md-4"> {{langService.langData.companyName}}</label> -->
+                                <div class="col-md-8">
+                                  <!-- <ng-select [virtualScroll]="true" style="width: 200px;" name="COMPANY_NAME"
+                                    [(ngModel)]="formParam.COMPANY_NO">
+
+                                    <ng-option *ngFor="let company of companyList" [value]="company.COMPANY_NO">
+                                      {{ company.COMPANY_NAME }}</ng-option> -->
+                                  <!-- </ng-select> -->
+                                </div>
+                              </div>
+                              <!--/.form-group-->
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <h4 class="text" style="color: #9574ea ;"> Accounts Receivable</h4>
+                          </div>
+                          <div class="col-md-12 text-right">
+                            <h5 class="text-right">200000</h5>
+                          </div>
+                          <div class="col-sm-12">
+                            <div class="mb-2" style="width: 100%;height:15px;background-color: #FF0000;">
+                              <!-- <progressbar [value]="value" style="background-color: #E4E1E1;" [striped]="false">
+                                {{value}}%</progressbar> -->
+
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- </div> -->
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="card borderclass">
+                    <div class="media align-items-center ">
+                      <div class="media-body">
+                        <div class="row">
+                          <div class="col-md-5">
+                            <div class="row">
+                              <label class="col-md-4 col-form-label">{{
+                                langService.langData.date
+                                }}</label>
+                              <div class="col-md-8">
+                                <div class="ps-modal-open-wrapper">
+                                  <input type="text" class="form-control" [bsConfig]="psDateFormat" psDatepicker autocomplete="off">
+                                  <div class="ps-modal-open-wrapper__button">
+                                    <button type="button" class="btn btn--squire" (click)="onClickFilterDateModal()">
+                                      <i class="fa fa-folder-open-o"></i>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-7 ">
+                            <!-- <ng-select [virtualScroll]="true" style="width: 200px;" name="COMPANY_NAME"
+                              [(ngModel)]="formParam.COMPANY_NO">
+                              <ng-option *ngFor="let company of companyList" [value]="company.COMPANY_NO">
+                                {{ company.COMPANY_NAME }}</ng-option>
+                            </ng-select> -->
+                          </div>
+                          <div class="col-md-12">
+                            <h4 class="text" style="color: #FF0000;"> Accounts Payable</h4>
+                          </div>
+                          <div class="col-md-12 text-right">
+                            <h5 class="text-right">100000</h5>
+                          </div>
+                          <div class="col-sm-12">
+                            <div class="mb-1" style="width: 100%;height:15px;background-color:blue;">
+                              <!-- <progressbar [value]="value" type="danger" style="background-color: #E4E1E1;"
+                                [striped]="false">{{value}}%</progressbar> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+              </div>
+
+
+
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <!-- <div class="col-6"> -->
+            <div class="row">
+
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card borderclass">
+                      <div class="media align-items-center ">
+                        <div class="media-body">
+
+                          <!-- <div class="col-md-12"> -->
+                          <div class="row">
+                            <div class="col-md-5">
+                              <div class="row">
+                                <label class="col-md-4 col-form-label">{{
+                                  langService.langData.date
+                                  }}</label>
+                                <div class="col-md-8">
+                                  <div class="ps-modal-open-wrapper">
+                                    <input type="text" class="form-control " [bsConfig]="psDateFormat" psDatepicker autocomplete="off">
+                                    <div class="ps-modal-open-wrapper__button">
+                                      <button type="button" class="btn btn--squire" (click)="onClickFilterDateModal()">
+                                        <i class="fa fa-folder-open-o"></i>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-7 ">
+                              <!-- <ng-select [virtualScroll]="true" style="width: 200px;" name="COMPANY_NAME"
+                                [(ngModel)]="formParam.COMPANY_NO">
+
+                                <ng-option *ngFor="let company of companyList" [value]="company.COMPANY_NO">
+                                  {{ company.COMPANY_NAME }}</ng-option>
+                              </ng-select> -->
+                            </div>
+                            <div class="col-md-12">
+                              <h3 class="text" style="color: #00B02C ;"> Cash Received</h3>
+                            </div>
+                            <div class="col-md-12 text-right">
+                              <h5 class="text-right">200000</h5>
+                            </div>
+
+                          </div>
+
+                          <!-- </div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="col-6">
+                <div class="row">
+                  <!-- <div class="col-12"> -->
+                  <div class="card borderclass">
+                    <div class="media align-items-center ">
+                      <div class="media-body">
+
+                        <!-- <div class="col-md-12"> -->
+                        <div class="row">
+                          <div class="col-md-5">
+                            <div class="row">
+                              <label class="col-md-4 col-form-label">{{
+                                langService.langData.date
+                                }}</label>
+                              <div class="col-md-8">
+                                <div class="ps-modal-open-wrapper">
+                                  <input type="text" class="form-control"[bsConfig]="psDateFormat" psDatepicker autocomplete="off">
+                                  <div class="ps-modal-open-wrapper__button">
+                                    <button type="button" class="btn btn--squire" (click)="onClickFilterDateModal()">
+                                      <i class="fa fa-folder-open-o"></i>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-7 ">
+                            <!-- <ng-select [virtualScroll]="true" style="width: 200px;" name="COMPANY_NAME"
+                              [(ngModel)]="formParam.COMPANY_NO">
+                              <ng-option *ngFor="let company of companyList" [value]="company.COMPANY_NO">
+                                {{ company.COMPANY_NAME }}</ng-option>
+                            </ng-select> -->
+                          </div>
+                          <div class="col-md-12">
+                            <h3 class="text" style="color: #FF0000 ;"> Cash Payment</h3>
+                          </div>
+                          <div class="col-md-12 text-right">
+                            <h5 class="text-right">200000</h5>
+                          </div>
+                        </div>
+                        <!-- </div> -->
+                      </div>
+                    </div>
+                  </div>
+                  <!-- </div> -->
+                </div>
+
+              </div>
+
+
+            </div>
+
+            <!-- </div> -->
+          </div>
+        </div>
+
+      </div>
+      <div class="col-4 right borderclass">
+        <div class="card borderclass" style="height: 495px;">
+          <div class="media align-items-center ">
+            <div class="media-body">
+              My Employment History
+              <br><br>
+              <div class="row">
+                <div class="col-md-6" style="color: #00C457;">
+                  Attendance
+                </div>
+                <div class="col-md-6 text-right" style="color: #00C457;">
+                  May
+                </div>
+              </div>
+              <hr>
+              <!-- <div class="table table-responsive"> -->
+              <table class="table borderless">
+                <thead>
+                  <tr>
+                    <td scope="col" style="color: #00C457;">Present</td>
+                    <td scope="col" style="color: #FF9300;">Late</td>
+                    <td scope="col" style="color: #0004FD;">Early Exit</td>
+                    <td scope="col" style="color: #FF0000;">Absent</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center"><strong>16</strong></td>
+                    <td class="text-center"><strong>5</strong></td>
+                    <td class="text-center"><strong>5</strong></td>
+                    <td class="text-center"><strong>2</strong></td>
+                  </tr>
+
+                </tbody>
+              </table>
+              <br />
+              <div class="row">
+                <div class="col-md-6" style="color: #00C457;">
+                  Leave Summery
+                </div>
+                <div class="col-md-6 text-right" style="color: #00C457;">
+                  2021
+                </div>
+              </div>
+              <hr>
+              <table class="table borderless">
+                <thead>
+                  <tr>
+                    <td scope="col" style="color: #0004FD;">Type</td>
+                    <td scope="col" style="color: #0004FD;">Available</td>
+                    <td scope="col" style="color: #0004FD;">Used</td>
+                    <td scope="col" style="color: #0004FD;">Balance</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-left">Sick</td>
+                    <td class="text-center">12</td>
+                    <td class="text-center">12</td>
+                    <td class="text-center">12</td>
+
+                  </tr>
+                  <tr>
+                    <td class="text-left">Casual</td>
+                    <td class="text-center">5</td>
+                    <td class="text-center">5</td>
+                    <td class="text-center">0</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">Special</td>
+                    <td class="text-center">7</td>
+                    <td class="text-center">7</td>
+                    <td class="text-center">12</td>
+                  </tr>
+
+                </tbody>
+              </table>
+              <div class="row">
+                <div class="col-md-6">
+                  <table class="table borderless">
+                    <thead>
+                      <tr>
+                        <td scope="col" style="color: #FF9300;">Office Notice</td>
+                        <td scope="col"><span class="badge badgeStyle">1</span></td>
+
+                      </tr>
+                      <tr>
+                        <td scope="col" style="color: #FF9300;">Quick Note</td>
+                        <td scope="col"><span class="badge badgeStyle">1</span></td>
+
+                      </tr>
+                      <tr>
+                        <td scope="col" style="color: #FF9300;">To Do List</td>
+                        <td scope="col"><span class="badge badgeStyle">1</span></td>
+
+                      </tr>
+                      <tr>
+                        <td scope="col" style="color: #FF9300;">Daily Activity</td>
+                        <td scope="col"><span class="badge badgeStyle">1</span></td>
+
+                      </tr>
+                      <tr>
+                        <td scope="col" style="color: #FF9300;">Conveyance Bill</td>
+                        <td scope="col"><span class="badge badgeStyle">1</span></td>
+
+                      </tr>
+                      <tr>
+                        <td scope="col" style="color: #FF9300;">Requisition</td>
+                        <td scope="col"><span class="badge badgeStyle">1</span></td>
+
+                      </tr>
+
+                    </thead>
+
+                  </table>
+                </div>
+                <div class="col-md-6">
+                  <table class="table borderless">
+                    <thead>
+                      <tr>
+                        <td scope="col" style="color: #FF9300;">Address Book</td>
+                        <td scope="col"><span class="badge badgeStyle">1</span></td>
+
+                      </tr>
+                      <tr>
+                        <td scope="col" style="color: #FF9300;">Message Box</td>
+                        <td scope="col"><span class="badge badgeStyle">1</span></td>
+
+                      </tr>
+                      <tr>
+                        <td scope="col" style="color: #FF9300;">My Assignment</td>
+                        <td scope="col"><span class="badge badgeStyle">1</span></td>
+
+                      </tr>
+                      <tr>
+                        <td scope="col" style="color: #FF9300;">Attend Requ</td>
+                        <td scope="col"><span class="badge badgeStyle">1</span></td>
+
+                      </tr>
+                      <tr>
+                        <td scope="col" style="color: #FF9300;">FAQ</td>
+                        <td scope="col"><span class="badge badgeStyle">1</span></td>
+
+                      </tr>
+
+
+
+
+                    </thead>
+
+                  </table>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6 borderclass">
+        <div class="card borderclass">
+          <div class="media align-items-center ">
+            <div class="media-body">
+
+              <!-- <div class="col-md-12"> -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-md-4 col-form-label">{{
+                      langService.langData.date
+                      }}</label>
+                    <div class="col-md-8">
+                      <div class="ps-modal-open-wrapper">
+                        <input type="text" class="form-control "[bsConfig]="psDateFormat" psDatepicker autocomplete="off">
+                        <div class="ps-modal-open-wrapper__button">
+                          <button type="button" class="btn btn--squire" (click)="onClickFilterDateModal()">
+                            <i class="fa fa-folder-open-o"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <!-- <ng-select [virtualScroll]="true" style="width: 250px;" name="COMPANY_NAME"
+                    [(ngModel)]="formParam.COMPANY_NO">
+
+                    <ng-option *ngFor="let company of companyList" [value]="company.COMPANY_NO">
+                      {{ company.COMPANY_NAME }}</ng-option>
+                  </ng-select> -->
+                </div>
+              </div>
+
+
+              <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
+                style="width: 100%; height: 400px; display: block;border-radius: 7px;">
+              </highcharts-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-md-6 borderclass">
+        <div class="card borderclass">
+          <div class="media align-items-center ">
+            <div class="media-body">
+
+              <!-- <div class="col-md-12"> -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-md-4 col-form-label">{{
+                      langService.langData.date
+                      }}</label>
+                    <div class="col-md-8">
+                      <div class="ps-modal-open-wrapper">
+                        <input type="text" class="form-control "[bsConfig]="psDateFormat" psDatepicker autocomplete="off">
+                        <div class="ps-modal-open-wrapper__button">
+                          <button type="button" class="btn btn--squire" (click)="onClickFilterDateModal()">
+                            <i class="fa fa-folder-open-o"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <!-- <ng-select [virtualScroll]="true" style="width: 250px;" name="COMPANY_NAME"
+                    [(ngModel)]="formParam.COMPANY_NO">
+
+                    <ng-option *ngFor="let company of companyList" [value]="company.COMPANY_NO">
+                      {{ company.COMPANY_NAME }}</ng-option>
+                  </ng-select> -->
+                </div>
+              </div>
+
+              <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
+                style="width: 100%; height: 400px; display: block;border-radius: 7px;">
+              </highcharts-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+</body>

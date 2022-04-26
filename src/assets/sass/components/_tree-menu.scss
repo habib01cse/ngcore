@@ -1,0 +1,92 @@
+/* -----------------------------------
+** Tree Menu
+-------------------------------------*/
+.tree-menu{
+  /* Display & Box Model */
+  margin:0;
+  padding:0 0 pxtorem(2px, $font-size-base) 0;
+  max-height: 72vh;
+  max-height: calc(100vh - 160px);
+  //max-height: calc(100% - 160px);
+  overflow: auto;
+  ul{
+    padding-left: pxtorem(29px, $font-size-base);
+  }
+  .dropdown {
+    /* Display & Box Model */
+      overflow: hidden;
+      display: none;
+  }
+  .action-buttons{
+    /* Positions */
+    position: absolute;
+    right:0;
+    top:1px;
+
+    /* Display & Box Model */
+    display: inline-block;
+    margin-left: auto;
+    text-align: right;
+
+    /* Others */
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
+    &:hover{
+      opacity: 1;
+    }
+    .add-button,.edit-button,.delete-button{
+      height: 22px;
+      width:22px;
+      border-radius: 100%;
+      line-height: 24px;
+      margin-right: 3px;
+      display:inline-block;
+      text-align: center;
+      cursor: pointer;
+
+    }
+  }
+  li{
+    list-style: none;
+    width:100%;
+    position: relative;
+    .tree-menu-text{
+      /* Display & Box Model */
+      display: block;
+      margin-bottom: pxtorem(3px, $font-size-base);
+      padding:0 pxtorem(7px, $font-size-base);
+
+      /* Text */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 24px;
+      .collapse-icon{
+        /* Display & Box Model */
+        display: inline-block;
+        width:pxtorem(17px, $font-size-base);;
+        font-size: pxtorem(14px, $font-size-base);;
+        vertical-align: middle;
+      }
+      &:hover{
+        ~ .action-buttons{
+          opacity: 1;
+        }
+      }
+    }
+    &:hover{
+      &>.tree-menu-text{
+        padding-right: 50px;
+      }
+    }
+  }
+  .last-leaf{
+    //cursor: default;
+  }
+}
+
+/* -----------------------------------
+** End Tree Menu
+-------------------------------------*/

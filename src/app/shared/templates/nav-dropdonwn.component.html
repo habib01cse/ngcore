@@ -1,0 +1,11 @@
+<div class="dropdown menu-type-select">
+  <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="menu-type-select__select-value">{{nav.title}} </span>
+    <i class="ion-chevron-down language-select-dropdown__arrow"></i>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" [ngClass]="{'active':nav.title==='Forms'}" (click)="getValue($event, 0)" href="#">Forms</a>
+    <a class="dropdown-item active" [ngClass]="{'active':nav.title==='Reports'}" (click)="getValue($event, 1)" href="#">Reports</a>
+    <a class="dropdown-item" [ngClass]="{'active':nav.title==='Graphs'}" (click)="getValue($event, 2)" href="#">Graphs</a>
+  </div>
+</div>

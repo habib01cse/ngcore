@@ -1,0 +1,170 @@
+<form class="container-fluid page-small ps-report-page-wrapper" ps-validation-option="PrintVoucherOptions">
+  <div class="card">
+    <!-- <h6 class="card-header">{{ langService.langData.printVoucher }}]
+      <span class="ps-collapse-arrow" ps-slide-hide-show="reportform, sliderHide">
+        [<i *ngIf="sliderHide" class="ion-plus ps-collapse-arrow__icon"></i><i *ngIf="!sliderHide"
+          class="ion-minus ps-collapse-arrow__icon"></i>]
+      </span>
+    </h6> -->
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+      {{ langService.langData.printVoucher }}
+      <div class="d-flex card-header__action">
+        <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent"
+          (ps-click)="onClickOpen($event)"><i class="fa fa-link"></i>
+          {{ langService.langData.open }}</button>
+        <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent"
+          (ps-click)="onPreview($event)"><i class="fa fa-eye"></i>
+          {{ langService.langData.preview }}</button>
+        <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent" (click)="onReset()"><i
+            class="fa fa-repeat"></i>
+          {{ langService.langData.reset }}</button>
+        <span class="ps-collapse-arrow" ps-slide-hide-show="reportform, sliderHide">
+          [<i *ngIf="sliderHide" class="ion-plus ps-collapse-arrow__icon"></i><i *ngIf="!sliderHide"
+            class="ion-minus ps-collapse-arrow__icon"></i>]
+        </span>
+      </div>
+    </div>
+
+
+
+
+    <div class="card-body pb0" data-ps-target="reportform">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.date }}</label>
+            <div class="col-md-8">
+              <div class="ps-two-date-picker">
+                <input type="text" class="form-control" [(ngModel)]="formParam.START_DATE"
+                  [maxDate]="formParam.END_DATE" name="formParam.START_DATE" [bsConfig]="psDateFormat"
+                  autocomplete="off" bsDatepicker>
+                <span class="ps-two-date-picker__to">{{ langService.langData.to }}</span>
+                <input type="text" class="form-control" [(ngModel)]="formParam.END_DATE"
+                  [minDate]="formParam.START_DATE" name="formParam.END_DATE" [bsConfig]="psDateFormat"
+                  autocomplete="off" bsDatepicker>
+              </div>
+            </div>
+          </div>
+          <!--/.form-group-->
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.voucherType }}</label>
+            <div class="col-md-8">
+              <ng-select [virtualScroll]="true" [(ngModel)]="formParam.VTYPE_NO" name="VTYPE_NO"
+                (change)="onChangeFormParams()" [clearable]="false">
+                <ng-option [value]="null">{{ langService.langData.all }}</ng-option>
+                <ng-option *ngFor="let voucher of  model.voucherTypeList;let i=index;trackBy:trackByFn;"
+                  [value]="voucher.VTYPE_NO">
+                  {{voucher.TYPE_NAME}} </ng-option>
+              </ng-select>
+            </div>
+          </div>
+          <!--/.form-group-->
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.voucherNo }}</label>
+            <div class="col-md-8">
+              <ng-select [virtualScroll]="true" [(ngModel)]="formParam.V_NO" name="V_NO" (change)="onChangeVoucherNo()"
+                [clearable]="false">
+                <ng-option [value]="null">{{ langService.langData.all }}</ng-option>
+                <ng-option *ngFor="let voucher of  model.voucherList;let i=index;trackBy:trackByFn;"
+                  [value]="voucher.V_NO">
+                  {{voucher.V_ID}} </ng-option>
+              </ng-select>
+            </div>
+          </div>
+          <!--/.form-group-->
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label ps-sub">{{ langService.langData.printType }}</label>
+            <div class="col-md-8">
+              <ng-select [virtualScroll]="true" [clearable]="false" ps-validate="printType"
+                [(ngModel)]="formParam.PRINT_TYPE" name="PRINT_TYPE">
+                <ng-option [value]="null">{{ langService.langData.all }}</ng-option>
+                <ng-option *ngFor="let print of model.printTypeList; let i = index; trackBy:trackByFn;"
+                  [value]="print.VALUE">
+                  {{print.TEXT}}</ng-option>
+              </ng-select>
+            </div>
+          </div>
+          <!--/.form-group-->
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.showAccountPath }}</label>
+            <div class="col-md-8">
+              <label class="custom-control custom-checkbox custom-control--without-label d-inline-block">
+                <input class="custom-control-input" type="checkbox" [(ngModel)]="formParam.CTRL_SHOWPATH"
+                  name="CTRL_SHOWPATH">
+                <span class="custom-control-label"></span>
+              </label>
+            </div>
+          </div>
+          <!--/.form-group-->
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label"> {{ langService.langData.multiplecode }}</label>
+            <div class="col-md-8">
+           
+                <input type="text" name="MULTIPLE_CODE" [(ngModel)]="formParam.MULTIPLE_CODE"  class="form-control">
+                
+              </div>
+            </div>
+          </div>
+   
+
+        <div class="col-lg-4 col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label ps-sub">{{ langService.langData.reportServer }}</label>
+            <div class="col-md-8">
+              <ng-select [virtualScroll]="true" [(ngModel)]="formParam.SERVER_NAME" ps-validate="reportServer"
+                name="SERVER_NAME" [clearable]="false">
+                <ng-option [value]="null">{{ langService.langData.all }}</ng-option>
+                <ng-option *ngFor="let reportServer of  model.reportServerList;let i=index;trackBy:trackByFn;"
+                  [value]="reportServer.SERVER_NAME">
+                  {{reportServer.SERVER_NAME}} </ng-option>
+              </ng-select>
+            </div>
+          </div>
+          <!--/.form-group-->
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label ps-sub">{{ langService.langData.outputFormat }}</label>
+            <div class="col-md-8">
+              <ng-select [virtualScroll]="true" [clearable]="false" ps-validate="outputFormat"
+                [(ngModel)]="formParam.FORMAT_SHORT_NAME" name="FORMAT_SHORT_NAME">
+                <ng-option [value]="null">{{ langService.langData.all }}</ng-option>
+                <ng-option *ngFor="let outputFormat of model.outputFormatList; let i = index; trackBy:trackByFn;"
+                  [value]="outputFormat.V">{{outputFormat.FORMAT_SHORT_NAME}}</ng-option>
+              </ng-select>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-lg-8 text-right">
+          <button type="button" class="btn btn-default ml-base mb-base" (ps-click)="onPreview($event)"><i class="fa fa-eye"></i> {{
+            langService.langData.preview }}</button>
+          <button type="button" class="btn btn-warning ml-base mb-base" (click)="onReset()"><i class="fa fa-repeat"></i> {{
+            langService.langData.reset }}</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <!--/.card-->
+</form>
+<div class="report-result">
+  <div class="loading-overlay" *ngIf="reportUrl != ''">
+    <div class="loading-Page">
+      <h2 class="loader"></h2>
+    </div>
+  </div>
+  <div class="report-result__pdf" *ngIf="reportUrl != ''">
+    <object [data]="reportUrl | safe" type="application/pdf"></object>
+  </div>
+</div>
+<!--/.report-result-->

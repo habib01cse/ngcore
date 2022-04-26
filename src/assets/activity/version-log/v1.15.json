@@ -1,0 +1,26 @@
+[
+    {
+        "tag": "added",
+        "title": "Add a test for template variable overwrite"
+    },
+    {
+        "tag": "changed",
+        "title": "Include language code in REF_NOT_FOUND errors"
+    },
+    {
+        "tag": "fixed",
+        "title": "Improve minifier MIME type resolution"
+    },
+    {
+        "tag": "deprecated",
+        "title": "Set GO111MODULE=on for mage install"
+    },
+    {
+        "tag": "removed",
+        "title": "Add instruction to install PostCSS when missing"
+    },
+    {
+        "tag": "security",
+        "title": "Update snapcraft build config to Go 1.11"
+    }
+]

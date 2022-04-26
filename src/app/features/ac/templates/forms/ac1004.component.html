@@ -1,0 +1,342 @@
+<form class="container-fluid ps-form-page-wrapper voucher-page-wrapper" novalidate
+  ps-validation-option="voucherOptions">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card h-100-5" ngModelGroup="voucherFilterGroup">
+        <h6 class="card-header d-flex justify-content-between align-items-center">{{ langService.langData.filterBy }}
+          <div class="d-flex card-header__action">
+            <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent" group="voucherFilterGroup"
+              (ps-click)="onClickFilter($event)"><i class="fa fa-search"></i>
+              {{ langService.langData.filter }}</button>
+            <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent"
+              (click)="onClickFilterReset()"><i class="fa fa-repeat"></i>
+              {{ langService.langData.reset }}</button>
+          </div>
+        </h6>
+    
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <!--/.form-group-->
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label ps-sub">{{ langService.langData.period }}</label>
+                <div class="col-sm-9">
+                  <ng-select [virtualScroll]="true" [clearable]="false" ps-validate="filterPeriodNo"
+                    [(ngModel)]="voucherFilter.PERIOD_NO" name="F_PERIOD_NO" 
+                    (change)="onChangeVoucherFilter()">
+                    <ng-option [value]="null">{{ langService.langData.all}}</ng-option>
+                    <ng-option *ngFor="let perd of periodList; trackBy:trackByFn;" [value]="perd.PERIOD_NO">{{perd.START_PERIOD_DATE |
+                        date:dateFormat }} - {{perd.END_PERIOD_DATE | date:dateFormat}}</ng-option>
+                  </ng-select>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-md-12">
+              <!--/.form-group-->
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label ps-sub">{{ langService.langData.voucherType }}</label>
+                <div class="col-sm-9">
+                  <ng-select [virtualScroll]="true" [clearable]="false" ps-validate="filterVoucherType"
+                    [(ngModel)]="voucherFilter.VTYPE_NO" name="F_VTYPE_NO" (change)="onChangeVoucherFilter()">
+                    <ng-option [value]="null">{{ langService.langData.all}}</ng-option>
+                    <ng-option *ngFor="let vType of voucherTypeList; trackBy:trackByFn;" [value]="vType.VTYPE_NO">
+                      {{vType.TYPE_NAME}}
+                    </ng-option>
+                  </ng-select>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <div class="card">
+        <h6 class="card-header d-flex justify-content-between align-items-center">{{ langService.langData.voucher }}
+          <div class="d-flex card-header__action">
+            <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent" group="voucherFilterGroup"
+              (ps-click)="onClickPrevVoucher($event)"><i class="fa fa-backward"></i>
+              {{ langService.langData.previous }}</button>
+            <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent" group="voucherFilterGroup"
+              (ps-click)="onClickNextVoucher($event)"><i class="fa fa-forward"></i>
+              {{ langService.langData.next }}</button>
+            <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent" group="voucherFilterGroup"
+              (ps-click)="onClickNewVoucher($event)" id="psMasterNew"><i class="fa fa-plus"></i>
+              {{ langService.langData.new }}</button>
+            <button type="button" class="btn btn-success btn-sm btn--width-auto bg-transparent"
+              (ps-click)="onClickSaveVouchar($event)" id="psMasterSave"><i class="fa fa-floppy-o"></i>
+              {{ langService.langData.save }}</button>
+            <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent"
+              (click)="onClickResetVouchar()" id="psMasterReset"><i class="fa fa-repeat"></i>
+              {{ langService.langData.reset }}</button>
+            <button type="button" *ngIf="model.userPrivilege.canShowDelete()"
+              class="btn btn-danger btn-sm btn--width-auto bg-transparent" (click)="onClickDeleteVoucher()" id="psMasterDelete"><i
+                class="fa fa-times"></i> {{ langService.langData.delete }}</button>
+          </div>
+        </h6>
+        <div class="card-body pb0">
+          <div novalidate>
+            <div class="row">
+    
+              <!-- <div class="col-md-4">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label ps-sub">{{ langService.langData.period }}</label>
+                  <div class="col-sm-9">
+                    <input class="form-control" type="text"
+                      value="{{voucher.START_PERIOD_DATE | date:dateFormat }} - {{voucher.END_PERIOD_DATE | date:dateFormat}}"
+                      readonly ps-select-all>
+                  </div>
+                </div>
+              </div> -->
+    
+              <div class="col-md-4">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">{{ langService.langData.modules }}</label>
+                  <div class="col-sm-9">
+                    <div class="d-flex">
+                      <input type="text" class="form-control" disabled [value]="voucher.MODULE">
+                      <label class="custom-control custom-checkbox custom-control--border ml-base">
+                        <input [disabled]="voucher.SQL_STATE == 1" class="custom-control-input" type="checkbox"
+                          name="VOID_FLAG" [checked]="voucher.VOID_FLAG === 'Y'"
+                          (change)="voucher.VOID_FLAG = $event.target.checked ? 'Y' : 'N';onChangeVoidFlag($event.target.checked)">
+                        <span class="custom-control-label">{{ langService.langData.voidQus }}</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col-md-4">
+                <!--/.form-group-->
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label ps-sub">{{ langService.langData.voucherType }}</label>
+                  <div class="col-sm-9">
+                    <input class="form-control" type="text" value="{{voucher.VOUCHER_TYPE}}" readonly ps-select-all>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col-md-4" *ngIf="model.showPaidTo">
+                <div class="row form-group">
+                  <label class="col-md-3 col-form-label">{{langService.langData.paidTo }}</label>
+                  <div class="col-md-9">
+                    <div class="ps-modal-open-wrapper">
+                      <span class="ps-modal-open-wrapper__text">{{voucher.PAID_TO_NAME}}</span>
+                      <div class="ps-modal-open-wrapper__button">
+                        <button type="button" class="btn btn--squire" (click)="onClickPaidToModal()"><i
+                            class="fa fa-folder-open-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">{{ langService.langData.paidTo }}</label>
+                  <div class="col-sm-9">
+                    <ng-select [virtualScroll]="true" [clearable]="false" [(ngModel)]="voucher.PAID_TO" name="PAID_TO">
+                      <ng-option [value]="null">{{ langService.langData.select }}</ng-option>
+                      <ng-option *ngFor="let pRObj of payOrReceiveList ;  trackBy:trackByFn;" [value]="pRObj.COST_NO">
+                        {{pRObj.COST_NAME}}
+                      </ng-option>
+                    </ng-select>
+                  </div>
+                </div> -->
+                <!--/.form-group-->
+              </div>
+    
+              <div class="col-md-4">
+                <!--/.form-group-->
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">{{ langService.langData.voucherNo }}</label>
+                  <div class="col-sm-9">
+                    <div class="input-group">
+                      <input type="text" class="form-control" readonly [(ngModel)]="voucher.V_ID" name="V_ID" ps-select-all>
+                      <div class="input-group-append">
+                        <button class="btn btn-default btn--width-auto ml-base" type="button" (click)="onClickPreview()"><i class="fa fa-eye"></i>&nbsp;{{ langService.langData.preview }}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col-md-4" *ngIf="model.showReceiveFrom">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">{{ langService.langData.receiveFrom }}</label>
+                  <div class="col-sm-9">
+                    <ng-select [virtualScroll]="true" [clearable]="false" [(ngModel)]="voucher.RECEIVE_FROM"
+                      name="RECEIVE_FROM">
+                      <ng-option [value]="null">{{ langService.langData.select}}</ng-option>
+                      <ng-option *ngFor="let pRObj of payOrReceiveList;  trackBy:trackByFn;" [value]="pRObj.COST_NO">
+                        {{pRObj.COST_NAME}}
+                      </ng-option>
+                    </ng-select>
+                  </div>
+                </div>
+                <!--/.form-group-->
+              </div>
+    
+              <div class="col-md-4">
+                <!--/.form-group-->
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label ps-sub">{{ langService.langData.date }}</label>
+                  <div class="col-sm-9">
+                    <div class="input-group">
+                      <input type="text" class="form-control" [(ngModel)]="voucher.V_DATE" name="V_DATE"
+                        [disabled]="defaultObject.GL_POSTING_DATE_MODIFY == 0" [required]="true"
+                        [minDate]="model.selectedPeriod.START_PERIOD_DATE" 
+                        [maxDate]="model.selectedPeriod.END_PERIOD_DATE"
+                        [bsConfig]="psDateFormat" bsDatepicker
+                        (ngModelChange)="onChangeVoucherDate()">
+                      <div class="input-group-append">
+                        <button class="btn btn-default btn--width-auto ml-base" type="button"><i class="fa fa-search">&nbsp;</i> {{ langService.langData.search }}</button>
+                        <!-- (click)="onClickSearchModal()" -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col-md-4" *ngIf="model.showCostName">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">{{ langService.langData.costName }}</label>
+                  <div class="col-sm-9">
+                    <ng-select [virtualScroll]="true" [clearable]="false" [(ngModel)]="voucher.COST_NO" name="COST_NO">
+                      <ng-option [value]="null">{{ langService.langData.select}}</ng-option>
+                      <ng-option *ngFor="let pRObj of costNameList; trackBy:trackByFn;" [value]="pRObj.COST_NO">
+                        {{pRObj.COST_NAME}}
+                      </ng-option>
+                    </ng-select>
+                  </div>
+                </div>
+              </div>
+          
+              <div class="col-md-4">
+                <!--/.form-group-->
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">{{ langService.langData.currency }}</label>
+                  <div class="col-sm-9">
+                    <ng-select [virtualScroll]="true" [clearable]="false" [(ngModel)]="voucher.CUR_NO" name="baseCurrency">
+                      <ng-option [value]="null">{{ langService.langData.select}}</ng-option>
+                      <ng-option *ngFor="let currency of currencyList; let i = index; trackBy:trackByFn;"
+                        [value]="currency.CUR_NO">
+                        {{currency.C_NAME + " - "+ currency.EXCHANGE_RATE}}
+                      </ng-option>
+                    </ng-select>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col text-right">
+                <!--/.form-group-->
+                <button (click)="onClickUpload()" class="btn btn-default pb-base btn-sm"
+                  type="button"><i class="fa fa-upload"></i> {{ langService.langData.uploadAttachment }}</button>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--/.card-->
+  <div class="card">
+    <h6 class="card-header d-flex justify-content-between align-items-center"><span
+        class="pull-left">{{ langService.langData.details }}</span>
+      <!-- <div class="pull-right w22 text-center pr15">{{ langService.langData.baseCurrency }} {{defaultObject.SYMBOL}}
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div> -->
+      <div class="d-flex card-header__action">
+        <button type="button" (click)="onClickAddVoucherDtl()"
+          *ngIf="(!((defaultObject.DATA_INSERT_ONLY == '1') && (voucher.V_NO)))"
+          class="btn btn-primary btn-sm btn--width-auto bg-transparent btn--add-new-grid">
+          <i class="fa fa-plus"></i> {{ langService.langData.new }}
+        </button>
+      </div>
+    </h6>
+    <div class="card-body">
+      <div class="ag-table-wrapper" style="width: 100%;">
+        <app-ag-grid-filter [gridId]="gridId" [grid]="grid"></app-ag-grid-filter>
+        <ag-grid-angular style="width: 100%; height: 300px;" [psValidateGrid]="gridRequiredOptions"
+          (psGridColumnTotalChanged)="onPsGridColumnTotalChanged($event)" [psGridColumnTotals]="pinnedBottomRowCols"
+          [pinnedBottomRowData]="pinnedBottomRowData" class="ag-theme-balham" [rowSelection]="rowSelectionType"
+          [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" [editType]="'fullRow'"
+          (cellClicked)="onCellClicked($event)" [pagination]="true" (cellKeyDown)="onCellKeyDown($event)"
+          [frameworkComponents]="gridService.frameworkComponents">
+        </ag-grid-angular>
+
+        <div class="pt-base grid-bottom-margin-minus-top position-relative pb-base">              
+          <div><strong class="pr-base">{{ langService.langData.accountsPath }} :
+          </strong>{{model.selectedVoucher.ACC_PATH}}</div>
+          <div *ngIf="bottomTotalData.DR_EX">
+            <strong class="pr-base">{{ langService.langData.inWord }} :
+            </strong>{{ bottomTotalData.DR_EX | numberToWords}}
+          </div>          
+        </div> 
+
+      </div>
+      
+    </div>
+  </div>
+  <!--/.card-->
+  <h6 class="black-text mb0">{{ langService.langData.narration }}</h6>
+  <div class="voucher-naration-wrapper d-flex">
+    <textarea class="form-control mr-base-double" [(ngModel)]="voucher.NARRATION" 
+    name="NARRATION"></textarea>
+    <table class="table-no-boder">
+      <tbody>
+        <tr>
+          <td><strong class="text-nowrap black-text">{{ langService.langData.prepareByAndDate }} :</strong></td>
+          <td><span class="text-nowrap" *ngIf="voucher.PREPARED_DATE">{{voucher.PREPARED_BY}} -
+              {{voucher.PREPARED_DATE}}</span></td>
+        </tr>
+        <tr>
+          <td><strong class="text-nowrap black-text pt-base pb-base d-block">{{ langService.langData.checkedByAndDate
+              }} :</strong></td>
+          <td><span class="text-nowrap pt-base pb-base d-block"
+              *ngIf="voucher.CHECK_FLAG == 1">{{voucher.CHECK_BY_NAME}} -
+              {{voucher.CHECK_DATE}}</span></td>
+        </tr>
+        <tr>
+          <td><strong class="text-nowrap black-text">{{ langService.langData.approvedByAndDate }} :</strong></td>
+          <td><span class="text-nowrap" *ngIf="voucher.POST_FLG == 1">{{voucher.APPROVE_BY}} -
+              {{voucher.APPROVE_DATE}}</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--/.row--->
+</form>
+<div class="modal fade modal--small" [ngClass]="{show: modalShow}" [ngStyle]="{display: modalShow?'block':'none'}"
+  tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ langService.langData.clearingQus }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <h3 class="black-text pb-base-double">{{ langService.langData.createNewVoucherQus }}</h3>
+        <div>
+          <button type="button" (click)="onClickPostVoucher()" class="btn btn-primary">{{
+            langService.langData.postVoucher }}</button>
+          <button type="button" (click)="onClickUnpostVoucher()" class="btn btn-default ml-base">{{
+            langService.langData.unpostVoucher }}</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalShow=false">{{
+          langService.langData.cancel }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show" *ngIf="modalShow"></div>
+
+<template #modalContainer>
+</template>
+<ps-dialog></ps-dialog>

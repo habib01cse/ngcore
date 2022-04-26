@@ -1,0 +1,181 @@
+/* -----------------------------------
+** Buton
+-------------------------------------*/
+button{
+	padding: pxtorem(1px, $font-size-base) pxtorem(5px, $font-size-base);
+}
+.btn{
+	min-width: 80px;
+	&:focus{
+		box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+	}
+  &--width-auto{
+		/* Display & Box Model */
+		display: flex;
+    align-items: center;
+    justify-content: center;
+    width:auto !important;
+    min-width: auto !important;
+    padding:0 pxtorem(7px, $font-size-base) !important;
+
+  }
+	&--squire{
+		/* Display & Box Model */
+		min-width: pxtorem(24px, $font-size-base);
+		height: pxtorem(24px, $font-size-base);
+	  width: pxtorem(24px, $font-size-base);
+	  padding: 0;
+		border-radius: 0;
+		border: 0;
+		/* Text */
+	  font-size: pxtorem(12px, $font-size-base);
+	  line-height: pxtorem(23px, $font-size-base);
+
+		/* Other */
+		cursor: pointer;
+
+		// icon problem
+		.fa-mouse-pointer{
+			margin-left: 3px;
+		}
+		&:focus{
+			/* Other */
+			outline: 0;
+		}
+	}
+}
+
+.ps-table-button-wrapper, .ps-modal-open-wrapper{
+	/* Display & Box Model */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+	width: 100%;
+  &__text{
+		/* Display & Box Model */
+    width:90%;
+    width:calc(100% - 22px);
+    padding-left: $offset-base;
+    overflow: hidden;
+
+		/* Text */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+	}
+	&--two-button{
+		.ps-modal-open-wrapper__text{
+			width:80%;
+			width:calc(100% - 48px);
+		}
+		.ps-modal-open-wrapper__button{
+			display: flex;
+		}
+	}
+}
+.ps-modal-open-wrapper{
+	&__text{
+		// height: $base-element-height;
+		// line-height: $base-element-height - 2px;
+		padding: 0 $offset-base;
+		height:pxtorem($base-element-height, $font-size-base);
+		line-height:pxtorem($base-element-height - 2px, $font-size-base);
+	}
+	
+}
+.table{
+	.ps-table-button-wrapper, .ps-modal-open-wrapper{
+		.form-control[readonly]{
+			background: transparent;
+		}
+	}
+}
+// File upload button
+.ps-file-upload-btn{
+	/* Position */
+	position: absolute;
+	z-index: -1;
+
+	/* Display & Box Model */
+  width: 0.1px;
+	height: 0.1px;
+	overflow: hidden;
+
+	/* Other */
+	opacity: 0;
+
+  & + label{
+		/* Display & Box Model */
+		display: block;
+
+		/* Text */
+		font-weight: 400;
+    line-height:pxtorem(24px, $font-size-base);
+
+    /* Other */
+    cursor: pointer;
+  }
+}
+
+
+.ps-action-hidden-button{
+	width: 0;
+    height: 0;
+    max-width: 0;
+    max-height: 0;
+    visibility: hidden;
+    opacity: 0;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.card-header__action{
+	.btn{
+		//color:#212121 !important;
+		i{
+			padding-right: 4px;;
+		}
+		&:not(:last-child){
+			&:after{
+				content: '|';
+				padding-left: 4px;;
+			}
+		}
+		
+	}
+	.btn--width-auto{
+		padding:0 3px !important;
+	}
+
+	
+	
+}
+
+.btn-notify{
+	position: absolute;
+	right: -10px;
+    top: -10px !important;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-weight: bold;
+}
+
+.c-btn{
+    min-width: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+/* -----------------------------------
+** End Buton
+-------------------------------------*/

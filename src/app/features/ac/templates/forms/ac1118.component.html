@@ -1,0 +1,173 @@
+<form class="container-fluid ps-form-page-wrapper" ps-validation-option="validationOptions">
+  <div class="card">   
+    <div class="card-header d-flex justify-content-between align-items-center">
+      {{ langService.langData.filterBy }}
+      <div class="d-flex card-header__action">       
+        <button type="button" *ngIf=" model.userPrivilege.canShowButton()" class="btn btn-primary btn-sm btn--width-auto bg-transparent" (click)="onClickFilter()"><i class="fa fa-search"></i> {{
+          langService.langData.filter }}</button>
+        <button type="button" *ngIf=" model.userPrivilege.canShowButton()" class="btn btn-warning btn-sm btn--width-auto bg-transparent" (click)="onClickReset()"><i class="fa fa-repeat"></i> {{
+          langService.langData.reset }}</button>        
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.date }}</label>
+            <div class="col-md-8 col-sm-6">
+              <div class="ps-two-date-picker">
+                <input type="text" class="form-control" [(ngModel)]="model.formParam.START_DATE"
+                  name="formParam.START_DATE" [maxDate]="model.formParam.END_DATE" [bsConfig]="psDateFormat"
+                  bsDatepicker autocomplete="off" (ngModelChange)="onClickFilter()">
+                <span class="ps-two-date-picker__to">{{ langService.langData.to }}</span>
+                <input type="text" class="form-control" [(ngModel)]="model.formParam.END_DATE" name="formParam.END_DATE"
+                  [minDate]="model.formParam.START_DATE" [bsConfig]="psDateFormat" bsDatepicker 
+                  autocomplete="off" (ngModelChange)="onClickFilter()">
+              </div>
+            </div>
+          </div>
+          <!--/.form-group-->
+        </div>
+
+        <div class="col-lg-4 col-sm-6">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.paymentStatus }}</label>
+            <div class="col-md-8 col-sm-6">              
+              <ng-select [virtualScroll]="true"  [(ngModel)]="model.selectedPaymentStatus" name="selectedPaymentStatus"  
+              autofocus (change)="onClickFilter()"
+              >                                
+              <ng-option *ngFor="let type of model.paymentStatusTypeList; trackBy:trackByFn;" [value]="type.VALUE">
+                    {{ type.TEXT }}</ng-option>
+              </ng-select>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 ">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.auditStatus }}</label>
+            <div class="col-md-8 col-sm-6">             
+              <ng-select [virtualScroll]="true" [(ngModel)]="model.selectedAuditStatus" name="selectedAuditStatus" 
+              autofocus (change)="onClickFilter()">                                
+                <ng-option *ngFor="let type of model.auditStatusTypeList; trackBy:trackByFn;" [value]="type.VALUE">
+                    {{ type.TEXT }}</ng-option>
+              </ng-select>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 ">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.provision }}</label>
+          <div class="col-md-8 col-sm-6">
+              <ng-select [virtualScroll]="true" [(ngModel)]="model.selectedProbisionStatus" name="selectedProbisionStatus" 
+              autofocus (change)="onClickFilter()">                
+                <ng-option *ngFor="let type of model.probisionStatusList; trackBy:trackByFn;" [value]="type.VALUE">
+                    {{ type.TEXT }}</ng-option>
+              </ng-select>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 ">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.status }}</label>
+            <div class="col-md-8 col-sm-6">
+              <ng-select [virtualScroll]="true"  [clearable]="false" [(ngModel)]="model.selectedTask" 
+              name="selectedTask" (change)="onClickFilter()">
+                <ng-option [value]="null">{{ langService.langData.all }}</ng-option>
+                <ng-option *ngFor="let task of model.taskList; trackBy:trackByFn;" [value]="task.TASK">{{ task.TASK }}
+                </ng-option>
+              </ng-select>
+            </div>
+          </div>
+        </div>
+       
+        <div class="col-lg-4 col-sm-6 ">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{langService.langData.map}}</label>
+            <div class="col-md-8 col-sm-6">
+              <label class="custom-control custom-checkbox d-inline-block mr-base-double">
+                <input class="custom-control-input" type="checkbox" name="SUPPLIER_NOT_MAP"
+                  [checked]="formParam.SUPPLIER_NOT_MAP==1"
+                  (change)="formParam.SUPPLIER_NOT_MAP = $event.target.checked?1:0; onClickFilter()">
+                <span class="custom-control-label">{{ langService.langData.supplierNotMap }}</span>
+              </label>
+              <label class="custom-control custom-checkbox d-inline-block ">
+                <input class="custom-control-input" type="checkbox" name="COST_NOT_MAP"
+                  [checked]="formParam.COST_NOT_MAP==1" 
+                  (change)="formParam.COST_NOT_MAP = $event.target.checked?1:0; onClickFilter()">
+                <span class="custom-control-label">{{ langService.langData.costNotMap }}</span>
+              </label>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+  <!--/.card-->
+
+  <!-- CHART TABLE  -->
+  <div class="card card--table">   
+    <div class="card-header d-flex justify-content-between align-items-center">
+      {{ langService.langData.invoice }}                         
+    </div>
+
+    <div class="card-body p0 mt-base">      
+      <div class="ag-table-wrapper" style="width: 100%;">
+        <div class="row">
+          <div class="col-sm-6">
+            
+            <button class="btn btn-default mb-base btn-sm mr-base ml-base" type="button"
+              *ngIf="model.userPrivilege.canShowButton()"
+                (click)="onClickPaymentLinkAc1052()">
+                  <i class="fa fa-link"></i> {{ langService.langData.autoVoucherCreation }}</button>
+
+            <button class="btn btn-default mb-base btn-sm mr-base" type="button"
+            *ngIf="model.userPrivilege.canShowButton()"
+              (click)="onClickPaymentLinkGr1030()">
+                <i class="fa fa-link"></i> {{ langService.langData.payment }}</button>
+
+            <button class="btn btn-default mb-base btn-sm mr-base" type="button"
+            *ngIf="model.userPrivilege.canShowButton()"
+              (click)="onClickCQPaymentLinkAC1023()">
+                    <i class="fa fa-link"></i> {{ langService.langData.cDotQPayment }}</button>
+
+          </div>
+          <div class="col-sm-2">
+            <div class="text-right">
+              <label class="custom-control custom-radio d-inline-block mr-base-double">
+                <input class="custom-control-input" type="radio" name="selectType" [(ngModel)]="model.selectType" [value]="formParam.ALL"
+                  (change)="onChangeStatus()">
+                <span class="custom-control-label">{{ langService.langData.all }}</span>
+              </label>
+              <label class="custom-control custom-radio d-inline-block">
+                <input class="custom-control-input" type="radio" name="selectType" [(ngModel)]="model.selectType" [value]="formParam.SELECTED"
+                  (change)="onChangeStatus()">
+                <span class="custom-control-label">{{ langService.langData.selected }}</span>
+              </label>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <app-ag-grid-filter [gridId]="gridId" [grid]="grid"></app-ag-grid-filter>
+          </div>
+        </div>
+        
+        <ag-grid-angular style="width: 100%; height: 400px;"
+        class="ag-theme-balham" 
+        [columnDefs]="columnDefs" 
+        (gridReady)="onGridReady($event)"
+        psValidateGrid = "paymentRegValid"          
+        [rowSelection]="rowSelection"
+        (cellClicked)='onCellClicked($event)' 
+        [suppressRowClickSelection]="true"
+        [pagination]="true"   
+        [frameworkComponents]="gridService.frameworkComponents"         
+        [animateRows]="true"
+        [psGridColumnTotals]="pinnedBottomRowCols"      
+        [pinnedBottomRowData]="pinnedBottomRowData"
+        [defaultColDef]="defaultColDef">
+        </ag-grid-angular>
+      </div>            
+    </div>     
+  </div>
+  <!--/.card-->  
+</form>

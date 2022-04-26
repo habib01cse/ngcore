@@ -1,0 +1,69 @@
+<div class="ag-grid-search-control mr-base">
+  <div class="input-group input-group--icon mb-base">
+    <!-- (keyup.enter)="enterKeyEvent.emit($event)" -->
+    <input #searchInputRef  autocomplete="off" class="form-control" type="text" [(ngModel)]="filterText" name="filter-text-box"
+     placeholder="Filter..." (keyup)="onFilterTextBoxChanged($event.target.value)" 
+     />
+    <div class="input-group-prepend">
+      <button *ngIf="isSettingBtnVisible" (click)="onClickSetting()" class="btn btn-default btn--squire" type="button"><i
+          class="fa fa-cog search-icon"></i></button>
+      <button  (click)="onClickDownload()" class="btn btn-default btn--squire" type="button"><i
+          class="fa fa-download search-icon"></i></button>
+          <button  (click)="onClickClearFilters()" class="btn btn-default btn--squire filter-clear-button" type="button"><i
+            class="fa fa-repeat"></i></button>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div *ngIf="sidebarColumnControl || downloadDataControl" class="ag-sidebar-column-control">
+  <div class="checkbox-wrapper text-left"  *ngIf="sidebarColumnControl">
+    <div *ngFor="let column of gridColumns;let i=index;" class="checkobx-item" >
+      <div class="custom-control custom-checkbox " *ngIf="!column.lockPosition">
+          <input type="checkbox" class="custom-control-input"  id="col-checkbox-{{i}}" [checked]="column.visible" (change)="column.columnApi.setColumnVisible([column.colId], $event.target.checked );" >
+          <label class="custom-control-label" for="col-checkbox-{{i}}">{{column.colDef.headerName}}</label>
+        </div>
+    </div>
+    <button (click)="onClickSaveSetting();sidebarColumnControl=false;" class="btn btn-primary btn-sm mr-3">Save</button>
+  </div>
+
+  <div class="checkbox-wrapper text-left"  *ngIf="downloadDataControl">
+    <div class="checkobx-item" >
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox"  class="custom-control-input" id="allColumns" checked />
+        <label class="custom-control-label" for="allColumns">All Columns</label>
+      </div>
+    </div>
+    <div class="checkobx-item" >
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox"  class="custom-control-input" id="onlySelected" />
+        <label class="custom-control-label" for="onlySelected">Only Selected</label>
+      </div>
+    </div>
+    <div class="checkobx-item" >
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox"  class="custom-control-input" id="skipFooters" />
+        <label class="custom-control-label" for="skipFooters">Skip Footers</label>
+      </div>
+    </div>
+    <div class="checkobx-item" >
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox"  class="custom-control-input" id="skipHeader" />
+        <label class="custom-control-label" for="skipHeader">Skip Header</label>
+      </div>
+    </div>
+    <div class="checkobx-item" >
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox"  class="custom-control-input" id="skipPinnedTop" />
+        <label class="custom-control-label" for="skipPinnedTop">Skip Pinned Top</label>
+      </div>
+    </div>
+    <div class="checkobx-item" >
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox"  class="custom-control-input" id="skipPinnedBottom" />
+        <label class="custom-control-label" for="skipPinnedBottom">Skip Pinned Bottom</label>
+      </div>
+    </div>
+    <button (click)="onClickExportDataAsCsv()" class="btn btn-primary btn-sm mr-1">CSV</button>
+    <!-- <button (click)="onClickExportDataAsExcel()" class="btn btn-primary btn-sm mr-3">Excel</button> -->
+  </div>
+</div>

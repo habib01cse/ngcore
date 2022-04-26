@@ -1,0 +1,20 @@
+<div class="module-overlay" (click)="onClickModuleOverlay()"></div>
+<div class="module-wrapper app-style-module app-style-module--active">
+  <div class="app-style-module__company">
+    <app-company-change></app-company-change>
+    <div class="app-style-module__home-icon">
+      <a href="#/home"><i class="fa fa-home"></i></a>
+    </div>
+  </div>
+  <div *ngIf="moduleList">
+    <div *ngFor="let item of moduleList" class="module-column">
+      <a class="module-item card" href="#{{item.MENU_ID|lowercase}}">
+        <div class="card-body">
+          <div class="module-item__image">
+            <img src="assets/images/menu/{{item.OBJ_NO}}.png" alt="">
+          </div>
+          <h5 class="module-item__title text-center">{{item.OBJ_NAME}}</h5>
+        </div>
+      </a>
+    </div>
+  </div>

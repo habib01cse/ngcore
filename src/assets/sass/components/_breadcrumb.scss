@@ -1,0 +1,88 @@
+
+//== Breadcrumb
+/*----------------------------------------*/
+.breadcrumb-area{
+  /* Display & Box Model */
+  height: $breadcrumb-height;
+  padding-right: pxtorem(15px, $font-size-base);
+  padding-left: pxtorem(15px, $font-size-base);
+
+  /* Other */
+  transition-property: padding-left;
+  transition-duration: .3s;
+  transition-timing-function: linear;
+  .refresh-button{
+    /* Display & Box Model */
+    display: block;
+    width:pxtorem(19px, $font-size-base);
+    height:pxtorem(19px, $font-size-base);
+    padding: 0;
+    margin: 0 pxtorem(5px, $font-size-base) 0 0;
+    border: none;
+    border-radius: 0;
+
+    /* Text */
+    vertical-align: middle;
+    line-height: pxtorem(19px, $font-size-base);
+    text-align: center;
+
+    /* Other */
+    float: left;
+    cursor: pointer;
+
+    &:focus{
+      outline: 0;
+    }
+  }
+  .breadcrumb-item{
+    a{
+      /* Color */
+      color: inherit;
+
+      /* Text */
+      font-size: pxtorem(13px, $font-size-base);
+      &:hover,&:focus{
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.breadcrumb-right-icons{
+  /* Display & Box Model */
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding-top: pxtorem(2px, $font-size-base);
+ 
+  .breadcrumb-action-button{
+    /* Display & Box Model */
+    border:0;
+    padding:pxtorem(0px, $font-size-base) pxtorem(5px, $font-size-base);
+    margin-left: $offset-base;
+
+    /* Color */
+    background: transparent;
+
+    /* Text */
+    font-size: pxtorem(18px, $font-size-base);
+
+    /* Other */
+    cursor: pointer;
+    transition: .3s;
+    
+  }
+  .breadcrumb-action-button:not(:disabled){
+    &:hover{
+      transform: scale(1.2);
+    }
+  }
+  .breadcrumb-action-button:disabled {
+    opacity: .5;
+    cursor: no-drop;
+  }
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  /* Display & Box Model */
+    padding-right: pxtorem(3px, $font-size-base);
+    padding-left: pxtorem(3px, $font-size-base);
+}

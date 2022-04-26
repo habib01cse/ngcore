@@ -1,0 +1,85 @@
+/* -----------------------------------
+** Preloader
+-------------------------------------*/
+.loader-wrapper {
+	/* Positioning */
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 99999;
+
+	/* Display & Box Model */
+	width: 100%;
+	height: 100%;
+
+	/* Other */
+  opacity: 1;
+  .loader {
+		/* Positioning */
+  	position: absolute;
+  	top: 50%;  
+  	left: 50%;
+
+		/* Display & Box Model */
+  	margin-left: -29px;
+  	margin-top: -23px;
+  }
+}
+@-webkit-keyframes line-scale {
+  0% {
+    -webkit-transform: scaley(1);
+    transform: scaley(1); }
+  50% {
+    -webkit-transform: scaley(0.4);
+    transform: scaley(0.4); }
+  100% {
+    -webkit-transform: scaley(1);
+    transform: scaley(1); } }
+@keyframes line-scale {
+  0% {
+    -webkit-transform: scaley(1);
+    transform: scaley(1); }
+  50% {
+    -webkit-transform: scaley(0.4);
+    transform: scaley(0.4); }
+  100% {
+    -webkit-transform: scaley(1);
+    transform: scaley(1); } }
+
+.line-scale > div:nth-child(1) {
+  -webkit-animation: line-scale 1s -0.4s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+  animation: line-scale 1s -0.4s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08); }
+
+.line-scale > div:nth-child(2) {
+  -webkit-animation: line-scale 1s -0.3s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+  animation: line-scale 1s -0.3s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08); }
+
+.line-scale > div:nth-child(3) {
+  -webkit-animation: line-scale 1s -0.2s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+  animation: line-scale 1s -0.2s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08); }
+
+.line-scale > div:nth-child(4) {
+  -webkit-animation: line-scale 1s -0.1s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+  animation: line-scale 1s -0.1s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08); }
+
+.line-scale > div:nth-child(5) {
+  -webkit-animation: line-scale 1s 0s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+  animation: line-scale 1s 0s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08); }
+
+.line-scale > div {
+	/* Display & Box Model */
+	display: inline-block;
+	width: pxtorem(4px, $font-size-base);
+	height: pxtorem(35px, $font-size-base);
+	border-radius: 2px;
+	margin: pxtorem(2px, $font-size-base);
+
+	/* Other */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+}
+
+/* -----------------------------------
+** End Preloader
+-------------------------------------*/

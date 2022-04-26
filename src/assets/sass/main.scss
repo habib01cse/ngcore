@@ -1,0 +1,82 @@
+/* -----------------------------------
+** Utils
+-------------------------------------*/
+@import "utils/variables";
+@import "utils/functions";
+@import "utils/mixins";
+@import "utils/placeholders";
+@import "utils/extra";
+@import "utils/spacing";
+@import "utils/fonts";
+@import "utils/utilities";
+/* -----------------------------------
+** Vendors 
+-------------------------------------*/
+@import "vendors/bootstrap";
+@import "vendors/animate";
+@import "vendors/font-awesome.min";
+@import "vendors/ionicons.min";
+@import "vendors/flag.min";
+@import "vendors/perfect-scrollbar";
+@import "vendors/ng-select";
+@import "vendors/bs-datepicker";
+@import "vendors/ngx-toast";
+@import "vendors/ag-grid";
+@import "vendors/ag-theme-balham";
+
+/* -----------------------------------
+** Vendors Extensions
+-------------------------------------*/
+@import "vendors-extensions/bootstrap";
+@import "vendors-extensions/ng-select";
+@import "vendors-extensions/ag-grid";
+@import "vendors-extensions/bs-timepicker";
+
+@import "base/base";
+@import "layout/forms";
+@import "layout/header";
+@import "layout/sidebar";
+@import "layout/outer-container";
+@import "layout/footer";
+
+/* -----------------------------------
+** Components
+-------------------------------------*/
+@import "components/controls";
+@import "components/table";
+@import "components/signature";
+@import "components/buttons";
+@import "components/preloader";
+@import "components/breadcrumb";
+@import "components/modal";
+@import "components/tree-menu";
+@import "components/pagination";
+@import "components/spinner";
+@import "components/slider";
+@import "components/tooltips";
+@import "components/not-found";
+@import "components/contextmenu";
+@import "components/screen-lock";
+
+
+/* -----------------------------------
+** Pages
+-------------------------------------*/
+@import "pages/login";
+@import "pages/account";
+@import "pages/dashboard";
+
+/* -----------------------------------
+** Theme import
+-------------------------------------*/
+@import 'themes/default';
+// @import 'themes/blue';
+/* -----------------------------------
+** Page Size
+-------------------------------------*/
+
+// @import 'size/size-min'; 
+// @import 'size/size-mid'; 
+
+
+@import "utils/media-screen";

@@ -1,0 +1,33 @@
+<div class="modal modal-confirmation" [ngClass]="{show: modalStatus }" [ngStyle]="{display:modalStatus?'block':'none'}">
+  <div [className]="className">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ title }}</h5>
+          <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close" (click)="resolve(false)">
+            <i class="ion-close-round"></i>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="modal-confirmation__icon">
+            <i *ngIf="type == 'danger'" class="fa fa-times-circle"></i>
+            <i *ngIf="type == 'success'" class="fa fa-check-circle"></i>
+            <i *ngIf="type == 'info'" class="fa fa-check-circle"></i>
+            <i *ngIf="type == 'warning'" class="fa fa-exclamation-triangle"></i>
+          </div>
+          <h3 *ngIf="type == 'alert'">Oops!</h3>
+          <p class="modal-confirmation__text">{{ body }}</p>
+          <div *ngIf="confirmation" class="text-right">
+            <!-- <button #confirmationButton [ngClass]="{'btn btn-success mr-base-double': type === 'success', 'btn btn-warning mr-base-double': type === 'warning', 'btn btn-danger mr-base-double': type === 'danger', 'btn btn-info mr-base-double': type === 'info'}" type="button" (click)="resolve(true)">{{ langService.langData.yes }}</button> -->
+            <button *ngIf="type === 'success'" type="button" class="btn btn-success mr-base-double" (click)="resolve(true)" #confirmationButton>{{ langService.langData.yes }}</button>
+            <button *ngIf="type === 'warning'" type="button" class="btn btn-warning mr-base-double" (click)="resolve(true)" #confirmationButton>{{ langService.langData.yes }}</button>
+            <button *ngIf="type === 'danger'" type="button" class="btn btn-danger mr-base-double" (click)="resolve(true)" #confirmationButton>{{ langService.langData.yes }}</button>
+            <button *ngIf="type === 'info'" type="button" class="btn btn-info mr-base-double" (click)="resolve(true)" #confirmationButton>{{ langService.langData.yes }}</button>
+            <button type="button" class="btn btn-default" (click)="resolve(false)">{{ langService.langData.no }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show" *ngIf="modalStatus"></div>

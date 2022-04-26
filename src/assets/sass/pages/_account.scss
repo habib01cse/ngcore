@@ -1,0 +1,149 @@
+
+/* -----------------------------------
+** Account Css
+-------------------------------------*/
+
+// ** start Account Voucher -- ac1004 **/
+.ps-voucher-table-wrapper{
+  /* Positioning */
+  position: relative;
+  z-index: 5;
+
+  /* Display & Box Model */
+  width:  pxtorem(1500px, $font-size-base);
+  min-height: pxtorem(125px, $font-size-base);
+  .voucher-details-table-behind{
+    /* Positioning */
+    position: absolute;
+    top:0;
+    left:0;
+
+    /* Display & Box Model */
+    width:100%;
+    &>tbody{
+      tr{
+        background: transparent !important;
+      }
+    }
+  }
+  .voucher-details-table{
+    /* Positioning */
+    position: relative;
+    left:0;
+    top:0;
+    z-index: 2;
+  }
+}
+.voucher-details-wrapper {
+  .table-responsive{
+    overflow-y: hidden;
+  }
+}
+.acconut-voucher-currency-table-wrapper{
+  /* Positioning */
+  position: relative;
+
+  /* Display & Box Model */
+  min-height:10.729rem;
+  padding-bottom:  $base-element-height;
+  .voucher-debit-credit-table-behind{
+    /* Positioning */
+    position: absolute;
+    top:0;
+    left:0;
+
+    /* Display & Box Model */
+    width:100%;
+  }
+  .table:not(.blank-table) > tbody > tr:nth-child(even){
+    background: transparent;
+  }
+  .voucher-debit-credit-table{
+    /* Positioning */
+    position: relative;
+    left:0;
+    top:0;
+    z-index: 2;
+  }
+}
+.voucher-base-total-table{
+  /* Positioning */
+  position: relative;
+  z-index: 4;
+
+  /* Display & Box Model */
+  margin-top: -1.829rem;
+
+}
+// ** End start Account Voucher -- ac1004 **/
+
+
+.account-multilist-table{
+  /* Display & Box Model */
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+
+//Updown button under table
+.up-down-arrow-group{
+  /* Display & Box Model */
+  width: pxtorem(53px, $font-size-base);
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+
+
+
+//Ac 1001
+.cost-center-list-wrapper,.business-type-list-wrapper{
+  max-height: pxtorem(120px, $font-size-base);
+  overflow-y: auto;
+  .ps-modal-open-wrapper{
+    &__text{
+      border-bottom: 0;
+    }
+  }
+}
+
+.companylist-checkbox-list{
+  max-height: pxtorem(180px, $font-size-base);
+  overflow-x: auto;
+  padding-right: pxtorem(5px, $font-size-base);
+  .custom-control-label{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // width: 100%;
+    padding-right: pxtorem(5px, $font-size-base);
+    display: block;
+  }
+}
+
+.budget-comment-wrapper{
+  position: relative;
+  &>div{
+    &:first-child{
+      position: relative;
+      z-index: 2;
+    }
+    
+  }
+  .budget-comment-behaind{
+    position: absolute;
+    top:0;
+    left:0;
+  }
+
+}
+
+.transaction-approval.transaction-approval--lavel{
+  right: 10px;
+} 
+
+/* -----------------------------------
+** End Account Css
+-------------------------------------*/

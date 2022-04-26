@@ -1,0 +1,6 @@
+<select [(ngModel)]="value" (change)="onChange($event)" class="form-control">
+    <option
+        *ngFor="let item of optionList; let i = index; trackBy:trackByFn;"
+        [value]="item.VALUE">{{item.TEXT}}
+    </option>
+</select>

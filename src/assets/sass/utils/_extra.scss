@@ -1,0 +1,330 @@
+/* -----------------------------------
+** Extra utils
+-------------------------------------*/
+.report-result{
+	/* Positions */
+	position: relative;
+	/* Display & Box Model */
+	margin-left: 15px;
+	margin-right: 15px;
+	border-width: 1px;
+	border-style: solid;
+	margin-top: $offset-base;
+	margin-bottom: $offset-base;
+	height: 70vh;
+	height: calc(100vh - 140px);
+	overflow: hidden;
+	background: url('../images/reports/report-background.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+ //
+	&__pdf{
+		position: relative;
+		/* Display & Box Model */
+		width:100%;
+		height: 100%;
+		//background: #fff;
+		z-index: 1;
+		object{
+			width:100%;
+			height: 100%;
+		}
+	}
+	&__background{
+		/* Positions */
+
+		position: absolute;
+		left:0;
+		right:0;
+		top:0;
+		bottom:0;
+		/* Display & Box Model */
+		margin: auto;
+		width:pxtorem(400px, $font-size-base);
+		height: pxtorem(300px, $font-size-base);
+		/* Others */
+		opacity: .4;
+		transform: translateY(-30px);
+	}
+	&__sort-description{
+		margin-top: pxtorem(10px, $font-size-base);
+	}
+	.loading-overlay{
+		position: absolute;
+		z-index: 0;
+	}
+}
+.svg-content-blank-wrapper{
+	/* Positions */
+	position: relative;
+
+	/* Display & Box Model */
+	min-height: pxtorem(450px, $font-size-base);
+
+	/* Color */
+	//background: url('../images/form-svg-background/form-svg-background--with-text.png');  // with loremispum text text
+	background: url('../images/form-svg-background/form-svg-background.png');
+	background-position: center bottom;
+	background-size: pxtorem(400px, $font-size-base);
+	background-repeat: no-repeat;
+}
+.svg-absolute-content{
+	/* Positions */
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	/* Display & Box Model */
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: pxtorem(30px, $font-size-base);
+	width: 100%;
+
+	/* Font */
+	text-align: center;
+
+	/* Others */
+	opacity: .4;
+
+	&__sort-description{
+		/* Display & Box Model */
+		margin-top: pxtorem(10px, $font-size-base);
+		max-width: pxtorem(400px, $font-size-base);
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+
+// .dis-none{
+//   display: none;
+// }
+.text-regular{
+  font-weight: 400 !important;
+}
+.text-bold{
+  font-weight: 700 !important;
+}
+.text-bold-2{
+	font-weight: 1000 !important;
+}
+.line-height-condenced {
+    line-height: 1.3 !important;
+}
+.line-height-base{
+  line-height: 1.5 !important;
+}
+.line-height-2{
+  line-height: 2 !important;
+}
+.rotate180deg{
+  transform: rotate(180deg);
+}
+
+// icon size
+.icon-large{
+  font-size: 2rem !important;
+}
+.font-1rem{
+  font-size: 1rem;
+}
+
+.overflow-visable{
+  overflow: visible !important;
+}
+
+.small-text{
+    font-size: 80%;
+}
+.text-large{
+  font-size: 150%;
+}
+
+.text-ellipsis{
+	text-overflow: ellipsis;
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.ng-scrollbar-visible{
+  padding: 0 5px;
+}
+
+.z-index-2{
+	z-index: 2 !important;
+}
+.z-index-3{
+	z-index: 3 !important;
+}
+.z-index-4{
+	z-index: 4 !important;
+}
+.z-index-5{
+	z-index: 5 !important;
+}
+.z-index-6{
+	z-index: 6 !important;
+} 
+.z-index-10{
+	z-index: 10 !important;
+}
+.z-index-11{
+	z-index: 11 !important;
+}
+.h-100-base{
+	height: calc(100% - $offset-base);
+}
+.overflow-visable{
+	overflow: visible !important;
+}
+.cursor-pointer{
+	cursor: pointer;
+}
+.min-width-800{
+	min-width: 800px;
+}
+.min-width-2000{
+	min-width: 2000px;
+}
+.min-width-2500{
+	min-width: 2500px;
+}
+.min-width-3000{
+	min-width: 3000px;
+}
+.min-width-3500{
+	min-width: 3500px;
+}
+.min-width-4000{
+	min-width: 4000px;
+}
+.min-width-4500{
+	min-width: 4500px;
+}
+.min-width-5000{
+	min-width: 5000px;
+}
+.pointer-events-none{
+	pointer-events: none
+}
+.color-view-group{
+	display: flex;
+}
+.color-group-item{
+	margin-right: $offset-base;
+	&__color{
+		width: 20px;
+    height: 10px;
+    display: inline-block;
+    margin-right: $offset-base;
+	}
+	&__icon{
+		margin-right: $offset-base;
+		display: inline-block;
+	}
+}
+
+.ps-hidden-ng-select {
+    position: absolute ;
+    top:0;
+    left:0;
+    width:0 !important;
+    height: 0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    opacity: 0 !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+}
+.ps-hidden .ng-value {
+    position: absolute ;
+    top:0;
+    left:0;
+    width:0 !important;
+    height: 0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    opacity: 0 !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+}
+.ng-select-remove{
+	position: absolute ;
+    top:0;
+    left:0;
+    width:0 !important;
+    height: 0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    opacity: 0 !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+}
+.ag-cell{
+	&>span{
+		display: block;
+		height: 100%;
+	}
+}
+.h-100-5{
+	min-height: calc(100% - 5px);
+}
+
+// tab index
+.all-input-index-wrapper{
+	background: #fff;
+	border:1px solid #ddd;
+	padding:15px;
+	position: absolute;
+	top:90px;
+	right:5px;
+	z-index: 4;
+	width: 600px;
+	max-height: 400px;
+	overflow: auto;
+	box-shadow: 0 20px 20px rgba(0,0,0,0.3);
+	.all-input-list{
+		display:flex;
+		flex-wrap: wrap;
+	}
+	.tab-index-item{
+		width: 50%;
+		padding-right: 15px;
+		margin-bottom: 3px;
+		input{
+			width:40px;
+			margin-left: 5px;
+			height: 19px;
+			text-align: right;
+		}
+	}
+}
+.ag-root {
+	ps-text-cell, ps-numeric-cell, ps-decimal-cell{
+		height: 100%;
+		display:block;
+	}
+}
+.overlay-container .toast-container {
+    z-index: 999999999;
+}
+.page-size-select{
+	border: 0;
+	padding-left: 0;
+	width: 70px;
+	margin-left: 10px;
+	&:focus{
+		background-color: #fff !important;
+	}
+}
+// #psMasterSave,#psMasterReset,#psMasterNew{
+// 	display: none;
+// }
+/* -----------------------------------
+** End Extra utils
+-------------------------------------*/
+

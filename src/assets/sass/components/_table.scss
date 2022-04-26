@@ -1,0 +1,297 @@
+/* -----------------------------------
+** Table
+-------------------------------------*/
+.table--fixed-layout{
+  /* Display & Box Model */
+    table-layout: fixed;
+    tr{
+      td,th{
+        /* Display & Box Model */
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        /* Text */
+        white-space: nowrap;
+      }
+    }
+}
+.table{
+  .form-control{
+    border-color: transparent;
+  }
+  .form-control:disabled, .form-control[readonly] {
+    /* Display & Box Model */
+    border:0;
+  }
+  .btn{
+    font-size: pxtorem(12px, $font-size-base);
+  }
+}
+.table thead th {
+    /* Display & Box Model */
+    vertical-align: middle;
+
+    /* Text */
+    text-align: center;
+}
+.table td{
+  vertical-align: middle;
+}
+.table td, .table th{
+  /* Display & Box Model */
+  height: $base-element-height+1px;
+  padding: 0 $offset-base;
+
+  /* Text */
+  text-align: left;
+  .form-control, select.form-control:not([size]):not([multiple]){
+    /* Display & Box Model */
+    height: $base-element-height;
+  }
+  .btn{
+    /* Display & Box Model */
+    height: pxtorem(22px, $font-size-base);
+    margin:0 pxtorem(2px, $font-size-base);
+    padding: 0 pxtorem(7px, $font-size-base);
+    min-width: auto;
+    /* Text */
+    line-height: pxtorem(22px, $font-size-base);
+
+  }
+  .btn--squire{
+    /* Display & Box Model */
+    min-width: pxtorem(22px, $font-size-base);
+    height: pxtorem(22px, $font-size-base);
+    width: pxtorem(22px, $font-size-base);
+    margin: 0 pxtorem(1px, $font-size-base);;
+    padding: 0;
+
+    /* Text */
+    line-height: pxtorem(22px, $font-size-base);
+  }
+}
+.table-action-buttons{
+  /* Display & Box Model */
+  height: pxtorem(20px, $font-size-base);
+  padding: 0 pxtorem(3px, $font-size-base);;
+  align-items: center;
+  justify-content: center;
+
+  /* Text */
+  line-height: 8px;
+
+  .table-action-button{
+    /* Display & Box Model */
+    margin-left: pxtorem(3px, $font-size-base);;
+    margin-right: pxtorem(3px, $font-size-base);;
+    border:0;
+    padding:0;
+
+    /* Color */
+    background: transparent;
+
+    /* Text */
+    font-size: pxtorem(15px, $font-size-base);;
+  }
+}
+.table-text-nowrap{
+  *{
+    white-space: nowrap;
+  }
+
+}
+.table-row-no-border{
+  border:0 !important;
+  td,th{
+    border:0 !important;
+  }
+}
+.table-first-row-border0{
+  tbody{
+    tr{
+      &:first-child{
+        td{
+          border-top: 0;
+        }
+      }
+    }
+  }
+}
+.card{
+  .table{
+    margin-bottom: 0;
+  }
+}
+.table{
+  .custom-checkbox{
+    /* Display & Box Model */
+    margin-top: 0;
+    min-height: pxtorem(18px, $font-size-base);
+  }
+  .form-control{
+    background: transparent;
+  }
+}
+.card--table{
+  .card-header{
+    border-bottom: 0;
+  }
+  .card-body{
+    padding: 0;
+  }
+  .table {
+    tr{
+      th{
+        border-top: 0 !important;
+      }
+      td,th{
+        &:first-child{
+          border-left: 0;
+        }
+        &:last-child{
+          border-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.table--formstyle{
+  .form-control{
+    border-color: transparent;
+  }
+  td{
+    /* Display & Box Model */
+    padding: 0;
+    vertical-align: middle;
+    height: 1.786rem;
+    .btn{
+      &:focus{
+        outline: 0;
+      }
+    }
+  }
+}
+.table-child-visible{
+  &.table-child-visible-active{
+    /* Positioning */
+    position: relative;
+    z-index: 6;
+    overflow: visible !important;
+  }
+  .ps-voucher-table-wrapper{
+    overflow: visible !important;
+  }
+  .table{
+    overflow: visible !important;
+    tbody{
+      overflow: visible !important;
+      tr{
+        overflow: visible !important;
+        td{
+          overflow: visible !important;
+          .ps-table-button-wrapper{
+            overflow: visible !important;
+          }
+        }
+      }
+    }
+  }
+}
+table.ui-datepicker-calendar{
+  tbody{
+    tr{
+      td,th{
+        text-align: center;
+      }
+    }
+  }
+}
+//== Blank table
+/*----------------------------------------*/
+.blank-table-wrapper{
+   /* Positioning */
+  position: relative;
+
+   /* Display & Box Model */
+  min-height: 10.795rem;
+  margin-bottom: 0;
+  .table{
+    margin:0;
+    &:first-child{
+      /* Positioning */
+      position: relative;
+      z-index: 2;
+    }
+  }
+  .blank-table{
+    /* Positioning */
+    position: absolute !important;
+    top:0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+  }
+  .ps-auto-field-visable-table{
+    position: relative;
+  }
+}
+//== Table Paginatin
+/*----------------------------------------*/
+.card--table{
+  .pagination{
+    margin: $offset-base;
+  }
+}
+
+.table{
+  .custom-control-label:before{
+     top:pxtorem(1.4px, $font-size-base);
+  }
+  .custom-control:not(.custom-control--without-label){
+    .custom-control-label{
+      font-weight: 700;
+      &:before{
+        top:pxtorem(5px, $font-size-base);
+      }
+    }
+  }
+  .ps-modal-open-wrapper__text{
+    border: 0;
+  }
+}
+
+.table-border-left-right-0{
+  thead,tbody{
+    tr{
+      td,th{
+        &:first-child{
+          border-left: 0;
+        }
+        &:last-child{
+          border-right: 0;
+        }
+      }
+    }
+  }
+  .ag-theme-balham .ag-root{
+    border-left: 0;
+    border-right: 0;
+  }
+}
+.ag-table-wrapper{
+  width:100%;
+}
+.ag-table-filter-max-300 .ag-sidebar-column-control{
+  max-height: 300px;
+  overflow: auto;
+}
+.ag-header-group-cell-label{
+  justify-content: center;
+}
+
+
+
+/* -----------------------------------
+** End Table
+-------------------------------------*/

@@ -1,0 +1,37 @@
+<div class="outer-content pl0">
+  <app-header  [left]="false" [menu]="false" ></app-header>
+  <div class="main-content d-flex align-items-center pt-base-double pb-base-double">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="text-center pb-base-double module-intro-title">
+                <h3 class="black-text">Welcome to Angular Core</h3>
+                <p class="font-1rem">Where do you want to start?</p>
+                <app-company-change class="ng-select--large mb-base-double"></app-company-change>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="moduleList" class="row module-wrapper">
+              <div  *ngFor="let item of moduleList" class="col-md-3 col-sm-6 module-column">
+                  <a class="module-item card" id="{{item.MENU_ID|lowercase}}ModuleId" href="#{{item.MENU_ID|lowercase}}">
+                    <div class="card-body">
+                      <div class="module-item__image">
+                        <img src="assets/images/menu/{{item.OBJ_NO}}.png" alt="">
+                      </div>
+                      <h5 class="module-item__title text-center">{{item.OBJ_NAME}}</h5>
+                    </div>
+                  </a>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <app-footer></app-footer>
+</div>
+

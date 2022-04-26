@@ -1,0 +1,112 @@
+//== Ng Select
+/*----------------------------------------*/
+.ng-select{
+    width:100%;
+}
+.ng-select .ng-select-container{
+    border-radius: 0;
+    //min-height: 24px;
+    min-height:pxtorem($base-element-height, $font-size-base);
+    border: 1px solid #ced4da;
+}
+.ng-select.ng-select-single .ng-select-container {
+    //height: 24px;
+    height:pxtorem($base-element-height, $font-size-base);
+}
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+    top: 0 !important;
+}
+.ng-select .ng-clear-wrapper{
+    width: 15px !important;
+    padding-top: 0px;
+    right: 7px;
+    z-index: 88;
+    z-index: 86;
+}
+.ng-select .ng-select-container:hover{
+    box-shadow: none;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option{
+    padding: 3px $offset-base;
+}
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input{
+    padding-right: 35px;
+}
+.ng-select .ng-dropdown-panel{
+    min-width: 100%;
+    width:auto;
+}
+.ng-select .ng-value-label {
+    position: absolute;
+    top: 2px;
+    width: 100%;
+    width: calc(100% - 18px);
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.ng-select--open-right{
+    .ng-dropdown-panel{
+        left: auto;
+        right: 0;
+    }
+}
+.ng-select-multiple{
+    &.ng-select{
+        .ng-value-label{
+            position: relative;
+        }
+        .ng-select-container .ng-value-container {
+            padding-top: 0;
+            padding-left: 0;
+            .ng-value{
+                margin-bottom: 0;
+                .ng-value-icon.left{
+                    position: relative;
+                    top: -3px;
+                }
+            }
+        }
+    }
+}
+.ng-select-disabled{
+    &.ng-select .ng-arrow-wrapper:after{
+        background-color: #f9f9f9;
+    }
+}
+.ng-select .ps-modal-open-wrapper {
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+}
+.ng-select{
+   // min-height: 24px;
+    min-height:pxtorem($base-element-height, $font-size-base);
+}
+.ng-select--large{
+    .ps-modal-open-wrapper__text{
+        height: 30px;
+    }
+    .btn--squire{
+        height: 30px;
+        width: 30px;
+        min-width: 30px;
+    }
+    .ng-select{
+        height: 30px;
+    }
+}
+.ng-select .ng-clear-wrapper {
+    padding-top: 2px;
+}
+.ag-input-field-input.ag-checkbox-input{
+    min-width: 17px;
+    margin-top: 3px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ag-input-wrapper.ag-checkbox-input-wrapper{
+    text-align: center;
+}
+//== End Ng Select
+/*----------------------------------------*/

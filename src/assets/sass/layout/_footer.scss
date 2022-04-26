@@ -1,0 +1,32 @@
+/* -----------------------------------
+** Footer
+-------------------------------------*/
+.footer{
+  /* Display & Box Model */
+  padding: pxtorem(8px, $font-size-base) pxtorem(10px, $font-size-base);
+  height: $footer-height;
+  &__separator{
+    /* Positioning */
+
+    position: relative;
+    /* Display & Box Model */
+    display: inline-block;
+    margin-left: $offset-base;
+    margin-right: $offset-base;
+
+    /* Text */
+    font-size: pxtorem(20px, $font-size-base);
+    font-weight: 300;
+  }
+  &__setting{
+    /* Text */
+    font-size:pxtorem(16px, $font-size-base);
+
+  }
+  .ps-seperator-line{
+    margin: 0 pxtorem(5px, $font-size-base);
+  }
+}
+/* -----------------------------------
+** End Footer
+-------------------------------------*/

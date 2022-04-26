@@ -1,0 +1,28 @@
+image: trion/ng-cli
+
+variables:
+  DOCKER_DRIVER: overlay2
+
+stages:
+  - test
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - echo "-< install dependencies >-"
+  - npm install
+
+# prod test job
+production_test:
+  stage: test
+  script:
+    - echo "-< starting prod job >-"
+    - npm run build-prod
+    - echo "great success!!"
+  tags:
+    - build
+  except:
+    refs:
+      - develop

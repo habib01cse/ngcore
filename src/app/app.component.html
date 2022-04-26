@@ -1,0 +1,66 @@
+<!-- <div *ngIf="spinnerService.block" class="loading-overlay" [@simpleFadeAnimation]="'in'">
+    <div class="loading-Page">
+        <h2 class="loader"></h2>
+    </div>
+</div> -->
+
+<div class="loader-wrapper loader-wrapper--overlay" *ngIf="spinnerService.block || isShowingRouteLoadIndicator" [@simpleFadeAnimation]="'in'">
+    <div class="loader">
+      <div class="line-scale">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <div [ngClass]="[(pageSize == 'sm' ?'size-min':'')]">
+    <router-outlet ></router-outlet>
+  </div>
+
+
+  
+  <form  (ngSubmit)="onSubmitForm()" novalidate [ngClass]="[(inactivityBlockShow ? 'lock-screen-wrapper-outer lock-screen-wrapper-outer--show':'lock-screen-wrapper-outer')]">
+    <div [ngClass]="[(inactivityBlock ? 'lock-screen-wrapper lock-screen-wrapper-show screen-lock-actived':'lock-screen-wrapper')]">
+      <a routerLink="/logout" (click)="onClickLogout()" class="btn logout-button"><i class="ion-log-out"></i></a>
+      <form novalidate ps-validation-option="connectOptions" class="screen-lock-form">
+        <div class="screen-lock">
+          <div class="lock-icon-wrapper">
+            <i class="ion-lock-combination screen-lock__icon"></i>
+          </div>
+          <h5 class="screen-lock__title">Session Expired due to inactiviy over 30 minutes.</h5>
+          <div class="screen-lock__input-wrapper">
+            <input placeholder="Enter your password" class="form-control screen-lock__input" ps-validate="userPassword" type="password" [(ngModel)]="userPassword"  required #userPass="ngModel" name="user_password" id="user_password">
+            <button type="submit" class="btn screen-lock__button" (ps-click)="onClickConnect($event)" [disabled]="userPass.invalid && userPass.errors.required"><i class="ion-android-arrow-forward"></i> </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </form>
+
+<!-- <ng-container *ngIf="inactivityBlock" class="lock-screen-wrapper">
+  <form novalidate ps-validation-option="connectOptions">
+    <div style="display: block;" class="modal fade show" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Session Expired due to inactiviy over 30 minutes.</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Please enter your password</p>
+            <input class="form-control" ps-validate="userPassword" type="password" [(ngModel)]="userPassword" name="user_password" id="user_password">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (ps-click)="onClickConnect($event)">Connect</button>
+            <button type="button" class="btn btn-default">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="modal-backdrop fade show" style="opacity: 0.8;"></div>
+</ng-container> -->

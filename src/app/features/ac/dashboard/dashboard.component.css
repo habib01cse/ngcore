@@ -1,0 +1,53 @@
+.borderclass {
+   border-radius: 7px;   
+   /* height: 80px; */
+   
+  }
+  .borderPadding
+  {
+    padding: 10px;
+  }
+
+  .cardPaddng
+  {
+    padding: 4px;
+
+  }
+  .borderless td, .borderless th {
+    border: none;
+}
+
+.badgeStyle{
+    background-color: #E5E5E5;
+    border-radius: 15px;
+    width: 27px;
+}
+
+  /* .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .row>[class*='col-'] {
+    display: flex;
+    flex-direction: column;
+  } */
+
+  .borderofcard {
+    border-style: solid;
+    border-radius: 5x;
+    border-width: 5px;
+    border-color: #FFFFFF;
+
+  }
+
+  .textDesign {
+    color: #FFFFFF;
+    font-size: 20px;
+
+  }
+  .heightAdjust
+  {
+   height: 100px;
+  }
+  

@@ -1,0 +1,137 @@
+/*GUIDE LINE=============*/
+// 1. http://cssguidelin.es/
+// 2. https://css-tricks.com/css-style-guides/
+
+/*Performance & Organization=============*/
+// 1. http://learn.shayhowe.com/advanced-html-css/performance-organization/
+// 2. http://alistapart.com/article/responsive-web-design
+// 3. https://bugsnag.com/blog/responsive-typography-with-rems
+
+/*Some calculations*/
+//1. 1em == 16px == 0.17in == 12pt == 1pc == 4.2mm == 0.42cm
+
+/*Own tips================*/
+/// 1. fontsize must be em (is relative to nearest parent), rem (is relative to only html root) or % according base.
+/// 2. border, border-radius, box-shadow..... will be px. (box-shadow can be different).
+/// 3. line-height will be font-size * $line-height-base, line height will be unitless.
+/// 4. padding, margin, height, width, top, bottom, left, right ..... will be em / % or both.
+/// 5. full height, width, proportional setting will be %.
+/// 6. follow writting guide line like position, display, color, fontsize, others.
+/// 7. code path tree length should not be more than three.
+/// 8. do not write like as padding:0, margin:0....., write like this padding:0px
+/// 9. remove duplicate property.
+///10. use sass functionality.
+///11. follow excell sheet for colors and sizes.
+///12. use mixed like padding: 40px 8.48056537% or padding: 12em 8.48056537%
+///13. try to use bootstrap classes if you do not found then write css and follow naming convention.
+///14. try to write fall back methology
+
+/*==============================Writting guide line======================================*/
+/// ***most popular way to order CSS properties is grouped by type.***
+/// .selector {
+///   /* Positioning */
+///   position: absolute;
+///   z-index: 10;
+///   top: 0;
+///   right: 0;
+
+   /* Display & Box Model */
+///   display: inline-block;
+///   overflow: hidden;
+///   box-sizing: border-box;
+///   width: 100px;
+///   height: 100px;
+///   padding: 10px;
+///   border: 10px solid #333;
+///   margin: 10px;
+
+   /* Color */
+///   background: #000;
+///   color: #fff
+
+   /* Text */
+///   font-family: sans-serif;
+///   font-size: 16px;
+///   line-height: 1.4;
+///   text-align: right;
+
+   /* Other */
+///   cursor: pointer;
+/// }
+
+////////////////////////////////////
+
+// load font, if fonts does not exist into client pc.
+// @include font-face($font-family-base, $font-path);
+
+html {
+	font-size: $font-size-base;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+///applied all basic
+body {
+	font-size: pxtorem(13px, $font-size-base);
+	font-weight: $font-weight-base;
+	font-family: $font-family-base;
+	@include font-smoothing();
+}
+
+// // place holder hacking
+// ::-webkit-input-placeholder,::-moz-placeholder, :-ms-input-placeholder, :-moz-placeholder {
+// 	color: #000;
+// }
+
+//clear field cross button for browsers
+input[type=text]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type=text]::-ms-reveal {  display: none; width : 0; height: 0; }
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+//remove up and down arrow for number textbox
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+input[type=number] {
+	-moz-appearance:textfield;
+}
+
+//order bulleting off
+// ul { list-style: none; list-style-image: none;}
+ul,ol{
+	padding-left: pxtorem(15px, $font-size-base);
+
+}
+a {
+	text-decoration: none;
+	outline: 0;
+	transition-duration: .3s;
+	transition-property: color;
+	transition-timing-function: ease-out;
+	&:hover,&:focus{
+		text-decoration: none;
+		outline: 0;
+	}
+}
+
+label {
+	margin-bottom: pxtorem(9px, $font-size-base);
+}
+img{
+	max-width: 100%;
+	max-height: 100%;
+}
+.text-bangla-classic {
+	font-family: sutonnymj, Roboto;
+	font-size: 15px;
+}

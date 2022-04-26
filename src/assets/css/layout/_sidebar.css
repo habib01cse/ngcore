@@ -1,0 +1,74 @@
+.sidebar-menu-outer {
+  position: fixed;
+  top: 0;
+  left: 250px;
+  width: 250px;
+  transition: .3s;
+  padding: 10px 0;
+  z-index: 999;
+  background: #272732;
+  height: 100vh;
+  overflow: auto;
+}
+
+.sidebar-menu-outer .mobile-inner {
+  overflow: auto;
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.sidebar-menu-outer .mobile-inner .sidebar-menu-close {
+  text-align: right;
+  display: block;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.sidebar-menu-outer .mobile-inner .sidebar-menu-close i {
+  cursor: pointer;
+  padding: 5px;
+  font-size: 17px;
+  color: #fff;
+}
+
+.sidebar-menu-outer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu-outer ul .dropdown {
+  overflow: hidden;
+  display: none;
+}
+
+.sidebar-menu-outer ul .dropdown.menu-show {
+  /*display: block;*/
+}
+
+.menu-accordion > li {
+  border-bottom: 1px solid #2d2c31;
+}
+
+.dropdown > li {
+  border-top: 1px solid #2d2c31;
+  padding-left: 15px;
+}
+
+.sidebar-menu-outer ul li a {
+  width: 100%;
+  display: block;
+  color: #fefefe;
+  padding: .75em;
+  border-radius: 0.15em;
+  transition: background .3s ease;
+  text-transform: uppercase;
+}
+
+.sidebar-menu-outer ul li a > i {
+  float: right;
+}
+
+.sidebar-menu-outer.in {
+  left: 0;
+}

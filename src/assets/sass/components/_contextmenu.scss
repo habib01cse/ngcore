@@ -1,0 +1,30 @@
+//== ContextMenu
+/*----------------------------------------*/
+ps-contextmenu {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  .ps-contextmenu {
+    position: absolute;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .dropdown-menu {
+    padding: 0;
+    min-width: auto;
+  }
+
+  .dropdown-divider {
+    margin: 0;
+  }
+
+  .btn-sm {
+    min-width: 75px;
+    padding: 3px 0.5rem;
+    height: 30px;
+  }
+}
+
+//== ContextMenu End
+/*----------------------------------------*/

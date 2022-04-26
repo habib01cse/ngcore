@@ -1,0 +1,96 @@
+//sass extend for fit height and width
+%fit-height-width {
+	position: relative;
+	min-height: 100%;
+	@extend %hw-full;
+	@extend %overflow-hidden;
+}
+
+%padding-box-sizing {
+	padding: 0px pxtoem($offset-base);
+	@include border-box();
+}
+
+%stretch-box {
+	@include flex-box();
+	@include flex-box-column();
+	@include flex-box-container();
+}
+
+%column-box {
+	@include flex-box();
+	@include flex-box-column();
+}
+
+%row-box {
+	@include flex-box();
+	@include flex-box-row();
+}
+
+%header-box {
+	@include flex-box-header();
+}
+%footer-box {
+	@include flex-box-footer();
+}
+
+%wi-header-tab_1 {
+	position: relative;
+	float: left;
+	@include flex-box-any(1 1 0);
+	@include flex-box();
+	//display: inline-block;
+	height: pxtoem(30px);
+	width: 11%;
+	@include set-margin(pxtoem(1px), null, null, pxtoem(12px));
+	@include set-padding(null, pxtoem(15px), null, pxtoem(15px));
+
+	border-radius: 5px 5px 0px 0px;
+	border-bottom: 0px;
+	transform: skewX(25deg);
+	// delete color
+	border: 1px solid #aaa;
+	background: #ddd;
+
+	cursor: default;
+	z-index: 1;
+}
+
+%wi-header-tab_2 {
+	height: pxtoem(31px);
+	margin-bottom: pxtoem(-2px);
+	// delete color
+	//background: $grey-dark;
+	color: #000;
+	z-index: 9 !important;
+}
+
+%overflow-hidden {
+	overflow: hidden;
+	-webkit-overflow-scrolling: touch;
+}
+
+//height and width
+%hw-full{
+	width: 100%;
+	height: 100%;
+}
+
+//padding and margin
+%p-h {
+	padding-left: pxtoem($offset-base) !important;
+	padding-right: pxtoem($offset-base) !important;
+}
+
+%p-v {
+	padding-top: pxtoem($offset-base) !important;
+	padding-bottom: pxtoem($offset-base) !important;
+}
+
+//buttons group
+%btn-large {
+	display: block;
+	padding: pxtoem($offset-base);
+	width: pxtoem(84px);
+	font-size: pxtoem($font-size-base);
+}

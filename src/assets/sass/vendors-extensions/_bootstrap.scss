@@ -1,0 +1,447 @@
+
+//== Basic
+/*----------------------------------------*/
+.container-fluid {
+	/* Display & Box Model */
+	padding-right: $offset-base;
+  padding-left: $offset-base;
+}
+.row {
+	/* Display & Box Model */
+  margin-left: -$offset-base;
+  margin-right: -$offset-base;
+}
+.no-gutters{
+	/* Display & Box Model */
+  margin:0;
+  padding:0;
+}
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col,
+.col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm,
+.col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
+.col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg,
+.col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl,
+.col-xl-auto {
+	/* Display & Box Model */
+  min-height: 1px;
+  padding-right: $offset-base;
+  padding-left: $offset-base;
+}
+
+ul,
+ol {
+	margin-bottom: 0px;
+}
+
+hr {
+	/* Display & Box Model */
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+
+//Heading size
+h4, .h4 {
+    font-size: 1.313rem;
+}
+h6, .h6{
+	font-size: 0.9rem;
+}
+
+
+
+.dropdown-menu{
+	/* Display & Box Model */
+	border-radius: 0;
+
+	/* Other */
+	-webkit-box-shadow: 0 1px 6px rgba(0,0,0,0.09);
+	box-shadow: 0 1px 6px rgba(0,0,0,0.09);
+}
+
+
+.dropdown-item{
+	padding: pxtorem(5px, $font-size-base) pxtorem(14px, $font-size-base);
+}
+
+
+
+
+
+//== Form Control
+/*----------------------------------------*/
+
+.form-control {
+	@include box-shadow(none);
+	@include border-radius(0px);
+	padding:0 $offset-base;
+}
+textarea.form-control{
+    height: pxtorem(72px, $font-size-base);
+    padding: 2px $offset-base;
+}
+textarea.textarea-2row{
+	height: pxtorem(53px, $font-size-base);
+}
+.input-group .form-control {
+	float: none;
+}
+
+.input-group-addon {
+	@include border-radius(0px);
+}
+
+.radio label,
+.checkbox label {
+	min-height: pxtoem(1px);//just overrcome bootstrap
+}
+
+textarea.form-control {
+	resize: none;
+}
+textarea.textarea--input-style{
+  height: $base-element-height;
+}
+textarea.textarea--resize-vertical{
+	resize: vertical;
+}
+.form-group{
+  margin-bottom: pxtorem(5px, $font-size-base);
+  label{
+    margin-bottom: 0;
+  }
+}
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="search"],
+input[type="url"],
+input[type="email"],
+input[type="time"],
+.form-control,textarea,textarea.form-control,
+input[type=datetime-local], input[type=month],
+.ui-inputtext{
+    &:focus,&.focus{
+      -webkit-box-shadow: 0 0 3px rgba(102, 175, 233, 0.6);
+      box-shadow: 0 0 3px rgba(102, 175, 233, 0.6)
+    }
+}
+
+.form-control,
+select.form-control:not([size]):not([multiple]),
+.input-group-sm > .input-group-append > select.btn:not([size]):not([multiple]),
+.input-group-sm > .input-group-append > select.input-group-text:not([size]):not([multiple]),
+.input-group-sm > .input-group-prepend > select.btn:not([size]):not([multiple]),
+.input-group-sm > .input-group-prepend > select.input-group-text:not([size]):not([multiple]),
+.input-group-sm > select.form-control:not([size]):not([multiple]), select.form-control-sm:not([size]):not([multiple]){
+	/* Display & Box Model */
+  height: $base-element-height;
+  padding-top: 0;
+  padding-bottom: 0;
+
+	/* Text */
+  font-size: 0.86rem;
+}
+//input group border radius remove
+.form-control-sm, .input-group-sm > .form-control, .input-group-sm > .input-group-append > .btn, .input-group-sm > .input-group-append > .input-group-text, .input-group-sm > .input-group-prepend > .btn, .input-group-sm > .input-group-prepend > .input-group-text{
+	/* Display & Box Model */
+  border-radius: 0;
+  padding: .35rem .5rem;
+}
+
+/* input group style change */
+.input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group > .input-group-append:last-child > .input-group-text:not(:last-child), .input-group > .input-group-append:not(:last-child) > .btn, .input-group > .input-group-append:not(:last-child) > .input-group-text, .input-group > .input-group-prepend > .btn, .input-group > .input-group-prepend > .input-group-text{
+  border-radius: 0;
+}
+.input-group-text{
+	padding:0;
+}
+
+/* Form column label */
+.col-form-label{
+	/* Display & Box Model */
+  padding-top: pxtorem(3px, $font-size-base);
+  padding-bottom: pxtorem(3px, $font-size-base);
+  padding-right: 0;
+}
+.custom-control{
+	.custom-control-label{
+		line-height: pxtorem(24px, $font-size-base);
+	}
+}
+.custom-radio{
+	.custom-control-label::before{
+		// top:pxtorem(5px, $font-size-base);
+		top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+	}
+
+}
+label {
+  margin-bottom: 0;
+}
+
+
+
+
+//== List-group
+/*----------------------------------------*/
+.list-group-item:first-child {
+	@include border-radius(0px);
+}
+.list-group-item:last-child {
+	@include border-radius(0px);
+}
+a.list-group-item {
+	cursor:default;
+}
+
+
+
+//== Modal
+/*----------------------------------------*/
+.modal-backdrop{
+	opacity: .7;
+}
+.modal-header{
+	min-height: pxtorem(50px, $font-size-base);
+	align-items: center;
+}
+.modal-body,.modal-header,.modal-footer{
+	padding:pxtorem(10px, $font-size-base) pxtorem(15px, $font-size-base);
+}
+.modal-title{
+	font-size: pxtorem(14px, $font-size-base);
+}
+.modal-header .close {
+	/* Display & Box Model */
+  padding: 0;
+  margin: 0;
+  width: pxtorem(20px, $font-size-base);
+  height: pxtorem(20px, $font-size-base);
+}
+
+//== Button
+/*----------------------------------------*/
+.btn {
+	border:0;
+	@include border-radius(0px);
+	/* Display & Box Model */
+  	padding: .275rem .75rem;
+	&.btn-lg{
+		/* Display & Box Model */
+    padding: pxtorem(7px, $font-size-base) pxtorem(14px, $font-size-base);
+
+		/* Text */
+    line-height: 1.5;
+  }
+}
+
+.btn-group .btn + .btn,
+.btn-group .btn + .btn-group,
+.btn-group .btn-group + .btn,
+.btn-group .btn-group + .btn-group {
+	margin-left: $offset-base;
+}
+
+.btn.disabled,
+.btn[disabled] {
+	opacity: 1;
+}
+
+.btn-sm{
+	padding: 0 pxtorem(7px, $font-size-base);
+	font-size: pxtorem(13px, $font-size-base);
+	height:pxtorem($base-element-height, $font-size-base);
+	line-height:pxtorem($base-element-height, $font-size-base);
+}
+//==List Group==//
+a.list-group-item:hover,
+button.list-group-item:hover,
+a.list-group-item:focus,
+button.list-group-item:focus {
+	/* Color */
+	text-decoration: none;
+}
+
+
+//== Card Style ==//
+.card{
+	/* Display & Box Model */
+	margin-bottom: $offset-base;
+	border-radius: 0;
+  .card-header{
+		/* Display & Box Model */
+		margin: 0;
+		border-radius: 0;
+
+		/* Text */
+		font-size: pxtorem(13px, $font-size-base);
+		font-weight: 500;
+		// .custom-control{
+		// 	min-height: pxtorem(15px, $font-size-base);
+		// 	line-height: pxtorem(15px, $font-size-base);
+		// }
+		// .custom-checkbox .custom-control-label:before{
+		// 	top:0;
+		// 	left: initial;
+		// 	right: 0;
+		// }
+		// &__action-button{
+		// 	/* Positioning */
+		// 	position:absolute;
+		// 	right:-1px;
+		// 	top:-1px;
+
+		// 	/* Display & Box Model */
+		// 	height: 100%;
+		// 	height: calc(100% + 2px);
+		// 	padding: 0;
+		// 	min-width: auto;
+		// 	width:pxtorem(28px, $font-size-base);
+
+		// 	/* Text */
+		// 	font-size: 18px;
+		// 	line-height: pxtorem(30px, $font-size-base);
+		// 	text-align: center;
+		// 	&:focus{
+		// 		/* Other */
+		// 		outline: 0;
+		// 		box-shadow: none ;
+		// 	}
+		// }
+	}
+	.card-body{
+		border:0;
+	}
+}
+.card-header{
+	/* Positioning */
+	position: relative;
+
+	/* Display & Box Model */
+	//padding: 0.4143rem pxtorem(5px, $font-size-base);
+	padding: 0 pxtorem(5px, $font-size-base);
+	line-height:  pxtorem(28px, $font-size-base);
+}
+.card-body{
+	padding:pxtorem(5px, $font-size-base) pxtorem(5px, $font-size-base);
+}
+.card-footer{
+	padding:$offset-base;
+}
+// media style change
+.card{
+	.media{
+		padding: 0.7143rem 1rem;
+	}
+}
+
+
+
+
+//== Table
+/*----------------------------------------*/
+.table{
+	td,th{
+		/* Display & Box Model */
+		vertical-align: middle;
+	}
+}
+
+//== breadcrumb
+/*----------------------------------------*/
+.breadcrumb {
+  padding: pxtorem(5px, $font-size-base) pxtorem(14px, $font-size-base)
+}
+.breadcrumb-item + .breadcrumb-item::before{
+	/* Display & Box Model */
+	padding: 0 0.7rem;
+}
+
+//== Pagination
+/*----------------------------------------*/
+.pagination{
+	border-radius: 0;
+	.page-link{
+		/* Other */
+		transition: all .2s ease-out;
+	}
+}
+
+//== NGX-Bootsterap Date Picker
+/*----------------------------------------*/
+.bs-datepicker{
+	box-shadow: none;
+}
+.bs-datepicker-container{
+	padding: 0;
+}
+.bs-datepicker-body table.days span {
+	width: pxtorem(25px, $font-size-base);
+	height: pxtorem(25px, $font-size-base);
+	line-height: pxtorem(25px, $font-size-base);
+}
+.bs-datepicker-head {
+  height: pxtorem(33px, $font-size-base);
+  padding:pxtorem(3px, $font-size-base);
+  border-radius: 0;
+}
+.bs-datepicker-head button.next, 
+.bs-datepicker-head button.previous{
+	width: pxtorem(25px, $font-size-base);
+	height: pxtorem(25px, $font-size-base);
+}
+.bs-datepicker-head button{
+	line-height: pxtorem(25px, $font-size-base);
+}
+.bs-datepicker-body,
+.bs-datepicker-head{
+	min-width: pxtorem(240px, $font-size-base);
+	height:pxtorem(32px, $font-size-base);
+}
+.bs-datepicker-head button{
+	height: pxtorem(25px, $font-size-base);
+}
+.bs-datepicker-body{
+	padding:pxtorem(5px, $font-size-base);
+	min-height: pxtorem(190px, $font-size-base);
+}
+bs-datepicker-container, 
+bs-daterangepicker-container{
+	z-index: pxtorem(40px, $font-size-base);
+}
+.bs-datepicker-head button.next span, 
+.bs-datepicker-head button.previous span{
+	line-height:pxtorem(23px, $font-size-base);
+}
+
+.bs-datepicker-body table.years td span{
+	height: pxtorem(39px, $font-size-base);
+  line-height: pxtorem(36px, $font-size-base);
+}
+.bs-datepicker-body table.months td{
+	height: pxtorem(44px, $font-size-base);
+}
+
+//== NGX-Toaster
+/*----------------------------------------*/
+.toast-container .ngx-toastr{
+	padding: 10px 15px 15px 50px;
+	&:hover{
+		box-shadow: 0 0 12px #999999;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+//

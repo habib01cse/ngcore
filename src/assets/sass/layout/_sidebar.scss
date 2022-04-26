@@ -1,0 +1,332 @@
+/* -----------------------------------
+** Sidebar
+-------------------------------------*/
+.sidebar{
+  /* Positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 18;
+
+  /* Display & Box Model */
+  width: pxtorem(250px, $font-size-base);
+  height: 100vh;
+  padding: $header-height 0 $footer-height 0;
+  // overflow-y: hidden;
+  // overflow-x: hidden;
+
+  /* Other */
+  transition-property: width;
+  transition-duration: .3s;
+  transition-timing-function: linear;
+  .sidebar-left-icon{
+    /* Display & Box Model */
+    display: inline-block;
+    width: pxtorem(21px, $font-size-base);
+    padding-top: pxtorem(3px, $font-size-base);
+  }
+  .sidebar-right-icon{
+    /* Display & Box Model */
+    margin-left: auto;
+    padding-top: pxtorem(4px, $font-size-base);
+
+    /* Text */
+    font-size: pxtorem(11px, $font-size-base);
+  }
+}
+/* sidebar search*/
+.sidebar-search{
+  /* Display & Box Model */
+  padding:0 pxtorem(10px, $font-size-base);
+  min-height: $sidebar-search-height;
+  .sidebar-left-icon{
+    margin-top: pxtorem(-2px, $font-size-base);
+    padding-top: 0;
+    &:after{
+      font-weight: 600;
+    }
+  }
+  .form-control{
+    /* Display & Box Model */
+    padding-left: 0;
+    border:0;
+
+    /* Color */
+    background: transparent;
+    &:focus{
+      /* Other */
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+  ::-webkit-input-placeholder{
+    /* Text */
+    font-size: 1.1rem;
+  }
+}
+.sidebar--collapse{
+  .sidebar-search{
+    text-align: center;
+    .form-control{
+      display: none;
+    }
+  }
+  .sidebar-menu-chart{
+    display: none;
+  }
+}
+/* sidebar menu*/
+.sidebar-menu-outer {
+  /* Display & Box Model */
+  // height: calc(100vh - #{$main-content-height});
+
+  //padding-bottom: pxtorem(10px, $font-size-base);
+  .menu-accordion{
+    padding-top: .4rem;
+    padding-bottom: pxtorem(40px, $font-size-base);
+  }
+  .sidebar-menu-chart{
+    padding-bottom: pxtorem(50px, $font-size-base);
+  }
+  // overflow-y: hidden;
+  // overflow-x: hidden;
+  ul {
+    /* Display & Box Model */
+    list-style: none;
+    padding: 0;
+    .dropdown {
+      /* Display & Box Model */
+      overflow: hidden;
+      display: none;
+    }
+  }
+  ul li a {
+    /* Display & Box Model */
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    padding:  pxtorem(5px, $font-size-base)  pxtorem(10px, $font-size-base)  pxtorem(5px, $font-size-base)  pxtorem(7px, $font-size-base);
+    border-radius: 2px;
+
+    /* Text */
+    font-size:  pxtorem(14px, $font-size-base);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.menu-accordion li  .dropdown{
+  margin-left: pxtorem(14px, $font-size-base);;
+  &:before{
+    /* Positioning */
+    position: absolute;
+    left:0;
+    top:0;
+    content: '';
+
+    /* Display & Box Model */
+    height: 100%;
+    width:1px;
+  }
+  li{
+    position: relative;
+    a{
+      padding-left: pxtorem(14px, $font-size-base);;
+    }
+  }
+}
+.menu-accordion > li > .dropdown {
+  /* Positioning */
+  margin-left: 0;
+  &:before{
+    left: 2rem;
+  }
+  &>li{
+    margin-left: 2rem;
+  }
+}
+
+.menu-accordion > li > .dropdown > li a {
+  &:before{
+    /* Positioning */
+    position: absolute;
+    left:0;
+    top:.97rem;
+    content: '';
+
+    /* Display & Box Model */
+    height: 1px;
+    width: pxtorem(10px, $font-size-base);
+  }
+}
+
+
+/* sidebar collapse*/
+.sidebar{
+  .menu-accordion{
+    &>li>a{
+      min-height: pxtorem(31px, $font-size-base);
+      &>*:not(.sidebar-left-icon){
+        transition: .3s;
+      }
+    }
+    .sub-menu-text{
+      /* Display & Box Model */
+      overflow: hidden;
+
+      /* Text */
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+.sidebar--collapse{
+  width:3.214rem;
+  .menu-accordion{
+    &>li{
+      position: relative;
+      &>.dropdown{
+        display: none !important;
+      }
+    }
+    &>li>a{
+      /* Display & Box Model */
+      display: flex;
+      justify-content: center;
+      width:  pxtorem(45px, $font-size-base);
+      padding-left: 0;
+      padding-right: 0;
+      *{
+        transition: 0s !important;
+      }
+      // pointer-events: none;
+      &>*:not(.sidebar-left-icon){
+        /* Positioning */
+        position: absolute;
+        left:-17.86rem;
+
+        /* Other */
+        opacity: 0;
+      }
+    }
+    &>li:hover{
+      &>a{
+        &>.menu-text{
+          /* Positioning */
+          position: absolute;
+          left: pxtorem(40px, $font-size-base);
+          top: -3px;
+
+          /* Display & Box Model */
+          display: block !important;
+          width: pxtorem(250px, $font-size-base);
+          height: pxtorem(38px, $font-size-base);
+          padding-left: .5rem;
+
+          /* Text */
+          line-height: pxtorem(38px, $font-size-base);
+
+          /* Other */
+          opacity: 1;
+        }
+      }
+      &>.dropdown{
+        /* Positioning */
+        position: absolute;
+        left:  pxtorem(40px, $font-size-base);
+        z-index: 5;
+
+        /* Display & Box Model */
+        display: block !important;
+        min-height: pxtorem(180px, $font-size-base);
+        width:  pxtorem(250px, $font-size-base);
+        padding: pxtorem(10px, $font-size-base) 0;
+        border-width: 0 1px 1px 1px;
+        border-style: solid;
+        &:before{
+          display: none;
+        }
+        &>li{
+          margin-left: 0;
+          &>a{
+            padding: pxtorem(5px, $font-size-base)  pxtorem(7px, $font-size-base);;
+            &:before{
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  .sidebar-search{
+    .form-control{
+      display: none;
+    }
+  }
+  .sidebar-left-icon{
+    text-align: center;
+  }
+}
+.sidebar-menu-outer ul li a.active{
+  position: relative;
+  &:after{
+    position: absolute;
+    top:6px;
+    right: 0;
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+}
+
+
+//Sidebar collapse Button
+.sidebar-collapse-button-wrapper{
+  /* Positioning */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  /* Display & Box Model */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: $sidebar-collapse-height;
+  width: 100%;
+
+
+  /* Text */
+  text-align: right;
+}
+.sidebar-collapse-button{
+  /* Display & Box Model */
+  display: inline-block;
+  border-radius: 8px 0 0 8px;
+  padding: pxtorem(5px, $font-size-base)  pxtorem(9px, $font-size-base);
+  width: $sidebar-collapse-button-width;
+
+  /* Text */
+  text-align: center;
+  span{
+    /* Display & Box Model */
+    display: block;
+    height: pxtorem(17px, $font-size-base);
+    width: pxtorem(17px, $font-size-base);
+    border-radius: 100%;
+
+    /* Text */
+    text-align: center;
+    font-size: pxtorem(13px, $font-size-base);
+    line-height: pxtorem(17px, $font-size-base);
+  }
+}
+.sidebar .has-submenu .menu-text{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* -----------------------------------
+** End Sidebar
+-------------------------------------*/

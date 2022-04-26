@@ -1,0 +1,273 @@
+
+//property generate
+@mixin hack-property-all($property, $value) {
+	@each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+		#{$prefix}#{$property}: $value;
+	}
+}
+
+@mixin hack-property-webkit-moz($property, $value) {
+	@each $prefix in -webkit-, -moz-, '' {
+		#{$prefix}#{$property}: $value;
+	}
+}
+
+@mixin hack-property-webkit-moz-ms($property, $value) {
+	@each $prefix in -webkit-, -moz-, -ms-, '' {
+		#{$prefix}#{$property}: $value;
+	}
+}
+
+//font face
+@mixin font-face($font-familyname, $font-filename) {
+	@font-face {
+		font-family: '#{$font-familyname}';
+		src: url('#{$font-filename}.eot') format('embedded-opentype');
+		//src: url('../fonts/segoeui.ttf') format('truetype'), url('../fonts/segoeui.woff') format('woff');
+		src: url('#{$font-filename}.woff') format('woff'), url('#{$font-filename}.ttf') format('truetype');
+	}
+}
+
+//font smoothing
+@mixin font-smoothing($type:antialiased) {
+	//antialiased, none, subpixel-antialiased
+	-webkit-font-smoothing: $type;
+	font-smoothing: $type;
+	font-smooth: always;
+}
+
+////This mixin sets the line height in rem's with a px fallback
+//@mixin line-height($heightValue: $font-size-base ){
+//	line-height: (0.125 * $heightValue);
+//}
+
+//cut text when its overflow of html element
+@mixin control-appearance($prefix: null) {
+	@include hack-property-all(appearance, $prefix);
+}
+
+//cut text when its overflow of html element
+@mixin text-truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// get opacity for multiple browser hack
+@mixin opacity($op: 0.5) {
+	-khtml-opacity: $op;
+	-moz-opacity: $op;
+	opacity: $op;
+}
+
+/// zero margin padding
+@mixin margin-padding($value) {
+	margin: $value;
+	padding: $value;
+}
+
+// set padding
+@mixin set-padding ($t-padding: null,$r-padding: null,$b-padding: null ,$l-padding: null) {
+	padding-top: $t-padding;
+	padding-right: $r-padding;
+	padding-bottom: $b-padding;
+	padding-left: $l-padding;
+}
+
+// set margin
+@mixin set-margin ($t-margin: null,$r-margin: null,$b-margin: null, $l-margin: null) {
+	margin-top: $t-margin;
+	margin-right: $r-margin;
+	margin-bottom: $b-margin;
+	margin-left: $l-margin;
+}
+
+/// Shorthand mixin for offset positioning
+/// @param {String} $position - Either `relative`, `absolute` or `fixed`
+/// @param {Length} $top [null] - Top offset
+/// @param {Length} $right [null] - Right offset
+/// @param {Length} $bottom [null] - Bottom offset
+/// @param {Length} $left [null] - Left offset
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+	position: $position;
+	top: $top;
+	right: $right;
+	bottom: $bottom;
+	left: $left;
+}
+
+/// Shorthand mixin for absolute positioning
+/// Serves as an alias for `position(absolute, ...)`
+/// @param {Arglist} $args - Offsets
+/// @require {mixin} position
+@mixin absolute($args...) {
+	@include position(absolute, $args...);
+}
+
+/// Shorthand mixin for relative positioning
+/// Serves as an alias for `position(relative, ...)`
+/// @param {Arglist} $args - Offsets
+/// @require {mixin} position
+@mixin relative($args...) {
+	@include position(relative, $args...);
+}
+
+/// Shorthand mixin for fixed positioning
+/// Serves as an alias for `position(fixed, ...)`
+/// @param {Arglist} $args - Offsets
+/// @require {mixin} position
+@mixin fixed($args...) {
+	@include position(fixed, $args...);
+}
+
+// background cover
+@mixin background-size ($string) {
+	@include hack-property-all(background-size, $string);
+}
+
+// box shadow
+@mixin box-shadow ($string) {
+	@include hack-property-all(box-shadow, $string);
+}
+
+///text shadow
+@mixin text-shadow ($string) {
+	@include hack-property-all(text-shadow, $string);
+}
+
+/// border radius
+@mixin border-radius($radius: 5) {
+	@include hack-property-webkit-moz(border-radius, $radius);
+	@include hack-property-webkit-moz(background-clip, padding-box);
+}
+
+/// Single side border-radius
+@mixin border-radius-top($radius: 5) {
+	@include hack-property-webkit-moz(border-top-right-radius, $radius);
+	@include hack-property-webkit-moz(border-top-left-radius, $radius);
+	@include hack-property-webkit-moz(background-clip, padding-box);
+}
+
+///
+@mixin border-radius-right($radius) {
+	@include hack-property-webkit-moz(border-bottom-right-radius, $radius);
+	@include hack-property-webkit-moz(border-top-right-radius, $radius);
+	@include hack-property-webkit-moz(background-clip, padding-box);
+}
+
+///
+@mixin border-radius-bottom($radius) {
+	@include hack-property-webkit-moz(border-bottom-right-radius, $radius);
+	@include hack-property-webkit-moz(border-bottom-left-radius, $radius);
+	@include hack-property-webkit-moz(background-clip, padding-box);
+}
+
+///
+@mixin border-radius-left($radius) {
+	@include hack-property-webkit-moz(border-bottom-left-radius, $radius);
+	@include hack-property-webkit-moz(border-top-left-radius, $radius);
+	@include hack-property-webkit-moz(background-clip, padding-box);
+}
+
+@mixin border-box() {
+	outline: none;
+	@include hack-property-webkit-moz(box-sizing, border-box);
+}
+
+@mixin flex-box() {
+	/* previous syntax */
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+
+	/* current syntax */
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: flex;
+}
+
+@mixin flex-box-header() {
+	@include hack-property-webkit-moz-ms(flex, 0 0 auto);
+}
+
+@mixin flex-box-footer() {
+	@include hack-property-webkit-moz-ms(flex, 0 1 auto);
+}
+
+@mixin flex-box-container() {
+	@include hack-property-webkit-moz-ms(flex, 1 0 auto);
+}
+
+@mixin flex-box-column() {
+	/* previous syntax */
+	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
+	-ms-box-orient: vertical;
+	box-orient: vertical;
+
+	/* current syntax */
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+@mixin flex-box-row() {
+	/* previous syntax */
+	-webkit-box-orient: horizontal;
+	-moz-box-orient: horizontal;
+	-ms-box-orient: horizontal;
+	box-orient: horizontal;
+
+	/* current syntax */
+	-webkit-flex-direction: row;
+	-moz-flex-direction: row;
+	-ms-flex-direction: row;
+	flex-direction: row;
+}
+
+@mixin flex-box-justify() {
+	/* previous syntax */
+	-webkit-box-pack: justify;
+	-moz-box-pack: justify;
+	-ms-box-pack: justify;
+	box-pack: justify;
+
+	/* current syntax */
+	-webkit-justify-content: space-between;
+	-moz-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+}
+
+@mixin flex-box-center() {
+	/* previous syntax */
+	-webkit-box-pack: center;
+	-moz-box-pack: center;
+	-ms-box-pack: center;
+	box-pack: center;
+
+	/* current syntax */
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	-ms-justify-content: center;
+	justify-content: center;
+}
+
+@mixin flex-box-any($value : 1) {
+	@include hack-property-webkit-moz-ms(box-flex, $value);
+	@include hack-property-webkit-moz-ms(flex, $value);
+}
+
+@mixin list-style-none() {
+	list-style: none;
+	list-style-image: none;
+}
+
+@mixin user-select ($value: none) {
+	-webkit-user-select: $value;
+    -moz-user-select: $value;
+    -ms-user-select: $value;
+    user-select: $value;
+}

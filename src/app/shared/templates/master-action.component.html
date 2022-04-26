@@ -1,0 +1,24 @@
+<button [disabled]="isSaveDisabled" (click)="onClickAction('Save')" type="button" class="breadcrumb-action-button breadcrumb-action-button--save" ps-tooltip="Save" [placement]="left"><i class="fa fa-floppy-o"></i></button>
+<button [disabled]="isPrintDisabled" (click)="onClickAction('Print')" type="button" class="breadcrumb-action-button breadcrumb-action-button--print"  ps-tooltip="Save" [placement]="bottom" ><i class="fa fa-print"></i></button>
+<button [disabled]="isBackDisabled" (click)="onClickAction('Back')" type="button" class="breadcrumb-action-button breadcrumb-action-button--back"><i class="fa fa-arrow-circle-o-left"></i></button>
+<button [disabled]="isCutDisabled" (click)="onClickAction('Cut')" type="button" class="breadcrumb-action-button breadcrumb-action-button--cut"><i class="fa fa-scissors"></i></button>
+<button [disabled]="isCopyDisabled" (click)="onClickAction('Copy')" type="button" class="breadcrumb-action-button breadcrumb-action-button--copy"><i class="fa fa-clone"></i></button>
+<button [disabled]="isPasteDisabled" (click)="onClickAction('Paste')" type="button" class="breadcrumb-action-button breadcrumb-action-button--paste"><i class="fa fa-clipboard"></i></button>
+<button [disabled]="isFirstDisabled" (click)="onClickAction('First')" type="button" class="breadcrumb-action-button breadcrumb-action-button--backward"><i class="fa fa-backward"></i></button>
+<button [disabled]="isPrevDisabled" (click)="onClickAction('Prev')" type="button" class="breadcrumb-action-button breadcrumb-action-button--play"><i class="fa fa-play rotate180deg"></i></button>
+<button [disabled]="isNextDisabled" (click)="onClickAction('Next')" type="button" class="breadcrumb-action-button breadcrumb-action-button--play"><i class="fa fa-play"></i></button>
+<button [disabled]="isLastDisabled" (click)="onClickAction('Last')" type="button" class="breadcrumb-action-button breadcrumb-action-button--forward"><i class="fa fa-forward"></i></button>
+<button [disabled]="isNewDisabled" (click)="onClickAction('New')" type="button" class="breadcrumb-action-button breadcrumb-action-button--new"><i class="fa fa-plus-square-o"></i></button>
+<button [disabled]="isResetDisabled" (click)="onClickAction('Reset')" type="button" class="breadcrumb-action-button breadcrumb-action-button--repeat"><i class="fa fa-repeat"></i></button>
+<button [disabled]="isDeleteDisabled" (click)="onClickAction('Delete')" type="button" class="breadcrumb-action-button breadcrumb-action-button--delete"><i class="fa fa-trash"></i></button>
+<!-- <button [disabled]="isHistoryDisabled" (click)="onClickAction('Record History')" type="button" class="breadcrumb-action-button breadcrumb-action-button--history"><i class="fa fa-history"></i></button> -->
+<!-- <button [disabled]="isPrivilegeDisabled" (click)="onClickAction('Privilege')" type="button" class="breadcrumb-action-button breadcrumb-action-button--privilege"><i class="fa fa-universal-access"></i></button>
+<button [disabled]="isDbObjectDisabled" (click)="onClickAction('DB Object')" type="button" class="breadcrumb-action-button breadcrumb-action-button--db_object"><i class="fa fa-database"></i></button>
+<button [disabled]="isHelpDisabled" (click)="onClickAction('Help')" type="button" class="breadcrumb-action-button breadcrumb-action-button--help"><i class="fa fa-question-circle-o"></i></button> -->
+<!-- <button [disabled]="isTabIndexDisabled" (click)="onClickAction('Tabindex')" type="button" class="breadcrumb-action-button breadcrumb-action-button--tabindex"><i class="fa fa-indent"></i></button>
+<app-tab-index-set></app-tab-index-set> -->
+<select class="form-control page-size-select" name="page-size" (change)="onChangePageSize()" [(ngModel)]="pageSize">
+    <option value="min">Small</option> 
+    <option value="md">Medium</option>
+    <option value="lg">Large</option>
+</select>

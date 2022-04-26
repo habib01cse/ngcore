@@ -1,0 +1,99 @@
+<!-- Modal -->
+<div class="modal--full-height">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span class="card-header__title"></span>
+      <div class="d-flex card-header__action">
+        <button (click)="onClickSave($event)" type="button"
+          class="btn btn-warning btn-sm btn--width-auto bg-transparent" *ngIf="userPrivilege.canShowSave()"><i
+            class="fa fa fa-floppy-o"></i>
+          {{ langService.langData.save }}</button>
+        <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent"
+          *ngIf="userPrivilege.canShowSave()"><i class="fa fa-repeat"></i>
+          {{ langService.langData.reset }}</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row mt-base">
+        <div class="col-md-12">
+          <ul class="nav mb-base nav-tabs ps-tab-group">
+            <li class="nav-item">
+              <a [ngClass]="[( currentTabNumber === 1 )?'nav-link btn-primary text-white' :'nav-link']"
+                (click)="onClickTabItem(1)">File Storage</a>
+            </li>
+            <li class="nav-item">
+              <a [ngClass]="[( currentTabNumber === 2)?'nav-link btn-primary text-white' :'nav-link']"
+                (click)="onClickTabItem(2)">Image Storage</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row" [hidden]="currentTabNumber !== 1">
+        <div class="col-sm-12" *ngIf="userPrivilege.canShowNew()">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label text-right">{{ langService.langData.attachment }}</label>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <input id="upload-file-doc" name="upload-file-doc" type="file" (change)="handleFileInput($event, 'doc')"
+                  class="ps-file-upload-btn" />
+                <label for="upload-file-doc" class="form-control"> <i class="fa fa-upload"></i> {{ fileLabel }}</label>
+                <!-- <input type="file" class="form-control"> -->
+                <div class="input-group-append input-group-append--remove-icon">
+                  <button (click)="onClickUpload('doc')" class="btn btn-default ml-base"
+                    type="button">{{ langService.langData.upload }}</button>
+                  <button (click)="onClickFileCancel('doc')"
+                    class="btn btn-default text-danger btn--squire close-button" type="button"><i
+                      class="ion-close-round"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--/.form-group-->
+        </div>
+        <div class="col-sm-12">
+          <div class="ag-table-wrapper" style="width: 100%;">
+            <ag-grid-angular style="width: 100%; height: 300px;" class="ag-theme-balham"
+              [psValidateGrid]="gridRequiredOptions" [rowSelection]="rowSelectionType" [columnDefs]="columnDefs"
+              (gridReady)="onGridReady($event)" [editType]="'fullRow'" (cellClicked)="onCellClicked($event)"
+              [pagination]="true" [frameworkComponents]="gridService.frameworkComponents">
+            </ag-grid-angular>
+          </div>
+        </div>
+      </div>
+      <div class="row" [hidden]="currentTabNumber !== 2">
+        <div class="col-sm-12" *ngIf="userPrivilege.canShowNew()">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label text-right">{{ langService.langData.attachment }}</label>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <input id="upload-image" name="upload-image" accept="image/x-png,image/jpeg" type="file"
+                  (change)="handleFileInput($event, 'img')" class="ps-file-upload-btn" />
+                <label for="upload-image" class="form-control">
+                  <i class="fa fa-upload"></i> {{ imageLabel }}
+                </label>
+                <!-- <input type="file" class="form-control"> -->
+                <div class="input-group-append input-group-append--remove-icon">
+                  <button (click)="onClickUpload('img')" class="btn btn-default ml-base"
+                    type="button">{{ langService.langData.upload }}</button>
+                  <button (click)="onClickFileCancel('img')"
+                    class="btn btn-default text-danger btn--squire close-button" type="button"><i
+                      class="ion-close-round"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--/.form-group-->
+        </div>
+        
+        <div class="col-sm-12">
+          <div class="ag-table-wrapper" style="width: 100%;">
+            <ag-grid-angular style="width: 100%; height: 300px;" class="ag-theme-balham"
+              [psValidateGrid]="gridRequiredOptions" [rowSelection]="rowSelectionType" [columnDefs]="imageColumnDefs"
+              (gridReady)="onImageGridReady($event)" [editType]="'fullRow'" (cellClicked)="onImageCellClicked($event)"
+              [pagination]="true" [frameworkComponents]="gridService.frameworkComponents">
+            </ag-grid-angular>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

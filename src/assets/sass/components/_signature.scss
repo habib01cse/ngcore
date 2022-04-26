@@ -1,0 +1,12 @@
+.erp-signature {
+    /* Text */
+    font-weight: 700;
+    font-style: italic;
+    text-align: center;
+    &__name-date {
+      /* Display & Box Model */
+      display: inline-block;
+      padding: pxtorem(4px, $font-size-base) pxtorem(15px, $font-size-base);
+      margin-bottom: pxtorem(2px, $font-size-base);
+  }
+}

@@ -1,0 +1,48 @@
+<form class="container-fluid ps-form-page-wrapper">
+  <div class="card card--table pb-base">
+    <h6 class="card-header d-flex justify-content-between align-items-center">
+      Job Reason
+
+      <div class="d-flex card-header__action">
+        <button type="button" class="btn btn-success btn-sm btn--width-auto bg-transparent btn--add-new-grid"
+          (click)="onClickAddNewJobReason()"  *ngIf="model.userPrivilege.canShowNew()">
+          <i class="fa fa-plus"></i>{{ langService.langData.new }}</button>
+
+        <button type="button" class="btn btn-success btn-sm btn--width-auto bg-transparent"
+        (click)="onClickSaveJobReason()" id="psMasterSave" *ngIf="model.userPrivilege.canShowSave()"><i class="fa fa-floppy-o"></i>
+          {{ langService.langData.save }}</button>
+
+        <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent"
+          (click)="onClickReset()" *ngIf="model.userPrivilege.canShowSave()"><i class="fa fa-repeat"></i>
+          {{ langService.langData.reset }}
+        </button>
+      </div>
+
+    </h6>
+    <div class="card-body">
+      <div class="mt-base">
+        <div class="ag-table-wrapper" style="width: 100%;">
+          <app-ag-grid-filter [gridId]="gridIdJobReason" [grid]="gridJobReason"></app-ag-grid-filter>
+          <ag-grid-angular 
+            style="width: 100%; height: 72vh;" 
+            class="ag-theme-balham"
+            [columnDefs]="columnDefsJobReason" 
+            (gridReady)="onGridReady($event)" 
+            [pagination]="true"
+            [psValidateGrid]="gridRequiredOptions"
+            [frameworkComponents]="gridService.frameworkComponents" 
+            [rowSelection]="rowSelectionJobReason"
+            [editType]="'fullRow'" 
+            [animateRows]="true" 
+            (cellClicked)='onCellClicked($event)'>
+          </ag-grid-angular>
+        </div>                       
+      </div>
+    </div>
+  </div>
+  <!-- .card -->
+</form>
+
+<!-- Alert -->
+<ps-dialog></ps-dialog>
+<!-- Alert end -->

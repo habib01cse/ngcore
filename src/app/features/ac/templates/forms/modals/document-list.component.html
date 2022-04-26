@@ -1,0 +1,39 @@
+<!-- Modal -->
+<div class="modal fade modal--large modal--full-height" [ngClass]="{show: modalShow}"
+    [ngStyle]="{display: modalShow?'block':'none'}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ langService.langData.document }}</h5>
+                <button type="button" class="close" (click)="modalShow=false" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="ag-table-wrapper" style="width: 100%;">
+                    <app-ag-grid-filter (enterKeyEvent)="enterKeyEvent($event)" 
+                    
+                    [isItemSelect]="true" [gridId]="gridId" [grid]="grid" [isSetting]="false" [isFocus]="true"
+                    ></app-ag-grid-filter>
+                    <ag-grid-angular style="width: 100%; height: 80vh;" 
+                        class="ag-theme-balham" 
+                        [rowData]="documentList"
+                        [columnDefs]="columnDefs" 
+                        (gridReady)="onGridReady($event)" 
+                        [pagination]="true"
+                        (cellKeyPress)="itemClick($event.data)" 
+                        (rowDoubleClicked)="itemClick($event.data)"
+                        (cellKeyDown)="itemKeyPress($event)"
+                        [frameworkComponents]="gridService.frameworkComponents">
+                    </ag-grid-angular>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalShow=false"><i
+                        class="fa fa-times"></i> {{
+          langService.langData.close }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show" *ngIf="modalShow"></div>

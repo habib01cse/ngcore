@@ -1,0 +1,38 @@
+/* -----------------------------------
+** Main Content
+-------------------------------------*/
+.outer-content{
+  /* Display & Box Model */
+  padding-left:pxtorem(250px, $font-size-base);
+
+  /* Other */
+  transition-property: padding-left;
+  transition-duration: .3s;
+  transition-timing-function: linear;
+}
+.outer-content--collapse{
+  padding-left: pxtorem(45px, $font-size-base);
+}
+.main-content{
+  /* Display & Box Model */
+  min-height: calc(100vh - #{$main-content-height});
+  margin-top: $header-height;
+}
+.routeContainer{
+  position: relative;
+  router-outlet{
+    display: none;
+  }
+  &>*{
+    display:block;
+  }
+}
+.ps-form-page-wrapper, .ps-report-page-wrapper{
+  padding: 15px 15px 10px 15px;
+}
+.ps-iframe{
+  min-height:calc(100vh - 135px);
+}
+/* -----------------------------------
+** End Main Content
+-------------------------------------*/

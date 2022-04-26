@@ -1,0 +1,1096 @@
+<form class="container-fluid ps-form-page-wrapper" novalidate ps-validation-option="chequeRegisterOptions">
+  <div class="row">
+    <div class="col-lg-5 mb-base">
+      <!-- FILTER CARD  -->
+      <div class="card mb0">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <div class="card-header__title">{{ langService.langData.filter }}</div>
+          <div class="d-flex card-header__action">
+            <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent"
+              (click)="onClickSearchFilter()"><i class="fa fa-search"></i>
+              {{ langService.langData.filter }}</button>
+            <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent"
+              (click)="onSearchClear()"><i class="fa fa-repeat"></i>
+              {{ langService.langData.reset }}</button>
+          
+          </div>
+        </div>
+        <!--/.card-header-->
+        <!-- <h6 class="card-header">{{ langService.langData.filter }}</h6> -->
+        <div class="card-body pb0">
+          <div class="row">
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.filterOption }}</label>
+                <div class="col-md-8">
+                  <ng-select [virtualScroll]="true" [clearable]="false" [(ngModel)]="model.filterOption.FILTER_OPTION"
+                    name="FILTER_OPTION">
+                    <ng-option [value]="null">{{ langService.langData.all }}</ng-option>
+                    <ng-option *ngFor="let item of  model.filterOptionList; let i = index; trackBy:trackByFn;"
+                      [value]="item.VALUE">
+                      {{item.TEXT}} </ng-option>
+                  </ng-select>
+                  <!-- <div class="ps-select">
+                    <select class="form-control" name="FILTER_OPTION" [(ngModel)]="model.filterOption.FILTER_OPTION">
+                      <option value="">{{ langService.langData.select }}</option>
+                      <option *ngFor="let filter of model.filterOptionList; trackBy:trackByFn;" [value]="filter.VALUE">
+                        {{filter.TEXT}}
+                      </option>
+                    </select>
+                  </div> -->
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.status }}</label>
+                <div class="col-md-8">
+                  <ng-select [virtualScroll]="true" [clearable]="false" [(ngModel)]="model.filterOption.STATUS"
+                    name="selectedStatus">
+                    <ng-option [value]="null">{{ langService.langData.all }}</ng-option>
+                    <ng-option *ngFor="let status of  model.chequeStatusList; let i = index; trackBy:trackByFn;"
+                      [value]="status.CHECK_STAT_NO">
+                      {{status.STATUS}} </ng-option>
+                  </ng-select>
+
+
+                  <!-- <div class="ps-select">
+                    <select class="form-control" name="selected-status" [(ngModel)]="model.filterOption.STATUS">
+                      <option value="">{{ langService.langData.select }}</option>
+                      <option *ngFor="let status of model.chequeStatusList; trackBy:trackByFn;"
+                        [value]="status.CHECK_STAT_NO">
+                        {{ status.STATUS }}</option>
+                    </select>
+                  </div> -->
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.payTo }}</label>
+                <div class="col-md-8">
+                  <div class="ps-modal-open-wrapper">
+                    <span class="ps-modal-open-wrapper__text">{{ model.filterOption.ACC_NAME }}</span>
+                    <div class="ps-modal-open-wrapper__button">
+                      <button type="button" class="btn btn--squire " (click)="onClickOpenAccountListModal()"><i
+                          class="fa fa-folder-open-o"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.cheque }}</label>
+                <div class="col-md-8">
+                  <ng-select [virtualScroll]="true" [clearable]="false" name="chequeNo"
+                    [(ngModel)]="model.filterOption.CHEQUE_NO">
+                    <ng-option [value]="null">{{ langService.langData.all }}</ng-option>
+                    <ng-option *ngFor="let cheque of model.chequeNoList; trackBy:trackByFn;" [value]="cheque.CHECK_NO">
+                      {{ cheque.CHECK_ID }}</ng-option>
+                  </ng-select>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.allCheque }}</label>
+                <div class="col-md-8">
+                  <ng-select [virtualScroll]="true" [clearable]="false" name="allCheckbook"
+                    [(ngModel)]="model.filterOption.CHEQUE_NO_ALL">
+                    <ng-option [value]="null">{{ langService.langData.all }}</ng-option>
+                    <ng-option *ngFor="let cheque of model.chequeBookList; trackBy:trackByFn;"
+                      [value]="cheque.CHECK_NO">
+                      {{ cheque.CHECK_ID }}</ng-option>
+                  </ng-select>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.dateType }}</label>
+                <div class="col-md-8">
+                  <ng-select [virtualScroll]="true" [clearable]="false" [(ngModel)]="model.filterOption.DATE_TYPE" class="mb-base"
+                    name="dateType">
+                    <ng-option [value]="null">{{ langService.langData.all }}</ng-option>
+                    <ng-option *ngFor="let item of  model.dateTypeList; let i = index; trackBy:trackByFn;"
+                      [value]="item.VALUE">
+                      {{item.TEXT}} </ng-option>
+                  </ng-select>
+                  <!-- <div class="ps-select mb-base">
+                    <select class="form-control" name="dateType" [(ngModel)]="model.filterOption.DATE_TYPE">
+                      <option value="">{{ langService.langData.select }}</option>
+                      <option *ngFor="let filter of model.dateTypeList; trackBy:trackByFn;" [value]="filter.VALUE">
+                        {{filter.TEXT}}
+                      </option>
+                    </select>
+                  </div> -->
+                  <div *ngIf="model.filterOption.DATE_TYPE == 'C'" class="ps-two-date-picker">
+                    <input type="text" class="form-control" [(ngModel)]="model.filterOption.CHEQUE_DATE_FORM"
+                      name="cheque-date" (onBlur)="onBlurChequeDate()" autocomplete="off" [bsConfig]="psDateFormat"
+                      psDatepicker>
+                    <span class="ps-two-date-picker__to">{{ langService.langData.to }}</span>
+                    <input type="text" class="form-control" (onBlur)="onBlurChequeDate()"
+                      [(ngModel)]="model.filterOption.CHEQUE_DATE_TO" name="cheque-date" [bsConfig]="psDateFormat"
+                      psDatepicker autocomplete="off">
+                  </div>
+                  <div *ngIf="model.filterOption.DATE_TYPE == 'P'" class="ps-two-date-picker">
+                    <input type="text" class="form-control" [(ngModel)]="model.filterOption.PREPARE_DATE_FORM"
+                      name="prepare-date" [bsConfig]="psDateFormat" psDatepicker autocomplete="off">
+                    <span class="ps-two-date-picker__to">{{ langService.langData.to }}</span>
+                    <input type="text" class="form-control" [(ngModel)]="model.filterOption.PREPARE_DATE_TO"
+                      name="prepare-date" [bsConfig]="psDateFormat" psDatepicker autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">{{langService.langData.postType}}</label>
+                <div class="col-md-10">
+                  <label class="custom-control custom-radio d-inline-block mr-base-double">
+                    <input checked [(ngModel)]="model.filterOption.RB_POST" [value]="formParam.ALL"
+                      class="custom-control-input" type="radio" name="post-status">
+                    <span class="custom-control-label text-nowrap">{{ langService.langData.all }}</span>
+                  </label>
+                  <label class="custom-control custom-radio d-inline-block mr-base-double">
+                    <input [(ngModel)]="model.filterOption.RB_POST" [value]="formParam.POSTED"
+                      class="custom-control-input" type="radio" name="post-status">
+                    <span class="custom-control-label text-nowrap">{{ langService.langData.post }}</span>
+                  </label>
+                  <label class="custom-control custom-radio d-inline-block">
+                    <input [(ngModel)]="model.filterOption.RB_POST" [value]="formParam.UNPOSTED"
+                      class="custom-control-input" type="radio" name="post-status">
+                    <span class="custom-control-label text-nowrap">{{ langService.langData.unpost }}</span>
+                  </label>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/.card-->
+      <!-- END FILTER CARD  -->
+    </div>
+    <div class="col-lg-7 mb-base">
+      <!-- FILTER CARD  -->
+      <div class="card mb0">
+        <h6 class="card-header">{{ langService.langData.bank }}</h6>
+        <div class="card-body pb0">
+          <div class="row">
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.accountNo }}</label>
+                <div class="col-md-8">
+                  <div class="ps-modal-open-wrapper">
+                    <span class="ps-modal-open-wrapper__text">{{ model.bankinfo.BANK_ACC_NO }}</span>
+                    <div class="ps-modal-open-wrapper__button">
+                      <button type="button" class="btn btn--squire" (click)="onCLickOpenBankAccountList()"><i
+                          class="fa fa-folder-open-o"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group">
+                <input type="text" class="form-control" readonly [(ngModel)]="model.bankinfo.ACC_NAME" name="ACC_NAME"
+                  ps-select-all />
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.branchName }}</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" readonly [(ngModel)]="model.bankinfo.BRANCH_NAME"
+                    name="BRANCH_NAME" ps-select-all />
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.chequeBookId }}</label>
+                <div class="col-md-8">
+                  <ng-select [virtualScroll]="true" [clearable]="false" name="chequebook-id"
+                    (change)="onChangeChequeBookID()" [(ngModel)]="model.bankinfo.CHECKBOOK_ID">
+                    <ng-option disabled [value]="null">{{ langService.langData.all }}</ng-option>
+                    <ng-option *ngFor="let cheque of model.chequeBookIDList; trackBy:trackByFn;"
+                      [value]="cheque.CHECKBOOK_ID">
+                      {{cheque.CHECKBOOK_ID}}</ng-option>
+                  </ng-select>
+                  <!-- <div class="ps-modal-open-wrapper">
+                    <span class="ps-modal-open-wrapper__text"></span>
+                    <div class="ps-modal-open-wrapper__button">
+                      <button type="button" class="btn btn--squire"><i class="ion-plus"></i></button>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-12 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-2 col-form-label">{{ langService.langData.address }}</label>
+                <div class="col-md-10">
+                  <textarea name="name" class="form-control textarea-2row" readonly
+                    [(ngModel)]="model.bankinfo.BRANCH_ADDR" name="BRANCH_ADDR"></textarea>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/.card-->
+      <!--/.card-->      
+    </div>
+  </div> 
+
+  <div class="row">
+    <div class="col-lg-5">
+      <div class="row">
+        <div class="col-md-4">
+          <!-- <label class="custom-control custom-radio d-inline-block mr-base-double">
+            <input checked [(ngModel)]="model.filterOption.RB_POST" [value]="formParam.ALL" class="custom-control-input"
+              type="radio" name="post-status">
+            <span class="custom-control-label text-nowrap">{{ langService.langData.all }}</span>
+          </label>
+          <label class="custom-control custom-radio d-inline-block mr-base-double">
+            <input [(ngModel)]="model.filterOption.RB_POST" [value]="formParam.POSTED" class="custom-control-input"
+              type="radio" name="post-status">
+            <span class="custom-control-label text-nowrap">{{ langService.langData.post }}</span>
+          </label>
+          <label class="custom-control custom-radio d-inline-block">
+            <input [(ngModel)]="model.filterOption.RB_POST" [value]="formParam.UNPOSTED" class="custom-control-input"
+              type="radio" name="post-status">
+            <span class="custom-control-label text-nowrap">{{ langService.langData.unpost }}</span>
+          </label> -->
+        </div>
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.oppeningBalance }}</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control text-right" name="openingBalance"
+                [(ngModel)]="model.openingBalance" readonly ps-select-all [ps-decimal]="psDecimal" />
+            </div>
+          </div>
+          <!--/.form-group-->
+        </div>
+      </div>
+      <!-- CHEQUE RELATED CARD TABLE  -->
+      <div class="card card--table">
+        <h6 class="card-header">{{ langService.langData.chequeRelated }}</h6>
+        <div class="card-body pb0">
+          <div class="ag-table-wrapper pt-base pb-base" style="width: 100%;">
+            <app-ag-grid-filter [gridId]="gridId" [grid]="grid"></app-ag-grid-filter>
+            <ag-grid-angular style="width: 100%; height: 300px;" class="ag-theme-balham" [columnDefs]="columnDefs"
+              (gridReady)="onGridReady($event)" (filterChanged)="onChangeFilter($event)"
+              [rowSelection]="rowSelectionType" [pagination]="true" psValidateGrid
+              [frameworkComponents]="gridService.frameworkComponents" [animateRows]="true"
+              [suppressRowClickSelection]='true' (cellClicked)='itemClick($event)'>
+            </ag-grid-angular>
+          </div>
+          <!--          
+          <div class="table-responsive blank-table-wrapper">
+            <table class="table table--fixed-layout min-width-800">
+              <thead>
+                <tr>
+                  <th class="w10">{{ langService.langData.inactiveQus }}</th>
+                  <th class="w15">{{ langService.langData.chequeNo }}</th>
+                  <th class="w10">{{ langService.langData.chequeDate }}</th>
+                  <th class="w10">{{ langService.langData.postDate }}</th>
+                  <th class="w10">{{ langService.langData.chequeType }}</th>
+                  <th class="w15">{{ langService.langData.amount }}</th>
+                  <th class="w15">{{ langService.langData.settlementType }}</th>
+                  <th class="w15">{{ langService.langData.payTo }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let cheque of model.chequeRelatedList; let i = index">
+                  <tr *ngIf="cheque.SQL_STATE !== 3" (click)="onClickRelatedChequeItem(cheque)">
+                    <td>
+                      <div class="d-flex align-items-center justify-content-center h-100">
+                        <label class="custom-control custom-checkbox custom-control--without-label">
+                          <input disabled [checked]="cheque.ACTIVE_STAT == 1" class="custom-control-input"
+                            type="checkbox">
+                          <span class="custom-control-label text-nowrap"></span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>{{ cheque.CHECK_ID }}</td>
+                    <td>{{ cheque.CHECK_DATE | date:dateFormat}}</td>
+                    <td>{{ cheque.POST_DATE | date:dateFormat}}</td>
+                    <td>{{ cheque.STATUS }}</td>
+                    <td class="text-right">{{ cheque.CHECK_AMT | number: numberPrecision}}</td>
+                    <td>{{ cheque.SETTLEMENT }}</td>
+                    <td>{{ cheque.PAY_TO_NAME }}</td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+          -->
+        </div>
+      </div>
+      <!--/.card-->
+      <!-- END  CHEQUE RELATED CARD TABLE  -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label">{{ langService.langData.totalQlon }}</label>
+            <div class="col-md-9">
+              <div class="ps-modal-open-wrapper">
+                <span
+                  class="ps-border w-100 ps-modal-open-wrapper__text text-right">{{ model.totalChequeAmount | number: numberPrecision }}</span>
+              </div>
+            </div>
+          </div>
+          <!--/.form-group-->
+        </div>
+        <div class="col-lg-12">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label">{{ langService.langData.probableBalanceQlon }}</label>
+            <div class="col-md-9">
+              <div class="ps-modal-open-wrapper">
+                <span
+                  class="ps-border w-100 ps-modal-open-wrapper__text text-right">{{ model.probableBalance | number: numberPrecision }}</span>
+              </div>
+            </div>
+          </div>
+          <!--/.form-group-->
+        </div>
+        <div class="col-lg-12">
+          <div class="form-group row">
+            <label class="col-md-4 col-form-label">{{ langService.langData.actualClosingBalanceQlon }}</label>
+            <div class="col-md-8">
+              <div class="ps-modal-open-wrapper">
+                <span
+                  class="ps-border w-100 ps-modal-open-wrapper__text text-right">{{ model.actualClosingBalance | number: numberPrecision }}</span>
+              </div>
+            </div>
+          </div>
+          <!--/.form-group-->
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 mb-base">
+      
+      <ul class="nav mb-base nav-tabs ps-tab-group">       
+        <li class="nav-item">
+          <a [ngClass]="[( model.currentTabNumber === 1)?'nav-link btn-primary text-white' :'nav-link']"
+            (click)="onClickTabItem(1)">{{ langService.langData.supplierBill }}</a>
+        </li>
+        <li class="nav-item">
+          <a [ngClass]="[( model.currentTabNumber === 2)?'nav-link btn-primary text-white' :'nav-link']"
+            (click)="onClickTabItem(2)">{{ langService.langData.moneyRequisition }}</a>
+        </li>
+        <li class="nav-item">
+          <a [ngClass]="[( model.currentTabNumber === 3)?'nav-link btn-primary text-white' :'nav-link']"
+            (click)="onClickTabItem(3)">{{ langService.langData.servicesBill }}</a>
+        </li>
+      </ul>
+    
+      <div class="card mb0" [hidden]="model.currentTabNumber !== 1">        
+        <div class="card-header d-flex justify-content-between align-items-center">         
+          {{ langService.langData.supplierBill }}
+          <div class="d-flex card-header__action">  
+            <!-- <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent btn--add-new-grid"
+            (click)="loadIntgratedDataList()" *ngIf="model.userPrivilege.canShowNew()">
+            <i class="fa fa-clipboard"></i>
+            P</button>-->
+            
+            <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent btn--add-new-grid"
+            (click)="onClickAddSupBill()" *ngIf="model.userPrivilege.canShowNew()"><i class="fa fa-plus"></i>
+            {{ langService.langData.new }}</button>                       
+            <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent" 
+            (click)="onClickResetSupBill()" *ngIf="model.userPrivilege.canShowButton()"><i class="fa fa-repeat"></i>
+              {{ langService.langData.reset }}
+            </button>
+          </div>
+        </div>
+
+
+        <div class="card-body pb0">
+          <div class="ag-table-wrapper" style="width: 100%;">          
+            <app-ag-grid-filter [gridId]="dtlGridId" [grid]="dtlGrid"></app-ag-grid-filter>  
+            <ag-grid-angular style="width: 100%; height: 145px;"
+            class="ag-theme-balham" 
+            [columnDefs]="dtlColumnDefs" 
+            (gridReady)="onDtlGridReady($event)"
+            [psValidateGrid]="dtlGridVledOpt"
+            (cellClicked)='onClickGetDtl($event)' 
+            [rowSelection]="dtlRowSelection"
+            [suppressRowClickSelection]="true"
+            [pagination]="false" 
+            [editType]="'fullRow'" 
+            [frameworkComponents]="gridService.frameworkComponents" 
+            [animateRows]="true"
+            [psGridColumnTotals]="pinnedBottomRowColsDtlGrid" 
+            (psGridColumnTotalChanged)="onPsGridColumnTotalChangedDtlGrid($event)"
+            [pinnedBottomRowData]="pinnedBottomRowDataDtlGrid"           
+            >         
+            </ag-grid-angular>                       
+          </div>  
+
+          <div class="text-right mb-base">                         
+            <button type="button" class="btn btn-default ml-base btn-sm"
+            (click)="loadIntgratedDataList()" *ngIf="model.userPrivilege.canShowNew()">
+            <i class="fa fa-clipboard"></i>
+            {{langService.langData.supplierBill}}</button>                                 
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card mb0" [hidden]="model.currentTabNumber !== 2">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          {{ langService.langData.moneyScheduleInformation }}
+          <div class="d-flex card-header__action">
+            <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent btn--add-new-grid"
+            (click)="onClickAddMsd()" *ngIf="model.userPrivilege.canShowNew()"><i class="fa fa-plus"></i>
+            {{ langService.langData.new }}</button>                       
+            <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent" 
+            (click)="onClickResetMsd()" *ngIf="model.userPrivilege.canShowButton()"><i class="fa fa-repeat"></i>
+              {{ langService.langData.reset }}
+            </button>  
+          
+          </div>
+        </div>            
+        <div class="card-body pb0">
+          <div class="ag-table-wrapper footer-pointer-event-none" style="width: 100%;">
+            <app-ag-grid-filter [gridId]="msdGridId" [grid]="msdGrid"></app-ag-grid-filter>
+            <ag-grid-angular style="width: 100%; height: 145px;" class="ag-theme-balham" [columnDefs]="msdColumnDefs"
+              (gridReady)="onMsdGridReady($event)" [psValidateGrid]="msdGridVledOpt" 
+              (cellClicked)='onClickGetMsd($event)'
+              [rowSelection]="msdRowSelection" [suppressRowClickSelection]="true" [pagination]="false" [editType]="'fullRow'"
+              [frameworkComponents]="gridService.frameworkComponents" [animateRows]="true"
+              [psGridColumnTotals]="pinnedBottomRowColsMsdGrid"
+              (psGridColumnTotalChanged)="onPsGridColumnTotalChangedMsdGrid($event)"
+              [pinnedBottomRowData]="pinnedBottomRowDataMsdGrid">
+            </ag-grid-angular>
+          </div>
+
+          <div class="text-right mb-base">                                     
+            <button type="button" class="btn btn-default ml-base btn-sm"
+            (click)="onLoadMsdList()" *ngIf="model.userPrivilege.canShowNew()">
+            <i class="fa fa-clipboard"></i>
+            {{langService.langData.moneyReq}}</button>                            
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card mb0" [hidden]="model.currentTabNumber !== 3">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          {{ langService.langData.servicesBill }}
+          <div class="d-flex card-header__action">
+            <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent btn--add-new-grid"
+            (click)="onClickAddSer()" *ngIf="model.userPrivilege.canShowNew()"><i class="fa fa-plus"></i>
+            {{ langService.langData.new }}</button>                       
+            <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent" 
+            (click)="onClickResetSer()" *ngIf="model.userPrivilege.canShowButton()"><i class="fa fa-repeat"></i>
+              {{ langService.langData.reset }}
+            </button>  
+          
+          </div>
+        </div>            
+        <div class="card-body pb0">
+          <div class="ag-table-wrapper footer-pointer-event-none" style="width: 100%;">
+            <app-ag-grid-filter [gridId]="serGridId" [grid]="serGrid"></app-ag-grid-filter>
+            <ag-grid-angular style="width: 100%; height: 145px;" 
+              class="ag-theme-balham" 
+              [columnDefs]="serColumnDefs"
+              (gridReady)="onSerGridReady($event)" 
+              [psValidateGrid]="serGridVledOpt" 
+              (cellClicked)='onClickGetSer($event)'
+              [rowSelection]="serRowSelection" 
+              [suppressRowClickSelection]="true" 
+              [pagination]="false" 
+              [editType]="'fullRow'"
+              [frameworkComponents]="gridService.frameworkComponents" 
+              [animateRows]="true"
+              [psGridColumnTotals]="pinnedBottomRowColsSerGrid"
+              (psGridColumnTotalChanged)="onPsGridColumnTotalChangedSerGrid($event)"
+              [pinnedBottomRowData]="pinnedBottomRowDataSerGrid">
+            </ag-grid-angular>
+          </div>
+
+          <div class="text-right mb-base">                                    
+            <button type="button" class="btn btn-default ml-base btn-sm"
+            (click)="onLoadSerBillList('click')" *ngIf="model.userPrivilege.canShowNew()">
+            <i class="fa fa-clipboard"></i>
+            {{langService.langData.servicesBill}}</button>                            
+          </div>
+
+        </div>
+      </div>
+      
+
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <span class="card-header__title">{{ langService.langData.chequePrepared }}</span>
+          <div class="d-flex card-header__action">
+            <button type="button" class="btn btn-success btn-sm btn--width-auto bg-transparent"
+              [disabled]="!model.chequePrepared.CHECK_ID" (ps-click)="onClickSaveChequeRegister($event)"
+              *ngIf="model.userPrivilege.canShowSave()"
+              id="psMasterSave"><i class="fa fa-floppy-o"></i>
+              {{ langService.langData.save }}</button>
+            <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent"
+              [disabled]="!model.chequePrepared.CHECK_ID" (click)="onClickResetChequeRegister()"
+              *ngIf="model.userPrivilege.canShowSave()"><i class="fa fa-repeat"></i>
+              {{ langService.langData.reset }}</button>
+
+
+          </div>
+        </div>
+        <!-- <button type="button" class="btn btn-success ml-base" (ps-click)="onClickSaveChequeRegister($event)"><i
+          class="fa fa-floppy-o"></i> {{ langService.langData.save }}</button>
+      <button type="button" class="btn btn-warning ml-base" (click)="onClickResetChequeRegister()"><i
+          class="fa fa-repeat"></i> {{ langService.langData.reset }}</button> -->
+        <div class="card-body pb0">
+          <div class="row">
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.prepareDate }}</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" [(ngModel)]="model.chequePrepared.PREPARE_DATE"
+                    name="model.chequePrepared.PREPARE_DATE" [bsConfig]="psDateFormat" psDatepicker autocomplete="off">
+
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.chequeNo }}</label>
+                <div class="col-md-8">
+                  <div class="ps-modal-open-wrapper">
+                    <span class="ps-modal-open-wrapper__text readonly">{{ model.chequePrepared.CHECK_ID }}</span>
+                    <div class="ps-modal-open-wrapper__button">
+                      <button type="button" class="btn btn--squire" [disabled]="!model.chequePrepared.CHECK_NO"
+                        (click)="onClickChequePrint('print')" ><i class="fa fa-print"></i></button>
+                    </div>
+                  </div>
+                  <!-- <input type="text" class="form-control" [(ngModel)]="model.chequePrepared.CHECK_NO"
+                    name="chequePrepared.CHECK_NO" ps-select-all /> -->
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <!-- <div class="col-lg-12 text-right mb-base">
+              <button type="button" class="btn btn-default"
+                (click)="onClickChequePrint()">{{ langService.langData.chequePrint }}</button>
+            </div> -->
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.currency }}</label>
+                <div class="col-md-8">
+                  <!-- <input type="text" class="form-control" [(ngModel)]="model.chequePrepared.CUR_NAME"
+                    name="chequePrepared.CUR_NAME" /> -->
+                  <!-- <div class="ps-select">
+                    <select class="form-control" name="chequePrepared.CUR_NAME"
+                      [(ngModel)]="model.chequePrepared.CUR_NO">
+                      <option value="null">{{ langService.langData.select }}</option>
+                      <option *ngFor="let currency of model.currencyList; trackBy:trackByFn;" [value]="currency.CUR_NO">
+                        {{ currency.C_NAME }}</option>
+                    </select>
+                  </div> -->
+                  <ng-select [virtualScroll]="true" [clearable]="false" name="chequePrepared.CUR_NAME"
+                    [(ngModel)]="model.chequePrepared.CUR_NO" (change)="onChangeCurrency()">
+                    <ng-option [value]="null">{{ langService.langData.select }}</ng-option>
+                    <ng-option *ngFor="let currency of model.currencyList; trackBy:trackByFn;"
+                      [value]="currency.CUR_NO">
+                      {{ currency.C_NAME }}</ng-option>
+                  </ng-select>
+
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.payId }}</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" readonly [(ngModel)]="model.chequePrepared.PAY_ID"
+                    name="chequePrepared.PAY_ID" ps-select-all />
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.type }}</label>
+                <div class="col-md-8">
+                  <ng-select [virtualScroll]="true" [clearable]="false" name="chequePrepared.STATUS"
+                    [(ngModel)]="model.PRINT_TYPE_NAME">
+                    <ng-option [value]="null">{{ langService.langData.select }}</ng-option>
+                    <ng-option *ngFor="let status of model.chequeStatusList; trackBy:trackByFn;"
+                      [value]="status.STATUS">
+                      {{ status.STATUS }}</ng-option>
+                  </ng-select>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.exchangeRate }}</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" [(ngModel)]="model.chequePrepared.EXCHANGE_RATE"
+                    name="chequePrepared.EXCHANGE_RATE" ps-select-all [ps-decimal]="psDecimal" />
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.chequeDate }}</label>
+                <div class="col-md-8 ">
+                  <input type="text" class="form-control" [(ngModel)]="model.chequePrepared.CHECK_DATE"
+                    name="model.chequePrepared.CHECK_DATE" [bsConfig]="psDateFormat" psDatepicker autocomplete="off">
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.company }}</label>
+                <div class="col-md-8">
+                  <!-- <input type="text" class="form-control" [(ngModel)]="model.chequePrepared.COMPANY_NAME"
+                    name="chequePrepared.COMPANY_NAME" /> -->
+                  <ng-select [virtualScroll]="true" [clearable]="false" name="chequePrepared.CHEQUE_COMPANY_NO"
+                    [(ngModel)]="model.chequePrepared.CHEQUE_COMPANY_NO">
+                    <ng-option [value]="null">{{ langService.langData.select }}</ng-option>
+                    <ng-option *ngFor="let company of model.companyList; trackBy:trackByFn;"
+                      [value]="company.COMPANY_NO">
+                      {{ company.COMPANY_NAME }}</ng-option>
+                  </ng-select>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.businessArea }}</label>
+                <div class="col-md-8">
+                  <!-- <input type="text" class="form-control" [(ngModel)]="model.chequePrepared.BA_NAME"
+                    name="chequePrepared.BA_NAME" /> -->
+                  <div class="ps-modal-open-wrapper">
+                    <span class="ps-modal-open-wrapper__text">
+                      {{ model.chequePrepared.BA_NAME }}</span>
+                    <div class="ps-modal-open-wrapper__button">
+                      <button type="button" class="btn btn--squire" (click)="onClickOpenBaList2()"><i
+                          class="fa fa-folder-open-o"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.costName }}</label>
+                <div class="col-md-8">
+                  <!-- <input type="text" class="form-control" [(ngModel)]="model.chequePrepared.COST_NAME"
+                    name="chequePrepared.COST_NAME" /> -->
+                  <div class="ps-modal-open-wrapper">
+                    <span class="ps-modal-open-wrapper__text">
+                      {{ model.chequePrepared.COST_NAME }}</span>
+                    <div class="ps-modal-open-wrapper__button">
+                      <button type="button" class="btn btn--squire" (click)="onClickOpenCostCenterModal2()"><i
+                          class="fa fa-folder-open-o"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.signatoryAuthority }}</label>
+                <div class="col-md-8">
+                  <div class="ps-modal-open-wrapper ps-modal-open-wrapper--two-button">
+                    <span class="ps-modal-open-wrapper__text">{{ model.chequePrepared.EMP_NAME_ID }}</span>
+                    <div class="ps-modal-open-wrapper__button">
+                      <button type="button" class="btn btn--squire " (click)="onClickOpenUserListWithJobtitleModal()"><i
+                          class="fa fa-folder-open-o"></i></button>
+                      <button type="button" class="btn btn--squire " (click)="onClickOpensignatoryAuthorutyModal()"><i
+                          class="ion-plus-round"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+
+            <div class="col-lg-6 col-sm-6">
+              <button type="button" class="btn btn-default ml-base btn-sm"
+              (click)="onClickChequePrint('format2')" *ngIf="model.userPrivilege.canShowNew()">
+              <i class="fa fa-eye"></i>
+              {{langService.langData.format2}}</button> 
+            </div>
+
+            <!-- <div class="col-lg-6 col-sm-6">
+              <button class="btn btn-primary mb-base" (click)="onClickOpensignatoryAuthorutyModal()"><i
+                  class="fa fa-plus"></i> {{ langService.langData.addNew }}</button>
+            </div> -->
+          </div>
+        </div>
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <span class="card-header__title">{{ langService.langData.list }}</span>
+          <div class="d-flex card-header__action">
+            <button type="button" class="btn btn-primary btn-sm btn--width-auto bg-transparent btn--add-new-grid"
+              (click)="onClickAddNewChequePerpared()" *ngIf="model.userPrivilege.canShowNew()"><i
+                class="fa fa-plus"></i>
+              {{ langService.langData.new }}</button>
+            <!-- <button type="button" class="btn btn-success btn-sm btn--width-auto bg-transparent"
+              (click)="onClickSaveChequePerparedList()" *ngIf="model.userPrivilege.canShowSave()"><i
+                class="fa fa-floppy-o"></i>
+              {{ langService.langData.save }}</button> -->
+            <button type="button" class="btn btn-success btn-sm btn--width-auto bg-transparent"
+              (click)="onClickUpdateChequeRegister()" *ngIf="model.userPrivilege.canShowSave()"><i
+                class="fa fa-floppy-o"></i>
+              {{ langService.langData.update }}</button>
+            <button type="button" class="btn btn-warning btn-sm btn--width-auto bg-transparent"
+              (click)="onClickResetChequePerparedList()" *ngIf="model.userPrivilege.canShowSave()"><i
+                class="fa fa-repeat"></i>
+              {{ langService.langData.reset }}</button>     
+              
+          </div>
+        </div>
+        <!--/.card-header-->
+        <div class="ag-table-wrapper footer-pointer-event-none pt-base pb-base" style="width: 100%;">
+          <!-- <app-ag-grid-filter [gridId]="gridIdTwo" [grid]="gridTwo"></app-ag-grid-filter> -->
+          <ag-grid-angular style="width: 100%; height: 180px;" 
+            class="ag-theme-balham" 
+            [columnDefs]="columnDefsTwo"
+            (gridReady)="onGridReadyTwo($event)" 
+            [psValidateGrid]="gridRequiredOptions"
+            (cellClicked)='itemClickTwo($event)'
+            [rowSelection]="rowSelectionType"
+            [pagination]="false" 
+            [editType]="'fullRow'" 
+            [animateRows]="true" 
+            (psGridColumnTotalChanged)="onPsGridColumnTotalChanged($event)" 
+            [psGridColumnTotals]="pinnedBottomRowCols"
+            [pinnedBottomRowData]="pinnedBottomRowData" 
+            [frameworkComponents]="gridService.frameworkComponents"
+            >
+          </ag-grid-angular>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-7">                      
+            <button type="button" class="btn btn-default ml-base btn-sm"
+            (click)="onClickRecall()" *ngIf="model.userPrivilege.canShowNew()">          
+            {{langService.langData.recall}}</button>                    
+          </div>
+          
+          <div class="col-sm-5">            
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label">{{ langService.langData.totalAmount }}</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" [(ngModel)]="bottomTotalData.DR"
+                  name="DR" ps-select-all [ps-decimal]="psDecimal" readonly/>
+              </div>
+            </div>
+            <!--/.form-group-->            
+          </div>                           
+        </div>
+
+        <!--
+        <div class="table-responsive blank-table-wrapper">
+          <table class="table table--fixed-layout table--formstyle min-width-800">
+            <thead>
+              <tr>
+                <th class="w15">{{ langService.langData.payTo }}</th>
+                <th class="w15">{{ langService.langData.onAccountOf }}</th>
+                <th class="w15">{{ langService.langData.costCenter }}</th>
+                <th class="w15">{{ langService.langData.businessArea }}</th>
+                <th class="w15">{{ langService.langData.description }}</th>
+                <th class="w10">{{ langService.langData.amount }}</th>
+                <th class="w10">{{ langService.langData.baseAmount }}</th>
+                <th class="w5"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let cheque of model.chequePerparedList; let i = index">
+                <tr *ngIf="cheque.SQL_STATE !== 3">
+                  <td>
+                    <div class="ps-modal-open-wrapper">
+                      <span class="ps-modal-open-wrapper__text" (dblclick)="onClickOpenPayToModal(cheque)">
+                        {{ cheque.PAY_TO_NAME }}</span>
+                      <div class="ps-modal-open-wrapper__button">
+                        <button type="button" class="btn btn--squire " (click)="onClickOpenPayToModal(cheque)"><i
+                            class="fa fa-folder-open-o"></i></button>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="ps-modal-open-wrapper">
+                      <span class="ps-modal-open-wrapper__text"
+                        (dblclick)="onClickOpenAccountListModal2(cheque)"
+                        (click)="model.selectedAccPath = cheque.ACC_PATH; model.selectedRegisterNo = cheque.REGISTER_NO">
+                        {{ cheque.ACC_NAME }}</span>
+                      <div class="ps-modal-open-wrapper__button">
+                        <button type="button" class="btn btn--squire border-0"
+                          (click)="onClickOpenAccountListModal2(cheque)"><i class="fa fa-folder-open-o"></i></button>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="ps-modal-open-wrapper">
+                      <span class="ps-modal-open-wrapper__text" (dblclick)="onClickOpenCostCenterModal(cheque)"
+                       > {{ cheque.COST_NAME }}</span>
+                      <div class="ps-modal-open-wrapper__button">
+                        <button type="button" class="btn btn--squire " (click)="onClickOpenCostCenterModal(cheque)"><i
+                            class="fa fa-folder-open-o"></i></button>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="ps-modal-open-wrapper">
+                      <span class="ps-modal-open-wrapper__text" (dblclick)="onClickOpenBusinessAreaModal(cheque)"
+                       > {{ cheque.BA_NAME }}</span>
+                      <div class="ps-modal-open-wrapper__button">
+                        <button type="button" class="btn btn--squire " (click)="onClickOpenBusinessAreaModal(cheque)"><i
+                            class="fa fa-folder-open-o"></i></button>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" [(ngModel)]="cheque.DESCR" name="cheque.DESCR--{{i}}"
+                      ps-select-all>
+                  </td>
+                  <td><input type="text" (change)="onChangeChequePrepareListAmount()" class="form-control text-right"
+                      [(ngModel)]="cheque.CHECK_AMT" name="cheque.CHECK_AMT--{{i}}" ps-select-all
+                      [ps-decimal]="psDecimal"></td>
+                  <td class="text-right">
+                    {{ model.chequePrepared.EXCHANGE_RATE * cheque.CHECK_AMT | number : numberPrecision}}
+                  </td>
+                  <td class="text-center"><button type="button" (click)="onClickRemoveChequePerpared(i, cheque)"
+                      class="btn btn--squire text-danger border-0"><i class="ion-close-round"></i></button></td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+        -->
+        <div class="col-lg-12">
+          <p class="m-0 pb-base">{{ model.selectedAccPath }}</p>
+          <!-- <div class="text-right">
+            <button class="btn btn-primary" (click)="onClickAddNewChequePerpared()"><i class="fa fa-plus"></i>
+              {{ langService.langData.addNew }}</button>
+            <button type="button" class="btn btn-info ml-base" (click)="onClickUpdateChequeRegister()"><i
+                class="fa fa-pencil-square-o"></i> {{ langService.langData.update }}</button>
+            <button class="btn btn-success ml-base" (click)="onClickSaveChequePerparedList()"><i
+                class="fa fa-floppy-o"></i> {{ langService.langData.save }}</button>
+            <button type="button" class="btn btn-warning ml-base" (click)="onClickResetChequePerparedList()"><i
+                class="fa fa-repeat"></i> {{
+                langService.langData.reset }}</button>
+          </div> -->
+        </div>
+        <div class="col-lg-12">
+          <div class="form-group row">
+              <strong class="ml-base">{{langService.langData.inWord +' : '}} </strong>
+              <span class="ml-base" *ngIf="bottomTotalData.DR">{{bottomTotalData.DR | numberToWords}}</span>
+           
+          </div>
+        </div>
+        <hr class="m0" />
+        <div class="col-md-12">
+          <div class="mt-base row">
+            <div class="col-lg-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.chequeType }}</label>
+                <div class="col-md-8">
+                  <div class="ps-modal-open-wrapper ps-modal-open-wrapper--two-button">
+                    <span class="ps-modal-open-wrapper__text">{{ model.chequePrepared.STATUS }}</span>
+                    <div class="ps-modal-open-wrapper__button">
+                      <button type="button" class="btn btn--squire" (click)="onClickOpenChequeTypeList()"><i
+                          class="fa fa-folder-open-o"></i></button>
+                      <button type="button" class="btn btn--squire" (click)="onClickOpenChequeTypeEntryList()"><i
+                          class="ion-plus-round"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.postingDate }}</label>
+                <div class="col-md-8 ">
+                  <input type="text" class="form-control" [(ngModel)]="model.chequePrepared.POST_DATE"
+                    name="model.chequePrepared.POST_DATE" [bsConfig]="psDateFormat" psDatepicker autocomplete="off">
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.gLPost }}</label>
+                <div class="col-md-8">
+                  <label class="custom-control custom-checkbox custom-control--without-label d-inline-block">
+                    <input [(ngModel)]="model.glPost" name="glPost"                                         
+                    [checked]="model.glPost == 1 " 
+                    (change)=" model.glPost = $event.target.checked
+                      ? 1
+                      : 0;
+                      onChangeGlPost()"
+                      class="custom-control-input" type="checkbox">
+                    <span class="custom-control-label"></span>
+                  </label>
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.voucherNo }}</label>
+                <div class="col-md-8">
+                  <div class="ps-modal-open-wrapper">
+                    <span class="ps-modal-open-wrapper__text">{{ model.chequePrepared.V_ID }}</span>
+                    <div class="ps-modal-open-wrapper__button">
+                      <button type="button" class="btn btn--squire" (click)="onClickReportPreview()"><i
+                          class="fa fa-eye"></i></button>
+                    </div>
+                  </div>
+                  <!-- <input readonly class="form-control" type="text" [(ngModel)]="model.chequePrepared.V_ID"
+                    name="chequePrepared.V_ID" /> -->
+                  <!-- <div class="text-right mt-base">
+                    <button type="button" class="btn btn-default "
+                      (click)="onClickReportPreview()">{{ langService.langData.preview }}</button>
+                  </div> -->
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.voucherType }}</label>
+                <div class="col-md-8">
+                  <!-- <input class="form-control" type="text" [(ngModel)]="model.chequePrepared.TYPE_NAME" name="chequePrepared.TYPE_NAME" /> -->
+                  <ng-select [virtualScroll]="true" [clearable]="false" name="chequePrepared.VTYPE_NO"
+                    [(ngModel)]="model.chequePrepared.VTYPE_NO">
+                    <ng-option [value]="null">{{ langService.langData.all }}</ng-option>
+                    <ng-option *ngFor="let voucher of model.billVoucherList; trackBy:trackByFn;"
+                      [value]="voucher.VTYPE_NO">
+                      {{ voucher.TYPE_NAME }}</ng-option>
+                  </ng-select>
+                  <!-- <select class="form-control" [(ngModel)]="model.chequePrepared.VTYPE_NO"
+                    name="chequePrepared.VTYPE_NO">
+                    <option value="null">{{ langService.langData.select }}</option>
+                    <option *ngFor="let voucher of model.billVoucherList; trackBy:trackByFn;"
+                      [value]="voucher.VTYPE_NO">
+                      {{voucher.TYPE_NAME}}
+                    </option>
+                  </select> -->
+
+                </div>
+              </div>
+              <!--/.form-group-->
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.settlementType }}</label>
+                <div class="col-md-8">
+                  <ng-select ps-validate="settlementTyp" [virtualScroll]="true" [clearable]="false"
+                    name="chequePrepared.FINAL_SETTLEMENT_TYPE"
+                    [(ngModel)]="model.chequePrepared.FINAL_SETTLEMENT_TYPE">
+                    <ng-option [value]="null">{{ langService.langData.all }}</ng-option>
+                    <ng-option *ngFor="let satelment of model.settlementTypeList; trackBy:trackByFn;"
+                      [value]="satelment.VALUE">
+                      {{ satelment.TEXT }}</ng-option>
+                  </ng-select>
+                  <!-- <select class="form-control" ps-validate="settlementTyp"
+                    [(ngModel)]="model.chequePrepared.FINAL_SETTLEMENT_TYPE"
+                    name="chequePrepared.FINAL_SETTLEMENT_TYPE">
+                    <option value="null">{{ langService.langData.select }}</option>
+                    <option *ngFor="let filter of model.settlementTypeList; trackBy:trackByFn;" [value]="filter.VALUE">
+                      {{filter.TEXT}}
+                    </option>
+                  </select> -->
+                </div>
+              </div>
+              <!--/.form-group-->
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ langService.langData.settlementDate }}</label>
+                <div class="col-md-8 ">
+                  <input type="text" class="form-control" [(ngModel)]="model.chequePrepared.FINAL_SETTLEMENT_DATE"
+                  name="model.chequePrepared.FINAL_SETTLEMENT_DATE"  autocomplete="off" [bsConfig]="psDateFormat"
+                  psDatepicker>
+                </div>
+              </div>                            
+              <!--/.form-group-->
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{ langService.langData.description }}</label>
+                <div class="col-sm-10">
+                  <!-- class="form-control textarea--input-style textarea--resize-vertical" -->
+                  <textarea 
+                    ps-select-all
+                    class="form-control textarea-2row ng-pristine ng-valid ng-touched"
+                    name="chequePrepared.DESCR" [(ngModel)]="model.chequePrepared.DESCR" 
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--/.card-->      
+    </div>
+  </div>
+
+  <!-- <div class="text-right">
+    <button type="button" class="btn btn-success ml-base" (ps-click)="onClickSaveChequeRegister($event)"><i
+        class="fa fa-floppy-o"></i> {{ langService.langData.save }}</button>
+    <button type="button" class="btn btn-warning ml-base" (click)="onClickResetChequeRegister()"><i
+        class="fa fa-repeat"></i> {{ langService.langData.reset }}</button>
+  </div> -->
+</form>
+<div class="modal modal-confirmation modal-confirmation--success" [ngClass]="{show: model.voucherPerparedModalShow}"
+  [ngStyle]="{display: model.voucherPerparedModalShow?'block':'none'}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ langService.langData.success }}</h5>
+        <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close"
+          (click)="model.voucherPerparedModalShow=false">
+          <i class="ion-close-round"></i>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="modal-confirmation__icon">
+          <i class="fa fa-check-circle"></i>
+        </div>
+        <p class="modal-confirmation__text">{{model.p_mgs}}</p>
+        <button class="btn btn-success"
+          (click)="onClickContinueToSave();model.voucherPerparedModalShow=false">{{ langService.langData.continue }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show" *ngIf="model.voucherPerparedModalShow"></div>
+<template #modalContainer>
+</template>
+<ps-dialog></ps-dialog>

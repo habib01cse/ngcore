@@ -1,0 +1,54 @@
+//== Pagination
+/*----------------------------------------*/
+.ps-pagination-wrapper{
+  width:100%;
+  padding: $offset-base;
+  &>div{
+    width:33.333333%;
+    flex:1 1 auto;
+  }
+}
+.ps-pagination{
+  .arrow-button{
+    padding:0 ;
+    margin-left: $offset-base;
+    min-width: auto;
+
+    background: transparent;
+    font-size: pxtorem(10px, $font-size-base);
+    cursor: pointer;
+
+    &:first-child{
+      padding-left: 0;
+    }
+    &:focus{
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+  .pagination-current-page{
+      text-align:center;
+      width: pxtorem(35px, $font-size-base);
+  }
+  .per-page-item {
+    width: 50px;
+
+  }
+  .ps-seperator-line{
+    margin:0 pxtorem(8px, $font-size-base);
+    &:before{
+      top:0;
+    }
+  }
+  .arrow-left-single{
+    margin-right: 2px;
+    margin-top: 2px;
+  }
+}
+.pagination-refresh-button{
+  text-align: center;
+  background: transparent;
+  cursor: pointer;
+}
+//== End Pagination
+/*----------------------------------------*/

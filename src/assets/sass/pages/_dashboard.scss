@@ -1,0 +1,273 @@
+/* -----------------------------------
+** Start Module And Dashboard
+-------------------------------------*/
+.module-wrapper{
+  /* Display & Box Model */
+  -moz-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  .module-column{
+    /* Display & Box Model */
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+.module-item{
+  /* Display & Box Model */
+  margin-bottom: 1rem;
+  min-height: calc(100% - 1rem);
+  border-radius: 5px;
+  margin-left: 2px;
+  margin-right: 2px;
+
+  /* Other */
+  transition:.3s;
+  &__title{
+    font-size: 1rem;
+  }
+  &__image{
+    /* Display & Box Model */
+    display: flex;
+    height: 15vh;
+    padding-top: pxtorem(15px, $font-size-base);
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-bottom: 15px;
+
+    /* Text */
+    text-align: center;
+    img{
+      transition: .3s;
+    }
+  }
+  &:hover,&:focus{
+    /* Other */
+    box-shadow: 0 45px 110px -35px rgba(0, 0, 0, 0.5);
+    transform: translateY(-4px);
+    .module-item__image{
+      img{
+        transform: scale(1.2);
+      }
+    }
+  }
+  &.disable{
+
+    &:hover,&:focus{
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: translateY(0);
+      .module-item__image{
+        img{
+          transform: scale(1);
+        }
+      }
+    }
+  }
+  .card-body{
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+.module-intro-title{
+  /* Display & Box Model */
+  max-width: 28.57rem;
+  margin-left: auto;
+  margin-right: auto;
+  .ps-select{
+    /* Display & Box Model */
+    max-width:  pxtorem(250px, $font-size-base);
+    margin:$offset-base auto 0 auto;
+    select.form-control{
+      padding-left: pxtorem(10px, $font-size-base);
+    }
+    &:after{
+      right: 0.7543rem;
+    }
+  }
+}
+.app-style-module{
+  position: fixed;
+  left:0;
+  top:$header-height;
+  
+  background-color: #fff;
+  padding:5px;
+  display: block;
+  z-index: 55;
+  
+  opacity: 0;
+  width:0;
+  //height: 0;
+  transition: cubic-bezier(0.215, 0.610, 0.355, 1);
+  min-height: calc(100vh - 50px);
+  &>div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  &--active{
+    opacity: 1;
+    width:pxtorem(330px, $font-size-base);
+    //height: auto;
+    overflow: auto;
+    height: 100%;
+  }
+  .module-column{
+    width:33.3333333%;
+    flex: 0 0 33.3333333%;
+    max-width: 33.3333333%;
+
+    .module-item{
+      margin:1px;
+      //height: 87px;
+      height: 100px;
+      border: 2px solid #e9ebee;
+      border-radius: 2px;
+      &:hover,:focus{
+        border-color: #dddee0;
+        transform: translate(0);
+        .module-item__image{
+          transform: translate(1.3);
+        }
+      }
+    }
+  }
+  // .module-column--large{
+  //   width: 50%;
+  //   flex: 0 0 50%;
+  //   max-width: 50%;
+  // }
+  .module-item__image{
+    height: 45px;
+    padding-top: 10px;
+    padding-bottom: 4px;
+    transition: .3s;
+  }
+  .module-item__title{
+    font-size: 13px;
+  }
+  .card-body{
+    padding: 0;
+  }
+  &__company{
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    padding:5px 0;
+    margin-bottom: 5px;
+    display: flex;
+    app-company-change{
+      width:calc(100% - 40px);
+    }
+  }
+  &__home-icon{
+    width:40px;
+    font-size: 23px;
+    text-align: center;
+    line-height: 25px;
+    button{
+      color: #585858;
+      font-size: 23px;
+      background: transparent;
+      border: 0;
+      padding: 0;
+    }
+
+  }
+
+}
+.module-overlay{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 43;
+}
+
+.app-style-module--active .module-item {
+	-webkit-animation-name: fadeInLeftBig;
+	animation-name: fadeInLeftBig;
+}
+.app-style-module--active .module-column:nth-child(1) .module-item{
+	-webkit-animation-duration: 0.1s;
+	animation-duration: 0.1s;
+}
+.app-style-module--active .module-column:nth-child(2) .module-item{
+	-webkit-animation-duration: 0.2s;
+	animation-duration: 0.2s;
+}
+.app-style-module--active .module-column:nth-child(3) .module-item{
+	-webkit-animation-duration: 0.3s;
+	animation-duration: 0.3s;
+}
+.app-style-module--active .module-column:nth-child(4) .module-item{
+	-webkit-animation-duration: 0.4s;
+	animation-duration: 0.4s;
+}
+.app-style-module--active .module-column:nth-child(5) .module-item{
+	-webkit-animation-duration: 0.5s;
+	animation-duration: 0.5s;
+}
+.app-style-module--active .module-column:nth-child(6) .module-item{
+	-webkit-animation-duration: 0.6s;
+	animation-duration: 0.6s;
+}
+.app-style-module--active .module-column:nth-child(7) .module-item{
+	-webkit-animation-duration: 0.7s;
+	animation-duration: 0.7s;
+}
+.app-style-module--active .module-column:nth-child(8) .module-item{
+	-webkit-animation-duration: 0.8s;
+	animation-duration: 0.8s;
+}
+.app-style-module--active .module-column:nth-child(9) .module-item{
+	-webkit-animation-duration: 0.9s;
+	animation-duration: 0.9s;
+}
+.app-style-module--active .module-column:nth-child(10) .module-item{
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+}
+.app-style-module--active .module-column:nth-child(11) .module-item{
+	-webkit-animation-duration: 1.1s;
+	animation-duration: 1.1s;
+}
+.app-style-module--active .module-column:nth-child(12) .module-item{
+	-webkit-animation-duration: 1.2s;
+	animation-duration: 1.2s;
+}
+.app-style-module--active .module-column:nth-child(13) .module-item{
+	-webkit-animation-duration: 1.3s;
+	animation-duration: 1.3s;
+}
+.app-style-module--active .module-column:nth-child(14) .module-item{
+	-webkit-animation-duration: 1.4s;
+	animation-duration: 1.4s;
+}
+.app-style-module--active .module-column:nth-child(15) .module-item{
+	-webkit-animation-duration: 1.5s;
+	animation-duration: 1.5s;
+}
+.app-style-module .module-column:nth-child(4), .app-style-module .module-column:nth-child(5),
+.app-style-module .module-column:nth-child(9), .app-style-module .module-column:nth-child(10),
+.app-style-module .module-column:nth-child(14), .app-style-module .module-column:nth-child(15)
+{
+	width: 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+
+
+
+
+
+
+
+
+/* -----------------------------------
+** End Module
+-------------------------------------*/

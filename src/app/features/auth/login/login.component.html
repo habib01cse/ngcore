@@ -1,0 +1,58 @@
+<div class="login-page-wrapper" [@simpleFadeAnimation]="'in'">
+  <div class="login-wrapper">
+    <div class="pridebook-info bg-primary text-center">
+      <div class="d-inline-block">
+        <div class="text-center">
+          <img class="login-logo" src="assets/images/login/ng-info.png" alt="pridebook info">
+          <h2 class="mb0 text-regular">Angular Core</h2>
+          <p class="text-left">{{ clientName }}</p>
+        </div>
+        <ul class="pridebook-info__feature-list text-left">
+          <li>Powerful ERP</li>
+          <li>Feature Packed</li>
+          <li>Easy To Manage</li>
+        </ul>
+      </div>
+      <p class="pridebook-info__footer text-center">Different Innovation and Excellence</p>
+    </div><!--/.pridebook-info-->
+    <div class="login-form-wrapper">
+      <form class="login-form" novalidate  ps-validation-option="validationOptions" >
+        <div class="text-center">
+          <img src="assets/images/login/login-user.png" alt="" class="avater">
+          <h3 class="pb20 pt-base text-regular">User Login</h3>
+        </div>
+        <div class="input-group input-group--user-name">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="ion-android-person"></i></span>
+          </div>
+          <input (blur)="checkCompany()" placeholder="User name" ps-validate="username" type="text" class="form-control" name="username" [(ngModel)]="username">
+        </div><!--/.input-group-->
+        <div class="input-group input-group--password">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="ion-android-lock"></i></span>
+          </div>
+          <input type="password" class="form-control" placeholder="Password"  ps-validate="password" name="password" [(ngModel)]="password"
+          (keyup.enter)="callLoninAction($event)"
+          >
+        </div><!--/.input-group-->
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-building"></i></span>
+          </div>
+          <div class="ps-select">
+            <select class="form-control" name="company" ps-validate="selectedCompany" 
+            [(ngModel)]="selectedCompany" (ngModelChange)="onChangeNgModel()">
+              <option [ngValue]="null">Please select a company</option>
+              <option *ngFor="let company of companyList" [ngValue]="company.COMPANY_NO">{{company.COMPANY_NAME}}</option>
+            </select>
+          </div>
+        </div><!--/.input-group-->
+        <div class="d-flex justify-content-between align-items-center password-remember-wrapper">
+          
+        </div>
+         <input type="submit" #submit (ps-click)="atemptLogin($event)" class="btn btn-primary btn-lg btn-block text-bolder"
+        value="LOGIN" id="loginBtn">
+      </form>
+    </div><!--/.login-form-wrapper-->
+  </div>
+</div>
