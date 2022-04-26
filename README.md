@@ -132,7 +132,8 @@ this.modalService.openDialog(MODULE_NAME:string, COMPONENT_KEY:string, {title:st
         };
     });
 ```
-
+###
+Login User name: habib Password: 1
 ### Ag-Grid validation
 
 See `HR_1076` `&` `HR_1009`
