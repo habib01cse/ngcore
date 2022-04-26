@@ -1,6 +1,6 @@
-# Pridebookpro
+# Angular core
 
-ERP Application Front-End by Pridesys IT Ltd &copy;.
+Exp and Study &copy;.
 
 ## Serve locally
 
